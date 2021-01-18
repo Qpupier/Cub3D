@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 14:56:08 by qpupier           #+#    #+#             */
-/*   Updated: 2021/01/12 17:38:47 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/01/18 16:55:13 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_pixel_put(t_mlx_img img, int x, int y, uint32_t color)
 	if (y * img.width + x > img.width * img.height 	\
 			|| x < 0 || y < 0 || x >= img.width || y >= img.height)
 		return ;
-	img.img[y * img.width + x] = color;
+	img.img[(int)(y * img.s_l * 0.25 + x)] = color;
 }
 
 void	ft_pixel_put_rgb(t_mlx_img img, int x, int y, t_rgb color)

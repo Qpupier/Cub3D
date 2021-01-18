@@ -6,7 +6,7 @@
 #    By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/12 15:48:25 by qpupier           #+#    #+#              #
-#    Updated: 2021/01/16 12:18:46 by qpupier          ###   ########lyon.fr    #
+#    Updated: 2021/01/18 16:19:22 by qpupier          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ OBJ_NAME = $(SRC_NAME:.c=.o)
 INC_NAME = cub3d.h
 OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 INC = $(addprefix $(INC_PATH)/,$(INC_NAME))
-LIBS = -L libft -L minilibx
+LIBS = -L libft -L .
 LDFLAGS = -O3 -march=native -flto -ffast-math
 LDLIBS = -lm -lmlx -lft
 ifeq ($(OS), Windows_NT)
@@ -71,7 +71,6 @@ else
 endif
 
 compilation:
-	@make -C minilibx
 	@make -C libft
 
 $(NAME): $(OBJ)

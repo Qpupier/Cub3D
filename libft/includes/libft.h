@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/03 16:49:53 by qpupier           #+#    #+#             */
-/*   Updated: 2021/01/12 17:38:42 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/01/16 16:09:45 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ typedef struct		s_mlx_img
 	int				height;
 	int				bpp;
 	int				s_l;
-	int				endian;
+	int				end;
 }					t_mlx_img;
 
 typedef struct		s_inter_2d_ray_seg

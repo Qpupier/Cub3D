@@ -6,7 +6,7 @@
 #    By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/13 11:56:39 by qpupier           #+#    #+#              #
-#    Updated: 2021/01/12 15:57:38 by qpupier          ###   ########lyon.fr    #
+#    Updated: 2021/01/18 16:16:48 by qpupier          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -194,15 +194,17 @@ SRC_NAME = 	display/ft_putchar_fd.c 							\
 			ft_calloc.c 										\
 			get_next_line.c
 SRC_SUP = {display,math,math/line,math/cplx,math/geometry,math/matrix,math/real,math/vec,math/sys,memory,mlx,mlx/colors,mlx/line,str}
+SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 OBJ_PATH = .objects
+OBJ_NAME = $(SRC_NAME:.c=.o)
+OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 INC_PATH = includes
+INC_NAME = libft.h get_next_line.h
+INC = $(addprefix $(INC_PATH)/,$(INC_NAME))
 CPPFLAGS = -I $(INC_PATH)
 NAME = libft.a
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -O3 -march=native -flto -ffast-math
-OBJ_NAME = $(SRC_NAME:.c=.o)
-SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
-OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 
 ERASE = \033[2K\r
 BLUE = \033[36m
@@ -224,7 +226,7 @@ $(NAME): $(OBJ)
 mlx:
 	@make -C ../minilibx
 
-$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c ../minilibx/libmlx.a includes/libft.h includes/get_next_line.h
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c ../libmlx.dylib $(INC)
 	@mkdir -p $(OBJ_PATH) $(OBJ_PATH)/$(SRC_SUP)
 	@$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
 	@printf "$(ERASE)$(BLUE)> Compilation :$(END) $<"

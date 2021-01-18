@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 15:49:56 by qpupier           #+#    #+#             */
-/*   Updated: 2021/01/12 17:29:19 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/01/16 16:10:30 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	xpm_to_img(void *ptr, t_mlx_img *img, char *file)
 	if (!(img->ptr = 														\
 			mlx_xpm_file_to_image(ptr, file, &img->width, &img->height)) 	\
 			|| !(img->img = 												\
-			(unsigned int *)mlx_get_data_addr(img->ptr, &img->bpp, &img->s_l, &img->endian)))
+			(unsigned int *)mlx_get_data_addr(img->ptr, &img->bpp, 			\
+			&img->s_l, &img->end)))
 		ft_error(ft_strjoin("Fail to load img : ", file));
 }

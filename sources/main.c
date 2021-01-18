@@ -6,103 +6,104 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:53:10 by qpupier           #+#    #+#             */
-/*   Updated: 2021/01/16 15:06:29 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/01/18 17:00:33 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <stdio.h>
 
-typedef struct	s_param
+uint32_t	ray_casting(t_vec ray)
 {
-	void		*mlx_ptr;
-	void		*win_ptr;
-	t_mlx_img	img;
-	int			angle;
-}				t_param;
-
-
-void	algo(t_param *param)
-{
-	// t_vec vec;
 	t_vec result;
 	t_plane p1 = {0, 1, 0, 3};
 	t_plane p2 = {1, 0, 0, -2};
 	t_plane p3 = {0, 1, 0, -3};
 	t_plane p4 = {1, 0, 0, 2};
-
-	int	i;
-	int	j;
 	
-	float angle = param->angle*M_PI/180;
-	float fov = 60*M_PI/180;
-	float fov_h = fov * 500/500;
-	fov = 2*tan(fov*0.5);
-	fov_h = 2*tan(fov_h*0.5);
-	// fov = tan(fov*M_PI/180/2)*2;
-	j = -1;
-	while (++j < 500)
-	{
-		// vec = vec_rot_x(vec_create(0, -1, 0), atan(fov/500*(j-500/2)));
-		i = -1;
-		while (++i < 500)
-		{
-			// printf("%d -> %f\n", i, 60*M_PI/180/500*(i-500/2));
-			// printf("%f\n", 60*M_PI/180/500*(i-500/2));
-			// printf("%f\n\n", atan(60*M_PI/180/500*(i-500/2)));
-			// t_vec new = vec_rot_z(vec, atan(fov/500*(i-500/2)));
-			t_vec new = vec_create(fov_h/500*(i-500/2), -1, fov/500*(j-500/2));
-			new = vec_rot_z(new, angle);
-			// printf("%d | Vector((%f, %f, %f))\n", i, new.x, new.y, new.z);
-			if (inter_line_plane(line_create_point_vec(vec_create(0, 0, 0.5), new), p1, &result) && result.z >= 0 && result.z < 1)
-			{
-				if (j == 225 && (!i || i == 250))
-				{
-					printf("%d | Vector((%f, %f, %f))\n", i, result.x, result.y, result.z);
-					printf("%f\n", vec_norm(result));
-				}
-				ft_pixel_put(param->img, i, j, 0xffffff);
-			}
-			else if (inter_line_plane(line_create_point_vec(vec_create(0, 0, 0.5), new), p2, &result) && result.z >= 0 && result.z < 1)
-				ft_pixel_put(param->img, i, j, 0xffffff);
-			else if (inter_line_plane(line_create_point_vec(vec_create(0, 0, 0.5), new), p3, &result) && result.z >= 0 && result.z < 1)
-				ft_pixel_put(param->img, i, j, 0xffffff);
-			else if (inter_line_plane(line_create_point_vec(vec_create(0, 0, 0.5), new), p4, &result) && result.z >= 0 && result.z < 1)
-				ft_pixel_put(param->img, i, j, 0xffffff);
+	if (inter_line_plane(line_create_point_vec(vec_create(0, 0, 0.5), ray), p1, &result) && result.z >= 0 && result.z < 1)
+				return (0xffffff);
+			else if (inter_line_plane(line_create_point_vec(vec_create(0, 0, 0.5), ray), p2, &result) && result.z >= 0 && result.z < 1)
+				return (0xffffff);
+			else if (inter_line_plane(line_create_point_vec(vec_create(0, 0, 0.5), ray), p3, &result) && result.z >= 0 && result.z < 1)
+				return (0xffffff);
+			else if (inter_line_plane(line_create_point_vec(vec_create(0, 0, 0.5), ray), p4, &result) && result.z >= 0 && result.z < 1)
+				return (0xffffff);
 			else
-				ft_pixel_put(param->img, i, j, 0x000000);
-			// printf("%d | %f %f %f\n", i, new.x, new.y, new.z);
-		}
-	}
-	mlx_put_image_to_window(param->mlx_ptr, param->win_ptr, param->img.ptr, 0, 0);
+				return (0x000000);
+	(void)ray;
+	return (0xffffff);
 }
 
-int	hook(int key, t_param* param)
+void	algo(t_param *p)
+{
+	t_vec ray;
+	int		i;
+	int		j;
+
+	j = -1;
+	while (++j < p->h && (i = -1))
+		while (++i < p->w)
+		{
+			ray = vec_create(p->r_fov_h * (i - p->w05), -1, 	\
+					p->r_fov_v * (j - p->h05));
+			ray = vec_rot_z(ray, p->angle);
+			ft_pixel_put(p->img, i, j, ray_casting(ray));
+		}
+	mlx_put_image_to_window(p->mlx_ptr, p->win_ptr, p->img.ptr, 0, 0);
+}
+
+int	hook(int key, t_param* p)
 {
 	// printf("%d\n", key);
 	if (key == 53)
 		exit(0);
 	if (key == 123)
-		param->angle -= 5;
+		p->angle -= 5 * M_PI / 180;
 	if (key == 124)
-		param->angle += 5;
-	algo(param);
+		p->angle += 5 * M_PI / 180;
+	algo(p);
 	return (0);
+}
+
+void	init(t_param *p)
+{
+	if (FOV < 0 || FOV > 360)
+		ft_error("Impossible Field Of View");
+	if (mlx_get_screen_size(p->mlx_ptr, &p->w, &p->h))
+		ft_error("Minilibx error - Impossible to get screen size");
+	if (WIDTH < 0 || HEIGHT < 0)
+		ft_error("Invalid size screen");
+	if (WIDTH < p->w)
+		p->w = WIDTH;
+	if (HEIGHT < p->h)
+		p->h = HEIGHT;
+	if (!(p->mlx_ptr = mlx_init()))
+		ft_error("Impossible to start Minilibx");
+	if (!(p->win_ptr = mlx_new_window(p->mlx_ptr, p->w, p->h, "Cub3D")))
+		ft_error("Impossible to open a window");
+	ft_create_img(p->mlx_ptr, &p->img, p->w, p->h);
+	p->w05 = p->w * 0.5;
+	p->h05 = p->h * 0.5;
+	p->angle = 0;
+	p->fov_h = FOV * M_PI / 180;
+	p->fov_v = p->fov_h * p->h / p->w;
+	p->fov_h = 2 * tan(p->fov_h * 0.5);
+	p->fov_v = 2 * tan(p->fov_v * 0.5);
+	p->r_fov_h = p->fov_h / p->w;
+	p->r_fov_v = p->fov_v / p->h;
 }
 
 int	main(int ac, char **av)
 {
-	t_param		*param;
+	t_param		*p;
 
-	if (!(param = malloc(sizeof(t_param))))
+	if (!(p = malloc(sizeof(t_param))))
 		return (-1);
-	param->angle = 30;
-	param->mlx_ptr = mlx_init();
-	param->win_ptr = mlx_new_window(param->mlx_ptr, 500, 500, "Cub3D");
-	ft_create_img(param->mlx_ptr, &param->img, 500, 500);
-	algo(param);
-	mlx_key_hook(param->win_ptr, hook, param);
-	mlx_loop(param->mlx_ptr);
+	init(p);
+	algo(p);
+	mlx_key_hook(p->win_ptr, hook, p);
+	mlx_loop(p->mlx_ptr);
 	(void)ac;
 	(void)av;
 	return (0);
