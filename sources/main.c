@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:53:10 by qpupier           #+#    #+#             */
-/*   Updated: 2021/01/18 17:00:33 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/01/19 14:28:23 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,7 @@ void	algo(t_param *p)
 	while (++j < p->h && (i = -1))
 		while (++i < p->w)
 		{
-			ray = vec_create(p->r_fov_h * (i - p->w05), -1, 	\
-					p->r_fov_v * (j - p->h05));
-			ray = vec_rot_z(ray, p->angle);
+			ray = vec_rot_z(p->rays[j][i], p->angle);
 			ft_pixel_put(p->img, i, j, ray_casting(ray));
 		}
 	mlx_put_image_to_window(p->mlx_ptr, p->win_ptr, p->img.ptr, 0, 0);
@@ -64,6 +62,27 @@ int	hook(int key, t_param* p)
 		p->angle += 5 * M_PI / 180;
 	algo(p);
 	return (0);
+}
+
+t_vec	**init_rays(t_param *p)
+{
+	t_vec	**rays;
+	int		i;
+	int		j;
+
+	if (!(rays = malloc(sizeof(t_vec*) * p->h)))
+		ft_error("Malloc error");
+	j = -1;
+	while (++j < p->h)
+	{
+		if (!(rays[j] = malloc(sizeof(t_vec) * p->w)))
+			ft_error("Malloc error");
+		i = -1;
+		while (++i < p->w)
+			rays[j][i] = vec_create(p->r_fov_h * (i - p->w05), -1, 	\
+					p->r_fov_v * (j - p->h05));
+	}
+	return (rays);
 }
 
 void	init(t_param *p)
@@ -92,6 +111,7 @@ void	init(t_param *p)
 	p->fov_v = 2 * tan(p->fov_v * 0.5);
 	p->r_fov_h = p->fov_h / p->w;
 	p->r_fov_v = p->fov_v / p->h;
+	p->rays = init_rays(p);
 }
 
 int	main(int ac, char **av)

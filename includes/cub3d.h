@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:52:32 by qpupier           #+#    #+#             */
-/*   Updated: 2021/01/18 17:01:00 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/01/19 14:16:50 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct	s_param
 	float		r_fov_h;
 	float		r_fov_v;
 	float		angle;
+	t_vec		**rays;
 }				t_param;
 
 #endif
