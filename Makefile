@@ -6,7 +6,7 @@
 #    By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/12 15:48:25 by qpupier           #+#    #+#              #
-#    Updated: 2021/01/19 14:14:36 by qpupier          ###   ########lyon.fr    #
+#    Updated: 2021/02/02 17:45:14 by qpupier          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,14 @@ INC_PATH = includes
 SRC_PATH = sources
 OBJ_PATH = .objects
 SRC_SUP = 
-SRC_NAME = main.c
+SRC_NAME = 	error.c 			\
+			free.c 				\
+			main.c 				\
+			parsing.c 			\
+			parsing_textures.c 	\
+			parsing_size_colors.c
 OBJ_NAME = $(SRC_NAME:.c=.o)
-INC_NAME = cub3d.h
+INC_NAME = cub3d.h structs.h functions.h
 OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 INC = $(addprefix $(INC_PATH)/,$(INC_NAME))
 LIBS = -L libft -L .
@@ -45,7 +50,7 @@ else
 endif
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror $(LDFLAGS)
-CPPFLAGS = -I $(INC_PATH) -I libft/$(INC_PATH) -I minilibx
+CPPFLAGS = -I $(INC_PATH) -I libft/$(INC_PATH) -I mlx
 
 ERASE = 	\033[2K\r
 GREY = 		\033[30m

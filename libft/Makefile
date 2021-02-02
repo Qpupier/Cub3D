@@ -6,7 +6,7 @@
 #    By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/13 11:56:39 by qpupier           #+#    #+#              #
-#    Updated: 2021/01/19 14:14:38 by qpupier          ###   ########lyon.fr    #
+#    Updated: 2021/02/02 17:45:13 by qpupier          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -126,11 +126,11 @@ SRC_NAME = 	display/ft_putchar_fd.c 							\
 			mlx/line/ft_line_straight_horiz.c 					\
 			mlx/line/ft_line_straight_vert.c 					\
 			mlx/line/ft_line_vert.c 							\
+			mlx/file_to_img.c 									\
 			mlx/ft_create_img.c 								\
 			mlx/ft_img_dark.c 									\
 			mlx/ft_pixel_put.c 									\
 			mlx/ft_get_pixel.c 									\
-			mlx/xpm_to_img.c 									\
 			str/ft_stractrim.c 									\
 			str/ft_strcat.c 									\
 			str/ft_strchr.c 									\
@@ -224,7 +224,7 @@ $(NAME): $(OBJ)
 	@printf "$(ERASE)$(BLUE)> libft : $(GREEN)Success !$(END)\n"
 
 mlx:
-	@make -C ../minilibx
+	@make -C ../mlx
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c ../libmlx.dylib $(INC)
 	@mkdir -p $(OBJ_PATH) $(OBJ_PATH)/$(SRC_SUP)

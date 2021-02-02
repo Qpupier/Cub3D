@@ -1,15 +1,15 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   ft_get_pixel.c                                   .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: qpupier <qpupier@student.le-101.fr>        +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/06/17 14:59:42 by qpupier      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/28 18:06:51 by qpupier     ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_get_pixel.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/06/17 14:59:42 by qpupier           #+#    #+#             */
+/*   Updated: 2021/01/21 12:08:25 by qpupier          ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../includes/libft.h"
 
@@ -18,7 +18,7 @@ t_rgb	ft_get_pixel(t_mlx_img img, int x, int y)
 	t_rgb	rgb;
 	int		t;
 
-	if (x < 0 || y < 0 || x >= img.width || y >= img.height)
+	if (x < 0 || y < 0 || x >= img.w || y >= img.h)
 		return ((t_rgb){0, 0, 0, 255});
 	t = y * img.s_l + x * 4;
 	rgb.b = img.img[t] + (img.img[t] < 0 ? 256 : 0);

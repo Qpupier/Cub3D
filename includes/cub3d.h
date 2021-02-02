@@ -6,34 +6,48 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:52:32 by qpupier           #+#    #+#             */
-/*   Updated: 2021/01/19 14:16:50 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/02 16:52:13 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "libft.h"
+# include <fcntl.h>
+#include <stdio.h> // A ENLEVER
+# include "functions.h"
 
 # define FOV 60
 # define WIDTH 500
 # define HEIGHT 500
 
-typedef struct	s_param
+typedef enum	e_free
 {
-	void		*mlx_ptr;
-	void		*win_ptr;
-	t_mlx_img	img;
-	int			w;
-	int			h;
-	float		w05;
-	float		h05;
-	float		fov_h;
-	float		fov_v;
-	float		r_fov_h;
-	float		r_fov_v;
-	float		angle;
-	t_vec		**rays;
-}				t_param;
+	F_MLX_PTR = 1,
+	F_MLX_WIN = 2,
+	F_MLX_IMG = 4,
+	F_MLX_NO = 8,
+	F_MLX_SO = 16,
+	F_MLX_WE = 32,
+	F_MLX_EA = 64,
+	F_MLX_S = 128,
+	F_MLX = 256,
+	F_WIN = 512,
+	F_MAP = 1024,
+	F_RAYS = 2048,
+	F_CLOSE = 4096
+}				t_free;
+
+typedef enum	e_parameters
+{
+	P_R = 1,
+	P_NO = 2,
+	P_SO = 4,
+	P_WE = 8,
+	P_EA = 16,
+	P_S = 32,
+	P_F = 64,
+	P_C = 128
+}				t_parameters;
 
 #endif

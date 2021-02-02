@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/03 16:49:53 by qpupier           #+#    #+#             */
-/*   Updated: 2021/01/16 16:09:45 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/02 17:45:34 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,11 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <unistd.h>
-# include <stdlib.h>
 # include <string.h>
 # include <ctype.h>
 # include <math.h>
 # include "get_next_line.h"
-# include "../../minilibx/mlx.h"
+# include "../../mlx/mlx.h"
 
 # define RED 0xFF0000
 # define GREEN 0x00FF00
@@ -120,8 +118,8 @@ typedef struct		s_mlx_img
 {
 	void			*ptr;
 	unsigned int	*img;
-	int				width;
-	int				height;
+	int				w;
+	int				h;
 	int				bpp;
 	int				s_l;
 	int				end;
@@ -268,7 +266,8 @@ int					sys_solve_1equ_1var_deg1(float a, float b, 				\
 int					sys_solve_2equ_2var_deg1(t_equ_2var_deg1 e1, 			\
 					t_equ_2var_deg1 e2, t_sys_sol_2var_deg1 *s);
 
-void				xpm_to_img(void *ptr, t_mlx_img *img, char *file);
+int					xpm_to_img(void *mlx_ptr, t_mlx_img *img, char *file);
+int					png_to_img(void *mlx_ptr, t_mlx_img *img, char *file);
 
 int					floatcmp(float f1, float f2, float p);
 float				ft_abs(float nb);
@@ -297,7 +296,7 @@ int					ft_digit_abs(int d);
 int					ft_digit_hex_to_int(char c);
 t_rgb				hex_to_rgb(unsigned int color);
 unsigned int		rgb_to_hex(t_rgb c);
-void				ft_error(char *str);
+void				ft_error(const char *str);
 int					ft_exit(void);
 int					ft_find(char *str, char c);
 char				*ft_ftoa(float nb, int p);
