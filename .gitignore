@@ -1,0 +1,8 @@
+.objects
+*.o
+*.swiftdoc
+*.swiftmodule
+*.dylib
+cub3d
+libft.a
+.DS_Store
