@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:53:10 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/02 17:53:45 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/03 16:14:26 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	algo(t_param *p)
 	while (++j < p->win->h && (i = -1))
 		while (++i < p->win->w)
 		{
-			ray = vec_rot_z(p->rays[j * p->win->h + i], p->angle);
+			ray = vec_rot_z(p->rays[j * p->win->w + i], p->angle);
 			ft_pixel_put(p->mlx->img, i, j, ray_casting(ray));
 		}
 	mlx_put_image_to_window(p->mlx->mlx_ptr, p->mlx->win_ptr, p->mlx->img.ptr, 0, 0);
@@ -73,8 +73,32 @@ t_vec	*init_rays(t_param *p)
 		ft_error_free(p, "Malloc error - Init rays");
 	i = -1;
 	while (++i < size)
-		rays[i] = vec_create(p->win->r_fov_h * (i % p->win->h - p->win->w05), -1, p->win->r_fov_v * (i / p->win->h - p->win->h05));
+		rays[i] = vec_create(p->win->r_fov_h * (i % p->win->w - p->win->w05), -1, p->win->r_fov_v * (i / p->win->w - p->win->h05));
 	return (rays);
+}
+
+void	init_parameters(t_param *p)
+{
+	int	w;
+	int	h;
+
+	if (mlx_get_screen_size(p->mlx->mlx_ptr, &w, &h))
+		ft_error_free(p, "Minilibx error - Impossible to get screen size");
+	if (w < p->win->w)
+		p->win->w = w;
+	if (h < p->win->h)
+		p->win->h = h;
+	if (!(p->mlx->win_ptr 	\
+			= mlx_new_window(p->mlx->mlx_ptr, p->win->w, p->win->h, "Cub3D")))
+		ft_error_free(p, "Impossible to open a window");
+	ft_create_img(p->mlx->mlx_ptr, &p->mlx->img, p->win->w, p->win->h);
+	p->win->w05 = p->win->w * 0.5;
+	p->win->h05 = p->win->h * 0.5;
+	p->win->fov_v = p->win->fov_h * p->win->h / p->win->w;
+	p->win->fov_v = 2 * tan(p->win->fov_v * 0.5);
+	p->win->r_fov_h = p->win->fov_h / p->win->w;
+	p->win->r_fov_v = p->win->fov_v / p->win->h;
+	p->rays = init_rays(p);
 }
 
 void	init(t_param *p)
@@ -93,24 +117,6 @@ void	init(t_param *p)
 	p->win->fov_h = FOV * M_PI / 180;
 	p->win->fov_h = 2 * tan(p->win->fov_h * 0.5);
 	p->parameters = 0;
-	// if (mlx_get_screen_size(p->mlx_ptr, &p->w, &p->h))
-	// 	ft_error("Minilibx error - Impossible to get screen size");
-	// if (WIDTH < 0 || HEIGHT < 0)
-	// 	ft_error("Invalid size screen");
-	// if (WIDTH < p->w)
-	// 	p->w = WIDTH;
-	// if (HEIGHT < p->h)
-	// 	p->h = HEIGHT;
-	// if (!(p->win_ptr = mlx_new_window(p->mlx_ptr, p->w, p->h, "Cub3D")))
-	// 	ft_error("Impossible to open a window");
-	// ft_create_img(p->mlx_ptr, &p->img, p->w, p->h);
-	// p->w05 = p->w * 0.5;
-	// p->h05 = p->h * 0.5;
-	// p->fov_v = p->fov_h * p->h / p->w;
-	// p->fov_v = 2 * tan(p->fov_v * 0.5);
-	// p->r_fov_h = p->fov_h / p->w;
-	// p->r_fov_v = p->fov_v / p->h;
-	// p->rays = init_rays(p);
 }
 
 void	verif_defines(void)
@@ -152,6 +158,7 @@ int	main(int ac, char **av)
 	p->free |= F_CLOSE;
 	init(p);
 	parsing(p);
+	init_parameters(p);
 	free_fd(p, "Impossible to close map file");
 	algo(p);
 	mlx_key_hook(p->mlx->win_ptr, hook, p);

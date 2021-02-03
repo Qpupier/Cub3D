@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 10:55:35 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/03 15:37:45 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/03 16:17:08 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	parsing(t_param *p)
 	}
 	if (p->parameters != 255)
 		parsing_error(p, line, "Miss parameter(s)");
+	verif_parameters(p);
 	if (!parameters)
 		parsing_error(p, line, "No map");
 	map = parsing_line_map(p, line);
@@ -51,5 +52,6 @@ void	parsing(t_param *p)
 	// 	printf("%s\n", map->line);
 	// 	map = map->next;
 	// }
-	ft_error("PAUSE ACTUELLE");
+	// ft_error("PAUSE ACTUELLE");
+	printf("%d | %d\n", p->map->w, p->map->h);
 }

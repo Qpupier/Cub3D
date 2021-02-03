@@ -6,11 +6,17 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 15:32:53 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/03 15:34:12 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/03 16:01:23 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void		verif_parameters(t_param *p)
+{
+	if (p->win->w < 0 || p->win->h < 0)
+		ft_error_free(p, "Invalid range parameter");
+}
 
 static void	parsing_parameters_swipe(t_param *p, char *line, int i)
 {

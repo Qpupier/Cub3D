@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 15:36:27 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/03 15:41:44 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/03 15:50:35 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void		parsing_line_read(t_param *p, t_parsing *map)
 
 	while (get_next_line(p->fd, &line) > 0)
 	{
-		// ft_putendl(line);
 		p->map->h++;
 		parsing_map(p, line);
 		lst_append(map, p, line);

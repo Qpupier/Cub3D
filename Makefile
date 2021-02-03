@@ -6,7 +6,7 @@
 #    By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/12 15:48:25 by qpupier           #+#    #+#              #
-#    Updated: 2021/02/03 15:47:09 by qpupier          ###   ########lyon.fr    #
+#    Updated: 2021/02/03 15:52:38 by qpupier          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ ifeq ($(OS), Windows_NT)
 else
 	OS = $(shell uname -s)
 	ifeq ($(OS), Darwin)
-		NORMINETTE = norminette
+		NORMINETTE = norminettev2
 		MINILIBX = -framework OpenGL -framework AppKit -framework OpenAL
 		OS = $(END)$(PINK)Mac OS
 	else

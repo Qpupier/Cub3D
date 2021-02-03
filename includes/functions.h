@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 15:43:13 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/03 15:47:26 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/03 16:01:39 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ int			parsing_parameters(t_param *p, char *line);
 void		free_lst(t_parsing *map);
 t_parsing	*parsing_line_map(t_param *p, char *line);
 void	parsing_lst_error(t_param *p, t_parsing *map, const char *error);
+void		verif_parameters(t_param *p);
 
 #endif

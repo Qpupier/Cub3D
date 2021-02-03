@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/28 11:53:48 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/01 16:31:02 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/03 15:55:30 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void			parsing_r(t_param *p, char *line, int i)
 		i++;
 	if (!line[i] || line[i] < '0' || line[i] > '9')
 		parsing_error(p, line, "Invalid map parameter");
-	p->win->w = ft_atoi(line + i);// A CHECKER
+	p->win->w = ft_atoi(line + i);
 	while (line[i] && line[i] >= '0' && line[i] <= '9')
 		i++;
 	if (!line[i] || line[i] != ' ')
