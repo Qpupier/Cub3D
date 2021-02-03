@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 17:24:54 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/02 15:59:14 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/03 17:59:24 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct	s_map
 	int	w;
 	int	h;
 	int	b;
+	int	**map;//TO DO
 }				t_map;
 
 typedef struct	s_param

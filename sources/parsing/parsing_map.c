@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 15:36:27 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/03 15:50:35 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/03 17:12:33 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	parsing_map(t_param *p, char *line)
 	i = 0;
 	while (line[i] && (line[i] == ' ' || line[i] == '0'))
 		i++;
-	if (i < p->map->b)
+	if (line[i] && i < p->map->b)
 		p->map->b = i;
 	i = ft_strlen(line);
 	while (i > 0 && (line[i - 1] == ' ' || line[i - 1] == '0'))
