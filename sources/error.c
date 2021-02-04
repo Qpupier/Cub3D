@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 17:40:27 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/04 14:44:58 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/04 16:49:05 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,20 @@ static void	free_mlx(t_param *p)
 	free_one(p, p->mlx, F_MLX);
 }
 
+void		free_map(t_param * p)
+{
+	int	i;
+
+	if (p->free & F_MAP_MAP)
+	{
+		i = -1;
+		while (++i < p->map->h)
+			free(p->map->map[i]);
+		free_one(p, p->map->map, F_MAP_MAP);
+	}
+	free_one(p, p->map, F_MAP);
+}
+
 void		free_all(t_param *p)
 {
 	if (p->free & F_MLX)
@@ -47,7 +61,7 @@ void		free_all(t_param *p)
 	if (p->free & F_WIN)
 		free_one(p, p->win, F_WIN);
 	if (p->free & F_MAP)
-		free_one(p, p->map, F_MAP);
+		free_map(p);
 	if (p->free & F_RAYS)
 		free_one(p, p->rays, F_RAYS);
 	if (p->free & F_CLOSE)
