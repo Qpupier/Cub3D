@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 17:40:27 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/02 17:41:36 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/04 14:44:58 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ static void	free_mlx(t_param *p)
 	if (p->free & F_MLX_S)
 		free_image(p, "Impossible to destroy image (SPRITE)", F_MLX_S, 	\
 				p->mlx->s.ptr);
-	if (p->free & F_MLX_WIN && !mlx_destroy_window(p->mlx->mlx_ptr, 	\
-			p->mlx->win_ptr))
+	if (p->free & F_MLX_WIN)
 		free_window(p, "Impossible to destroy window", F_MLX_WIN, 		\
 				p->mlx->win_ptr);
 	if (p->free & F_MLX_PTR)

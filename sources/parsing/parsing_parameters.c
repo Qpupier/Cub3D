@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 15:32:53 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/03 16:01:23 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/04 11:36:55 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	parsing_parameters_swipe(t_param *p, char *line, int i)
 	else if (line[i] == 'C')
 		parsing_c(p, line, i + 1);
 	else
-		parsing_error(p, line, "Invalid map parameter");
+		parsing_line_error(p, line, "Invalid map parameter");
 }
 
 int			parsing_parameters(t_param *p, char *line)

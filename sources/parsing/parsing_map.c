@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 15:36:27 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/03 17:12:33 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/04 14:45:03 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,29 @@ void		free_lst(t_parsing *map)
 	if (!map)
 		return ;
 	free_lst(map->next);
+	free(map->line);
 	free(map);
 	map = NULL;
 }
 
-void		lst_append(t_parsing *map, t_param *p, char *line)
+void		lst_append(t_parsing **map, t_param *p, char *line)
 {
 	t_parsing	*tmp;
+	t_parsing	*new;
 
-	tmp = map;
-	while (tmp)
-		tmp = tmp->next;
-	if (!(tmp = malloc(sizeof(t_parsing))))
-		parsing_error(p, line, "Malloc error - Parsing map list");
-	tmp->line = line;
-	tmp->next = NULL;
+	if (!(new = malloc(sizeof(t_parsing))))
+		parsing_line_error(p, line, "Malloc error - Parsing map list");
+	new->line = line;
+	new->next = NULL;
+	if (!*map)
+		(*map) = new;
+	else
+	{
+		tmp = *map;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new;
+	}
 }
 
 static void	parsing_map(t_param *p, char *line)
@@ -58,8 +66,7 @@ void		parsing_line_read(t_param *p, t_parsing *map)
 	{
 		p->map->h++;
 		parsing_map(p, line);
-		lst_append(map, p, line);
-		free(line);
+		lst_append(&map, p, line);
 	}
 	free(line);
 }
@@ -70,14 +77,10 @@ t_parsing	*parsing_line_map(t_param *p, char *line)
 	t_parsing	*map;
 
 	nb_lines = 1;
-	if (!(p->map = malloc(sizeof(t_map))))
-		ft_error_free(p, "Malloc error - Map struct");
-	p->map->w = 0;
 	p->map->b = ft_strlen(line);
 	parsing_map(p, line);
 	map = NULL;
-	lst_append(map, p, line);
-	free(line);
+	lst_append(&map, p, line);
 	p->map->h = 1;
 	parsing_line_read(p, map);
 	p->map->w -= p->map->b;

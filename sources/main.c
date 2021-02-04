@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:53:10 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/03 16:14:26 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/04 14:27:23 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,12 @@ t_vec	*init_rays(t_param *p)
 	size = p->win->w * p->win->h;
 	if (!(rays = malloc(sizeof(t_vec) * size)))
 		ft_error_free(p, "Malloc error - Init rays");
+	p->free |= F_RAYS;
 	i = -1;
 	while (++i < size)
-		rays[i] = vec_create(p->win->r_fov_h * (i % p->win->w - p->win->w05), -1, p->win->r_fov_v * (i / p->win->w - p->win->h05));
+		rays[i] = vec_create(p->win->r_fov_h 			\
+				* (i % p->win->w - p->win->w05), -1, 	\
+				p->win->r_fov_v * (i / p->win->w - p->win->h05));
 	return (rays);
 }
 
@@ -90,8 +93,11 @@ void	init_parameters(t_param *p)
 		p->win->h = h;
 	if (!(p->mlx->win_ptr 	\
 			= mlx_new_window(p->mlx->mlx_ptr, p->win->w, p->win->h, "Cub3D")))
-		ft_error_free(p, "Impossible to open a window");
-	ft_create_img(p->mlx->mlx_ptr, &p->mlx->img, p->win->w, p->win->h);
+		ft_error_free(p, "Minilibx error - Impossible to open a window");
+	p->free |= F_MLX_WIN;
+	if (!ft_create_img(p->mlx->mlx_ptr, &p->mlx->img, p->win->w, p->win->h))
+		ft_error_free(p, "Minilibx error - Impossible to create an image");
+	p->free |= F_MLX_IMG;
 	p->win->w05 = p->win->w * 0.5;
 	p->win->h05 = p->win->h * 0.5;
 	p->win->fov_v = p->win->fov_h * p->win->h / p->win->w;
@@ -103,7 +109,6 @@ void	init_parameters(t_param *p)
 
 void	init(t_param *p)
 {
-	
 	if (!(p->mlx = malloc(sizeof(t_mlx))))
 		ft_error_free(p, "Malloc error - Mlx struct");
 	p->free |= F_MLX;
@@ -113,16 +118,20 @@ void	init(t_param *p)
 	if (!(p->win = malloc(sizeof(t_win))))
 		ft_error_free(p, "Malloc error - Win struct");
 	p->free |= F_WIN;
+	if (!(p->map = malloc(sizeof(t_map))))
+		ft_error_free(p, "Malloc error - Map struct");
+	p->free |= F_MAP;
 	p->angle = 0;
 	p->win->fov_h = FOV * M_PI / 180;
 	p->win->fov_h = 2 * tan(p->win->fov_h * 0.5);
 	p->parameters = 0;
+	p->map->w = 0;
 }
 
 void	verif_defines(void)
 {
 	if (FOV < 0 || FOV > 360)
-		ft_error("Impossible Field Of View");
+		ft_error("Impossible Field Of View (FOV)");
 	if (P_R != 1 || P_NO != 2 || P_SO != 4 || P_WE != 8 || P_EA != 16 	\
 			|| P_S != 32 || P_F != 64 || P_C != 128)
 		ft_error("Enum t_parameters modified");

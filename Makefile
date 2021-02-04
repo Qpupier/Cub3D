@@ -6,7 +6,7 @@
 #    By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/12 15:48:25 by qpupier           #+#    #+#              #
-#    Updated: 2021/02/03 15:52:38 by qpupier          ###   ########lyon.fr    #
+#    Updated: 2021/02/04 11:24:42 by qpupier          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,15 +14,18 @@ NAME = cub3d
 INC_PATH = includes
 SRC_PATH = sources
 OBJ_PATH = .objects
-SRC_SUP = parsing
-SRC_NAME = 	error.c 						\
-			free.c 							\
-			main.c 							\
-			parsing/parsing.c 				\
-			parsing/parsing_map.c 			\
-			parsing/parsing_parameters.c 	\
-			parsing/parsing_size_colors.c 	\
-			parsing/parsing_textures.c
+SRC_SUP = 	parsing 	\
+			parsing/textures
+SRC_NAME = 	parsing/textures/parsing_textures_no_so.c 	\
+			parsing/textures/parsing_textures_s.c 		\
+			parsing/textures/parsing_textures_we_ea.c 	\
+			parsing/parsing.c 							\
+			parsing/parsing_map.c 						\
+			parsing/parsing_parameters.c 				\
+			parsing/parsing_size_colors.c 				\
+			error.c 									\
+			free.c 										\
+			main.c
 OBJ_NAME = $(SRC_NAME:.c=.o)
 INC_NAME = cub3d.h structs.h functions.h
 OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))

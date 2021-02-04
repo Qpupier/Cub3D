@@ -1,15 +1,15 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   get_next_line.c                                  .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: slopez <slopez@student.le-101.fr>          +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/11/13 13:23:07 by qpupier      #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/25 15:12:06 by slopez      ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/11/13 13:23:07 by qpupier           #+#    #+#             */
+/*   Updated: 2021/02/04 10:50:41 by qpupier          ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../includes/libft.h"
 
@@ -70,7 +70,7 @@ static int		process_file(char *s, char **result)
 	}
 }
 
-int				get_next_line(const int fd, char **line)
+int				get_next_line(const int fd, char **line)// A VERIFIER
 {
 	int				rd;
 	static t_gnl	*lst;

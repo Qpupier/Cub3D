@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/03 16:49:53 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/02 17:45:34 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/04 10:40:10 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -290,7 +290,7 @@ int					color_avg_calc(int start, int end, double percentage);
 int					color_avg(unsigned int s_col, unsigned int end_col,
 							double p);
 int					ft_count_words(char *s, char c);
-void				ft_create_img(void *ptr, t_mlx_img *img, int w, int h);
+int					ft_create_img(void *ptr, t_mlx_img *img, int w, int h);
 float				ft_deg_to_rad(float nb);
 int					ft_digit_abs(int d);
 int					ft_digit_hex_to_int(char c);

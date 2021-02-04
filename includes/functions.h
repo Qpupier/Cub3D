@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 15:43:13 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/03 16:01:39 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/04 11:39:24 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "structs.h"
 
 void	parsing(t_param *p);
-void	parsing_error(t_param *p, char *line, const char *error);
+void	parsing_line_error(t_param *p, char *line, const char *error);
 void	parsing_no(t_param *p, char *line, int i);
 void	parsing_so(t_param *p, char *line, int i);
 void	parsing_we(t_param *p, char *line, int i);
@@ -36,5 +36,6 @@ void		free_lst(t_parsing *map);
 t_parsing	*parsing_line_map(t_param *p, char *line);
 void	parsing_lst_error(t_param *p, t_parsing *map, const char *error);
 void		verif_parameters(t_param *p);
+void	parsing_error(t_param *p, const char *error);
 
 #endif

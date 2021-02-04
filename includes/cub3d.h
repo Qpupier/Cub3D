@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:52:32 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/02 16:52:13 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/04 11:42:02 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 # include "functions.h"
 
 # define FOV 60
-# define WIDTH 500
-# define HEIGHT 500
 
 typedef enum	e_free
 {
@@ -49,5 +47,13 @@ typedef enum	e_parameters
 	P_F = 64,
 	P_C = 128
 }				t_parameters;
+
+typedef enum	e_cardinal
+{
+	C_N,
+	C_S,
+	C_W,
+	C_E
+}				t_cardinal;
 
 #endif
