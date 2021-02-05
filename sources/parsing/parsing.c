@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 10:55:35 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/04 16:59:39 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/05 10:15:27 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,12 +100,30 @@ void	verif_map(t_param *p, t_parsing *map)
 		parsing_lst_error(p, map, "No player position");
 }
 
+void	convert_array_line(t_map *map, char *line, int j)
+{
+	int		i;
+	char	c;
+
+	i = -1;
+	while (++i < map->w && (c = line[i + map->b]))
+	{
+		if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+		{
+			map->player = (t_vec){i + 0.5, j + 0.5, 0.5};
+			c = ' ';
+		}
+		map->map[j][i] = c == ' ' ? 0 : c - '0';
+	}
+	i--;
+	while (++i < map->w)
+		map->map[j][i] = 0;
+}
+
 void	convert_array(t_param *p, t_parsing *lst)// TO DO NORME
 {
-	int			i;
 	int			j;
 	t_parsing	*tmp;
-	char		c;
 
 	tmp = lst;
 	while (tmp && !tmp->line)
@@ -117,19 +135,7 @@ void	convert_array(t_param *p, t_parsing *lst)// TO DO NORME
 	{
 		if (!(p->map->map[j] = malloc(sizeof(int) * p->map->w)))
 			parsing_array_error(p, lst, j, "Malloc error - Line map array");
-		i = -1;
-		while (++i < p->map->w && (c = tmp->line[i + p->map->b]))
-		{
-			if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
-			{
-				p->map->player = (t_vec){i + 0.5, j + 0.5, 0.5};
-				c = ' ';
-			}
-			p->map->map[j][i] = c == ' ' ? 0 : c - '0';
-		}
-		i--;
-		while (++i < p->map->w)
-			p->map->map[j][i] = 0;
+		convert_array_line(p->map, tmp->line, j);
 		tmp = tmp->next;
 	}
 	p->free |= F_MAP_MAP;
