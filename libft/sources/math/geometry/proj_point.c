@@ -1,14 +1,13 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   proj_point.c                                     .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: qpupier <qpupier@student.le-101.fr>        +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/02/01 10:17:15 by slopez       #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/05 23:58:19 by qpupier     ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   proj_point.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/06 18:02:08 by qpupier           #+#    #+#             */
+/*   Updated: 2021/02/06 18:03:26 by qpupier          ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
@@ -18,11 +17,12 @@ t_vec	proj_point_plane(t_vec point, t_plane plane, float *dist)
 	float	tmp;
 	t_vec	result;
 
-	if (!(tmp = plane.a * plane.a + plane.b * plane.b + plane.c * plane.c))
+	tmp = plane.a * plane.a + plane.b * plane.b + plane.c * plane.c;
+	if (!tmp)
 		ft_error("Plane error");
-	result = vec_mult_float((t_vec){plane.a, plane.b, plane.c}, 			\
-			(-plane.a * point.x - plane.b * point.y - plane.c * point.z 	\
-			- plane.d) / tmp);
+	result = vec_mult_float((t_vec){plane.a, plane.b, plane.c},
+			(-plane.a * point.x - plane.b * point.y - plane.c * point.z
+				- plane.d) / tmp);
 	*dist = vec_norm(result);
 	return (vec_add(point, result));
 }

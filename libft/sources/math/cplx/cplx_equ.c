@@ -1,21 +1,18 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   cplx_equ.c                                       .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: slopez <slopez@student.le-101.fr>          +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/10/23 10:26:51 by slopez       #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/23 10:27:52 by slopez      ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cplx_equ.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/23 10:26:51 by qpupier           #+#    #+#             */
+/*   Updated: 2021/02/06 17:58:56 by qpupier          ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-int		cplx_equ(t_cplx a, t_cplx b)
+int	cplx_equ(t_cplx a, t_cplx b)
 {
-	if (a.rl == b.rl && a.im == b.im)
-		return (1);
-	return (0);
+	return (a.rl == b.rl && a.im == b.im);
 }

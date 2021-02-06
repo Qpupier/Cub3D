@@ -1,23 +1,22 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   cplx_sin.c                                       .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: slopez <slopez@student.le-101.fr>          +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/10/23 10:26:51 by slopez       #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/23 10:28:19 by slopez      ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cplx_sin.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/23 10:26:51 by qpupier           #+#    #+#             */
+/*   Updated: 2021/02/06 17:58:23 by qpupier          ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
 t_cplx	cplx_sin(t_cplx z)
 {
-	t_cplx r;
+	t_cplx	r;
 
-	r.rl = sin(z.rl) * (exp(z.im) + exp(-z.im)) / 2;
-	r.im = cos(z.rl) * (exp(z.im) - exp(-z.im)) / 2;
+	r.rl = sin(z.rl) * (exp(z.im) + exp(-z.im)) * 0.5;
+	r.im = cos(z.rl) * (exp(z.im) - exp(-z.im)) * 0.5;
 	return (r);
 }

@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 10:55:35 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/06 17:37:25 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/06 17:47:55 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ void	convert_array(t_param *p, t_parsing *lst)
 	{
 		p->map->map[j] = malloc(sizeof(int) * p->map->w);
 		if (!p->map->map[j])
-			pars_arr_err(p, lst, j, "Malloc error - Line map array");
+			parsing_array_error(p, lst, j, "Malloc error - Line map array");
 		convert_array_line(p->map, tmp->line, j);
 		tmp = tmp->next;
 	}
