@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:53:10 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/04 16:59:17 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/05 10:44:36 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ void	ft_usage(void)
 	exit(0);
 }
 
-int	main(int ac, char **av)
+int		main(int ac, char **av)
 {
 	t_param	*p;
 

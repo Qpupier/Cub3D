@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 15:32:53 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/04 11:36:55 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/05 16:34:52 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void		verif_parameters(t_param *p)
 {
-	if (p->win->w < 0 || p->win->h < 0)
+	if (p->win->w <= 0 || p->win->h <= 0)
 		ft_error_free(p, "Invalid range parameter");
 }
 

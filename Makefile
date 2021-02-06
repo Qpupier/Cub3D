@@ -6,7 +6,7 @@
 #    By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/12 15:48:25 by qpupier           #+#    #+#              #
-#    Updated: 2021/02/04 11:24:42 by qpupier          ###   ########lyon.fr    #
+#    Updated: 2021/02/05 10:42:32 by qpupier          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRC_NAME = 	parsing/textures/parsing_textures_no_so.c 	\
 			parsing/textures/parsing_textures_s.c 		\
 			parsing/textures/parsing_textures_we_ea.c 	\
 			parsing/parsing.c 							\
+			parsing/parsing_error.c 					\
 			parsing/parsing_map.c 						\
 			parsing/parsing_parameters.c 				\
 			parsing/parsing_size_colors.c 				\

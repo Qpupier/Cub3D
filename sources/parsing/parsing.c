@@ -6,41 +6,11 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 10:55:35 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/05 10:15:27 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/06 14:39:48 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	parsing_error(t_param *p, const char *error)
-{
-	ft_putendl("Error");
-	ft_error_free(p, error);
-}
-
-void	parsing_line_error(t_param *p, char *line, const char *error)
-{
-	free(line);
-	parsing_error(p, error);
-}
-
-void	parsing_lst_error(t_param *p, t_parsing *map, const char *error)
-{
-	free_lst(map);
-	parsing_error(p, error);
-}
-
-void	parsing_array_error(t_param *p, t_parsing *map, int nb, const char *error)
-{
-	int	i;
-
-	free_lst(map);
-	i = -1;
-	while (++i < nb)
-		free(p->map->map[i]);
-	free(p->map->map);
-	parsing_error(p, error);
-}
 
 void	verif_map(t_param *p, t_parsing *map)
 {
@@ -120,7 +90,7 @@ void	convert_array_line(t_map *map, char *line, int j)
 		map->map[j][i] = 0;
 }
 
-void	convert_array(t_param *p, t_parsing *lst)// TO DO NORME
+void	convert_array(t_param *p, t_parsing *lst)
 {
 	int			j;
 	t_parsing	*tmp;
@@ -140,6 +110,43 @@ void	convert_array(t_param *p, t_parsing *lst)// TO DO NORME
 	}
 	p->free |= F_MAP_MAP;
 	free_lst(lst);
+}
+
+int		map_perimeter_recursive(t_map *map, int x, int y, int *witness)
+{
+	witness[y * map->w + x] = 1;
+	return (map->map[y][x] == 1 										\
+			|| (x && x != map->w - 1 && y && y != map->h - 1 			\
+			&& (witness[(y - 1) * map->w + x - 1] 						\
+			|| map_perimeter_recursive(map, x - 1, y - 1, witness)) 	\
+			&& (witness[(y - 1) * map->w + x] 							\
+			|| map_perimeter_recursive(map, x, y - 1, witness)) 		\
+			&& (witness[(y - 1) * map->w + x + 1] 						\
+			|| map_perimeter_recursive(map, x + 1, y - 1, witness)) 	\
+			&& (witness[y * map->w + x - 1] 							\
+			|| map_perimeter_recursive(map, x - 1, y, witness)) 		\
+			&& (witness[y * map->w + x + 1] 							\
+			|| map_perimeter_recursive(map, x + 1, y, witness)) 		\
+			&& (witness[(y + 1) * map->w + x - 1] 						\
+			|| map_perimeter_recursive(map, x - 1, y + 1, witness)) 	\
+			&& (witness[(y + 1) * map->w + x] 							\
+			|| map_perimeter_recursive(map, x, y + 1, witness)) 		\
+			&& (witness[(y + 1) * map->w + x + 1] 						\
+			|| map_perimeter_recursive(map, x + 1, y + 1, witness))));
+}
+
+void	check_map(t_param *p)
+{
+	int	*witness;
+	int	i;
+
+	if (!(witness = malloc(sizeof(int) * p->map->w * p->map->h)))
+		ft_error_free(p, "Malloc error - Check map witness");
+	i = -1;
+	while (++i < p->map->w * p->map->h)
+		witness[i] = 0;
+	if (!map_perimeter_recursive(p->map, p->map->player.x - 0.5, p->map->player.y - 0.5, witness))
+		parsing_error(p, "No perimeter map delimiter");
 }
 
 void	parsing(t_param *p)
@@ -163,6 +170,7 @@ void	parsing(t_param *p)
 	map = parsing_line_map(p, line);
 	verif_map(p, map);
 	convert_array(p, map);
+	check_map(p);
 	int i, j = -1;
 	while (++j < p->map->h && (i = -1))
 	{
@@ -170,5 +178,5 @@ void	parsing(t_param *p)
 			ft_putnbr(p->map->map[j][i]);
 		ft_putchar('\n');
 	}
-	ft_error("PAUSE ACTUELLE");
+	// ft_error("PAUSE ACTUELLE");
 }

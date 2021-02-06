@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 17:24:54 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/04 16:42:11 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/05 10:58:04 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct	s_map
 	int		h;
 	int		b;
 	int		dir;
-	int		**map;//TO DO
+	int		**map;
 	t_vec	player;
 }				t_map;
 

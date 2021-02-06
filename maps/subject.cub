@@ -1,11 +1,13 @@
 R 1920 1080
-NO ./assets/action.xpm
 SO ./assets/action.xpm
 WE assets/action.xpm
+NO ./assets/action.xpm
 EA assets/action.xpm
+
 S ./assets/action.xpm
 F 220,100,0
 C 225,30,0
+
         1111111111111111111111111
         1000000000110000000000001
         1011000001110000002000001

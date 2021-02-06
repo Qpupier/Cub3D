@@ -6,35 +6,38 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 16:50:50 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/04 11:36:55 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/06 15:37:18 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	parsing_textures_s(t_param *p, char *line, int size, int i)
+static void	parsing_textures_s(t_param *p, char *line, char *tmp, int size)
 {
-	if (line[size - 4] == '.' && line[size - 3] == 'x' 			\
-			&& line[size - 2] == 'p' && line[size - 1] == 'm')
+	if (tmp[size - 4] == '.' && tmp[size - 3] == 'x' 		\
+			&& tmp[size - 2] == 'p' && tmp[size - 1] == 'm')
 	{
-		if (!xpm_to_img(p->mlx->mlx_ptr, &p->mlx->s, line + i))
-			parsing_line_error(p, line, "Invalid texture file (SPRITE)");
+		if (!xpm_to_img(p->mlx->mlx_ptr, &p->mlx->s, tmp))
+			parsing_line_error_tmp(p, line, tmp, 			\
+					"Invalid texture file (SPRITE)");
 		p->free |= F_MLX_S;
 	}
-	else if (line[size - 4] == '.' && line[size - 3] == 'p' 	\
-			&& line[size - 2] == 'n' && line[size - 1] == 'g')
+	else if (tmp[size - 4] == '.' && tmp[size - 3] == 'p' 	\
+			&& tmp[size - 2] == 'n' && tmp[size - 1] == 'g')
 	{
-		if (!png_to_img(p->mlx->mlx_ptr, &p->mlx->s, line + i))
-			parsing_line_error(p, line, "Invalid texture file (SPRITE)");
+		if (!png_to_img(p->mlx->mlx_ptr, &p->mlx->s, tmp))
+			parsing_line_error_tmp(p, line, tmp, 			\
+					"Invalid texture file (SPRITE)");
 		p->free |= F_MLX_S;
 	}
 	else
-		parsing_line_error(p, line, "Invalid texture file (SPRITE)");
+		parsing_line_error_tmp(p, line, tmp, "Invalid texture file (SPRITE)");
 }
 
 void	parsing_s(t_param *p, char *line, int i)
 {
-	int	size;
+	int		size;
+	char	*tmp;
 
 	if (p->parameters & P_S)
 		parsing_line_error(p, line, "Parameter already declared (SPRITE)");
@@ -44,6 +47,9 @@ void	parsing_s(t_param *p, char *line, int i)
 		i++;
 	if ((size = ft_strlen(line)) < 4 || !line[i])
 		parsing_line_error(p, line, "Invalid map parameter");
-	parsing_textures_s(p, line, size, i);
+	tmp = ft_strtrim(line + i);
+	if ((size = ft_strlen(tmp)) < 4)
+		parsing_line_error_tmp(p, line, tmp, "Invalid map parameter");
+	parsing_textures_s(p, line, tmp, size);
 	p->parameters |= P_S;
 }
