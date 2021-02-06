@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:53:10 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/05 10:44:36 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/06 17:21:14 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,25 @@ uint32_t	ray_casting(t_vec ray)
 
 void	algo(t_param *p)
 {
-	t_vec ray;
+	t_vec	ray;
 	int		i;
 	int		j;
 
 	j = -1;
-	while (++j < p->win->h && (i = -1))
+	while (++j < p->win->h)
+	{
+		i = -1;
 		while (++i < p->win->w)
 		{
 			ray = vec_rot_z(p->rays[j * p->win->w + i], p->angle);
 			ft_pixel_put(p->mlx->img, i, j, ray_casting(ray));
 		}
-	mlx_put_image_to_window(p->mlx->mlx_ptr, p->mlx->win_ptr, p->mlx->img.ptr, 0, 0);
+	}
+	mlx_put_image_to_window(p->mlx->mlx_ptr, p->mlx->win_ptr, p->mlx->img.ptr,
+		0, 0);
 }
 
-int	hook(int key, t_param* p)
+int	hook(int key, t_param *p)
 {
 	// printf("%d\n", key);
 	if (key == 53)
@@ -69,13 +73,14 @@ t_vec	*init_rays(t_param *p)
 	int		i;
 
 	size = p->win->w * p->win->h;
-	if (!(rays = malloc(sizeof(t_vec) * size)))
+	rays = malloc(sizeof(t_vec) * size);
+	if (!rays)
 		ft_error_free(p, "Malloc error - Init rays");
 	p->free |= F_RAYS;
 	i = -1;
 	while (++i < size)
-		rays[i] = vec_create(p->win->r_fov_h 			\
-				* (i % p->win->w - p->win->w05), -1, 	\
+		rays[i] = vec_create(p->win->r_fov_h
+				* (i % p->win->w - p->win->w05), -1,
 				p->win->r_fov_v * (i / p->win->w - p->win->h05));
 	return (rays);
 }
@@ -91,8 +96,9 @@ void	init_parameters(t_param *p)
 		p->win->w = w;
 	if (h < p->win->h)
 		p->win->h = h;
-	if (!(p->mlx->win_ptr 	\
-			= mlx_new_window(p->mlx->mlx_ptr, p->win->w, p->win->h, "Cub3D")))
+	p->mlx->win_ptr = mlx_new_window(p->mlx->mlx_ptr, p->win->w, p->win->h,
+			"Cub3D");
+	if (!p->mlx->win_ptr)
 		ft_error_free(p, "Minilibx error - Impossible to open a window");
 	p->free |= F_MLX_WIN;
 	if (!ft_create_img(p->mlx->mlx_ptr, &p->mlx->img, p->win->w, p->win->h))
@@ -109,16 +115,20 @@ void	init_parameters(t_param *p)
 
 void	init(t_param *p)
 {
-	if (!(p->mlx = malloc(sizeof(t_mlx))))
+	p->mlx = malloc(sizeof(t_mlx));
+	if (!p->mlx)
 		ft_error_free(p, "Malloc error - Mlx struct");
 	p->free |= F_MLX;
-	if (!(p->mlx->mlx_ptr = mlx_init()))
+	p->mlx->mlx_ptr = mlx_init();
+	if (!p->mlx->mlx_ptr)
 		ft_error_free(p, "Impossible to start Minilibx");
 	p->free |= F_MLX_PTR;
-	if (!(p->win = malloc(sizeof(t_win))))
+	p->win = malloc(sizeof(t_win));
+	if (!p->win)
 		ft_error_free(p, "Malloc error - Win struct");
 	p->free |= F_WIN;
-	if (!(p->map = malloc(sizeof(t_map))))
+	p->map = malloc(sizeof(t_map));
+	if (!p->map)
 		ft_error_free(p, "Malloc error - Map struct");
 	p->free |= F_MAP;
 	p->angle = 0;
@@ -132,14 +142,14 @@ void	verif_defines(void)
 {
 	if (FOV < 0 || FOV > 360)
 		ft_error("Impossible Field Of View (FOV)");
-	if (P_R != 1 || P_NO != 2 || P_SO != 4 || P_WE != 8 || P_EA != 16 	\
-			|| P_S != 32 || P_F != 64 || P_C != 128)
+	if (P_R != 1 || P_NO != 2 || P_SO != 4 || P_WE != 8 || P_EA != 16
+		|| P_S != 32 || P_F != 64 || P_C != 128)
 		ft_error("Enum t_parameters modified");
-	if (F_MLX_PTR != 1 || F_MLX_WIN != 2 || F_MLX_IMG != 4 				\
-			|| F_MLX_NO != 8 || F_MLX_SO != 16 || F_MLX_WE != 32 		\
-			|| F_MLX_EA != 64 || F_MLX_S != 128 || F_MLX != 256 		\
-			|| F_WIN != 512 || F_MAP_MAP != 1024 || F_MAP != 2048 		\
-			|| F_RAYS != 4096 || F_CLOSE != 8192)
+	if (F_MLX_PTR != 1 || F_MLX_WIN != 2 || F_MLX_IMG != 4
+		|| F_MLX_NO != 8 || F_MLX_SO != 16 || F_MLX_WE != 32
+		|| F_MLX_EA != 64 || F_MLX_S != 128 || F_MLX != 256
+		|| F_WIN != 512 || F_MAP_MAP != 1024 || F_MAP != 2048
+		|| F_RAYS != 4096 || F_CLOSE != 8192)
 		ft_error("Enum t_free modified");
 }
 
@@ -149,7 +159,7 @@ void	ft_usage(void)
 	exit(0);
 }
 
-int		main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_param	*p;
 
@@ -158,11 +168,15 @@ int		main(int ac, char **av)
 	if (ac > 3)
 		ft_error("Wrong number of arguments");
 	verif_defines();
-	if (!(p = malloc(sizeof(t_param))))
+	p = malloc(sizeof(t_param));
+	if (!p)
 		ft_error("Malloc error - Struct");
 	p->free = 0;
 	p->fd = -1;
-	if (!ft_strstr(av[1], ".cub") || !(p->fd = open(av[1], O_RDONLY)))
+	if (!ft_strstr(av[1], ".cub"))
+		ft_error_free(p, "Invalid map file (must be a .cub)");
+	p->fd = open(av[1], O_RDONLY);
+	if (!p->fd)
 		ft_error_free(p, "Invalid map file");
 	p->free |= F_CLOSE;
 	init(p);

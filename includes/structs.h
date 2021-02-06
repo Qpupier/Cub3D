@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 17:24:54 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/05 10:58:04 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/06 16:06:01 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "libft.h"
 
-typedef struct	s_mlx
+typedef struct s_mlx
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
@@ -27,9 +27,9 @@ typedef struct	s_mlx
 	t_mlx_img	s;
 	uint32_t	f;
 	uint32_t	c;
-}				t_mlx;
+}t_mlx;
 
-typedef struct	s_win
+typedef struct s_win
 {
 	int		w;
 	int		h;

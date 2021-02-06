@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 10:55:35 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/06 14:39:48 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/06 17:29:47 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,20 @@ void	convert_array_line(t_map *map, char *line, int j)
 	char	c;
 
 	i = -1;
-	while (++i < map->w && (c = line[i + map->b]))
+	while (++i < map->w)
 	{
+		c = line[i + map->b];
+		if (!c)
+			break ;
 		if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 		{
 			map->player = (t_vec){i + 0.5, j + 0.5, 0.5};
 			c = ' ';
 		}
-		map->map[j][i] = c == ' ' ? 0 : c - '0';
+		if (c != ' ')
+			map->map[j][i] = c - '0';
+		else
+			map->map[j][i] = 0;
 	}
 	i--;
 	while (++i < map->w)
@@ -98,12 +104,14 @@ void	convert_array(t_param *p, t_parsing *lst)
 	tmp = lst;
 	while (tmp && !tmp->line)
 		tmp = tmp->next;
-	if (!(p->map->map = malloc(sizeof(int *) * p->map->h)))
+	p->map->map = malloc(sizeof(int *) * p->map->h);
+	if (!p->map->map)
 		parsing_lst_error(p, lst, "Malloc error - Map array");
 	j = -1;
 	while (++j < p->map->h)
 	{
-		if (!(p->map->map[j] = malloc(sizeof(int) * p->map->w)))
+		p->map->map[j] = malloc(sizeof(int) * p->map->w);
+		if (!p->map->map[j])
 			parsing_array_error(p, lst, j, "Malloc error - Line map array");
 		convert_array_line(p->map, tmp->line, j);
 		tmp = tmp->next;
@@ -112,27 +120,30 @@ void	convert_array(t_param *p, t_parsing *lst)
 	free_lst(lst);
 }
 
-int		map_perimeter_recursive(t_map *map, int x, int y, int *witness)
+int	map_perim_recur(t_map *map, int x, int y, int *w)
 {
-	witness[y * map->w + x] = 1;
-	return (map->map[y][x] == 1 										\
-			|| (x && x != map->w - 1 && y && y != map->h - 1 			\
-			&& (witness[(y - 1) * map->w + x - 1] 						\
-			|| map_perimeter_recursive(map, x - 1, y - 1, witness)) 	\
-			&& (witness[(y - 1) * map->w + x] 							\
-			|| map_perimeter_recursive(map, x, y - 1, witness)) 		\
-			&& (witness[(y - 1) * map->w + x + 1] 						\
-			|| map_perimeter_recursive(map, x + 1, y - 1, witness)) 	\
-			&& (witness[y * map->w + x - 1] 							\
-			|| map_perimeter_recursive(map, x - 1, y, witness)) 		\
-			&& (witness[y * map->w + x + 1] 							\
-			|| map_perimeter_recursive(map, x + 1, y, witness)) 		\
-			&& (witness[(y + 1) * map->w + x - 1] 						\
-			|| map_perimeter_recursive(map, x - 1, y + 1, witness)) 	\
-			&& (witness[(y + 1) * map->w + x] 							\
-			|| map_perimeter_recursive(map, x, y + 1, witness)) 		\
-			&& (witness[(y + 1) * map->w + x + 1] 						\
-			|| map_perimeter_recursive(map, x + 1, y + 1, witness))));
+	w[y * map->w + x] = 1;
+	if (map->map[y][x] == 1)
+		return (1);
+	if (!x || x == map->w - 1 || !y || y == map->h - 1)
+		return (0);
+	if (!w[(y - 1) *map->w + x - 1] && !map_perim_recur(map, x - 1, y - 1, w))
+		return (0);
+	if (!w[(y - 1) *map->w + x] && !map_perim_recur(map, x, y - 1, w))
+		return (0);
+	if (!w[(y - 1) *map->w + x + 1] && !map_perim_recur(map, x + 1, y - 1, w))
+		return (0);
+	if (!w[y * map->w + x - 1] && !map_perim_recur(map, x - 1, y, w))
+		return (0);
+	if (!w[y * map->w + x + 1] && !map_perim_recur(map, x + 1, y, w))
+		return (0);
+	if (!w[(y + 1) *map->w + x - 1] && !map_perim_recur(map, x - 1, y + 1, w))
+		return (0);
+	if (!w[(y + 1) *map->w + x] && !map_perim_recur(map, x, y + 1, w))
+		return (0);
+	if (!w[(y + 1) *map->w + x + 1] && !map_perim_recur(map, x + 1, y + 1, w))
+		return (0);
+	return (1);
 }
 
 void	check_map(t_param *p)
@@ -140,12 +151,14 @@ void	check_map(t_param *p)
 	int	*witness;
 	int	i;
 
-	if (!(witness = malloc(sizeof(int) * p->map->w * p->map->h)))
+	witness = malloc(sizeof(int) * p->map->w * p->map->h);
+	if (!witness)
 		ft_error_free(p, "Malloc error - Check map witness");
 	i = -1;
 	while (++i < p->map->w * p->map->h)
 		witness[i] = 0;
-	if (!map_perimeter_recursive(p->map, p->map->player.x - 0.5, p->map->player.y - 0.5, witness))
+	if (!map_perim_recur(p->map, p->map->player.x - 0.5,
+			p->map->player.y - 0.5, witness))
 		parsing_error(p, "No perimeter map delimiter");
 }
 
@@ -154,6 +167,8 @@ void	parsing(t_param *p)
 	char		*line;
 	int			parameters;
 	t_parsing	*map;
+	int			i;
+	int			j;
 
 	parameters = 0;
 	while (!parameters && get_next_line(p->fd, &line) > 0)
@@ -171,9 +186,10 @@ void	parsing(t_param *p)
 	verif_map(p, map);
 	convert_array(p, map);
 	check_map(p);
-	int i, j = -1;
-	while (++j < p->map->h && (i = -1))
+	j = -1;
+	while (++j < p->map->h)
 	{
+		i = -1;
 		while (++i < p->map->w)
 			ft_putnbr(p->map->map[j][i]);
 		ft_putchar('\n');

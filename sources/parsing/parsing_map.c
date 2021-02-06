@@ -6,13 +6,13 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 15:36:27 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/04 15:37:16 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/06 16:10:56 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void		free_lst(t_parsing *map)
+void	free_lst(t_parsing *map)
 {
 	if (!map)
 		return ;
@@ -22,12 +22,13 @@ void		free_lst(t_parsing *map)
 	map = NULL;
 }
 
-void		lst_append(t_parsing **map, t_param *p, char *line)
+void	lst_append(t_parsing **map, t_param *p, char *line)
 {
 	t_parsing	*tmp;
 	t_parsing	*new;
 
-	if (!(new = malloc(sizeof(t_parsing))))
+	new = malloc(sizeof(t_parsing));
+	if (!new)
 		parsing_line_error(p, line, "Malloc error - Parsing map list");
 	new->line = line;
 	new->next = NULL;
@@ -58,7 +59,7 @@ static void	parsing_map(t_param *p, char *line)
 		p->map->w = i;
 }
 
-void		parsing_line_read(t_param *p, t_parsing *map)
+void	parsing_line_read(t_param *p, t_parsing *map)
 {
 	char	*line;
 

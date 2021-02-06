@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 17:40:27 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/04 16:49:05 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/06 17:22:13 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,32 +15,32 @@
 static void	free_mlx(t_param *p)
 {
 	if (p->free & F_MLX_IMG)
-		free_image(p, "Impossible to destroy image", F_MLX_IMG, 		\
+		free_image(p, "Impossible to destroy image", F_MLX_IMG,
 				p->mlx->img.ptr);
 	if (p->free & F_MLX_NO)
-		free_image(p, "Impossible to destroy image (NORTH)", F_MLX_NO, 	\
+		free_image(p, "Impossible to destroy image (NORTH)", F_MLX_NO,
 				p->mlx->no.ptr);
 	if (p->free & F_MLX_SO)
-		free_image(p, "Impossible to destroy image (SOUTH)", F_MLX_SO, 	\
+		free_image(p, "Impossible to destroy image (SOUTH)", F_MLX_SO,
 				p->mlx->so.ptr);
 	if (p->free & F_MLX_WE)
-		free_image(p, "Impossible to destroy image (WEST)", F_MLX_WE, 	\
+		free_image(p, "Impossible to destroy image (WEST)", F_MLX_WE,
 				p->mlx->we.ptr);
 	if (p->free & F_MLX_EA)
-		free_image(p, "Impossible to destroy image (EAST)", F_MLX_EA, 	\
+		free_image(p, "Impossible to destroy image (EAST)", F_MLX_EA,
 				p->mlx->ea.ptr);
 	if (p->free & F_MLX_S)
-		free_image(p, "Impossible to destroy image (SPRITE)", F_MLX_S, 	\
+		free_image(p, "Impossible to destroy image (SPRITE)", F_MLX_S,
 				p->mlx->s.ptr);
 	if (p->free & F_MLX_WIN)
-		free_window(p, "Impossible to destroy window", F_MLX_WIN, 		\
+		free_window(p, "Impossible to destroy window", F_MLX_WIN,
 				p->mlx->win_ptr);
 	if (p->free & F_MLX_PTR)
 		free_one(p, p->mlx->mlx_ptr, F_MLX_PTR);
 	free_one(p, p->mlx, F_MLX);
 }
 
-void		free_map(t_param * p)
+void	free_map(t_param *p)
 {
 	int	i;
 
@@ -54,7 +54,7 @@ void		free_map(t_param * p)
 	free_one(p, p->map, F_MAP);
 }
 
-void		free_all(t_param *p)
+void	free_all(t_param *p)
 {
 	if (p->free & F_MLX)
 		free_mlx(p);
@@ -69,7 +69,7 @@ void		free_all(t_param *p)
 	free(p);
 }
 
-void		ft_error_free(t_param *p, const char *error)
+void	ft_error_free(t_param *p, const char *error)
 {
 	free_all(p);
 	ft_error(error);

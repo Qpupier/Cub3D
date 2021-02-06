@@ -6,13 +6,13 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 15:32:53 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/05 16:34:52 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/06 16:24:20 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void		verif_parameters(t_param *p)
+void	verif_parameters(t_param *p)
 {
 	if (p->win->w <= 0 || p->win->h <= 0)
 		ft_error_free(p, "Invalid range parameter");
@@ -40,10 +40,10 @@ static void	parsing_parameters_swipe(t_param *p, char *line, int i)
 	else if (line[i] == 'C')
 		parsing_c(p, line, i + 1);
 	else
-		parsing_line_error(p, line, "Invalid map parameter");
+		parsing_line_error(p, line, "Invalid map parameter1");
 }
 
-int			parsing_parameters(t_param *p, char *line)
+int	parsing_parameters(t_param *p, char *line)
 {
 	int	i;
 
