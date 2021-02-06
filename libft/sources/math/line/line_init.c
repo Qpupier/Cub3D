@@ -1,20 +1,19 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   line_init.c                                      .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: slopez <slopez@student.le-101.fr>          +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/10/22 22:41:03 by qpupier      #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/23 10:38:52 by qpupier       ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   line_init.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/06 18:18:44 by qpupier           #+#    #+#             */
+/*   Updated: 2021/02/06 18:19:02 by qpupier          ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 t_line	line_init(void)
 {
-	return ((t_line){(t_line_parameter){0, 0}, (t_line_parameter){0, 0}, 	\
-			(t_line_parameter){0, 0}});
+	return ((t_line){(t_line_parameter){0, 0}, (t_line_parameter){0, 0},
+		(t_line_parameter){0, 0}});
 }

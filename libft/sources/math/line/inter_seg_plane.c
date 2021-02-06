@@ -1,21 +1,20 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   inter_seg_plane.c                                .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: slopez <slopez@student.le-101.fr>          +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/02/01 10:20:48 by qpupier        #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/01 10:21:27 by qpupier       ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   inter_seg_plane.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/06 18:22:38 by qpupier           #+#    #+#             */
+/*   Updated: 2021/02/06 18:23:01 by qpupier          ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		inter_seg_plane(t_seg s, t_plane p, t_inter_seg_plane *result)
+int	inter_seg_plane(t_seg s, t_plane p, t_inter_seg_plane *result)
 {
-	if (!inter_line_plane(line_create_points(s.a, s.b), p, 	\
+	if (!inter_line_plane(line_create_points(s.a, s.b), p,
 			&result->result) || !point_line_in_seg(result->result, s))
 		return (0);
 	result->s1 = vec_equal(result->result, s.a);
