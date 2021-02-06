@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:52:32 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/04 16:29:16 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/06 17:38:33 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 # define CUB3D_H
 
 # include <fcntl.h>
-#include <stdio.h> // A ENLEVER
+# include <stdio.h> // A ENLEVER
 # include "functions.h"
 
 # define FOV 60
 
-typedef enum	e_free
+typedef enum e_free
 {
 	F_MLX_PTR = 1,
 	F_MLX_WIN = 2,
@@ -35,9 +35,9 @@ typedef enum	e_free
 	F_MAP = 2048,
 	F_RAYS = 4096,
 	F_CLOSE = 8192
-}				t_free;
+}t_free;
 
-typedef enum	e_parameters
+typedef enum e_parameters
 {
 	P_R = 1,
 	P_NO = 2,
@@ -47,14 +47,14 @@ typedef enum	e_parameters
 	P_S = 32,
 	P_F = 64,
 	P_C = 128
-}				t_parameters;
+}t_parameters;
 
-typedef enum	e_cardinal
+typedef enum e_cardinal
 {
 	C_N,
 	C_S,
 	C_W,
 	C_E
-}				t_cardinal;
+}t_cardinal;
 
 #endif

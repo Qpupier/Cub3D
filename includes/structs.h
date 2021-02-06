@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 17:24:54 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/06 16:06:01 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/06 17:38:13 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ typedef struct s_win
 	float	fov_v;
 	float	r_fov_h;
 	float	r_fov_v;
-}				t_win;
+}t_win;
 
-typedef struct	s_map
+typedef struct s_map
 {
 	int		w;
 	int		h;
@@ -49,9 +49,9 @@ typedef struct	s_map
 	int		dir;
 	int		**map;
 	t_vec	player;
-}				t_map;
+}t_map;
 
-typedef struct	s_param
+typedef struct s_param
 {
 	int		free;
 	int		fd;
@@ -61,12 +61,12 @@ typedef struct	s_param
 	int		parameters;
 	t_vec	*rays;
 	float	angle;
-}				t_param;
+}t_param;
 
-typedef struct	s_parsing
+typedef struct s_parsing
 {
 	char				*line;
 	struct s_parsing	*next;
-}				t_parsing;
+}t_parsing;
 
 #endif
