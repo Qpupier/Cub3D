@@ -1,6 +1,3 @@
-
-
-
 MODULE_SRC= mlx_image.swift mlx_window.swift mlx_init.swift
 MODULE_OBJ=$(MODULE_SRC:.swift=.swiftmodule)
 
@@ -14,15 +11,13 @@ CFLAGS=-O3
 NAME=libmlx.dylib
 
 INC=-I.
-#OPTI=-Ounchecked
+OPTI=-Ounchecked
 
 all: $(NAME)
 
 $(NAME): $(MODULE_OBJ) $(OBJ) $(C_OBJ)
 	@swiftc $(OPTI) $(INC) -o $(NAME) -emit-library $(OBJ) $(C_OBJ) -lz
 	@cp $(NAME) ..
-
-
 
 %.o: %.swift
 	@swiftc $(OPTI) $(INC) -parse-as-library -c $< -o $@
@@ -32,4 +27,3 @@ $(NAME): $(MODULE_OBJ) $(OBJ) $(C_OBJ)
 
 clean:
 	@rm -f $(NAME) $(OBJ) $(MODULE_OBJ) $(C_OBJ) *.swiftdoc *~
-
