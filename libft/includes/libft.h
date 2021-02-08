@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/03 16:49:53 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/06 17:46:53 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/08 16:47:20 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,7 +214,7 @@ t_real				real_normalize(t_real v);
 float				real_oriented_angle(t_real u, t_real v);
 float				real_scale_product(t_real p1, t_real p2);
 t_real				real_turn(t_real point, float degree);
-void				treal_arraycpy(t_real *src, t_real *dest, unsigned int nb);
+void				real_arraycpy(t_real *src, t_real *dest, unsigned int nb);
 t_vec				vec_add(t_vec u, t_vec v);
 void				tvec_array_cpy(t_vec *in, t_vec *out, unsigned int nb);
 int					vec_null(t_vec u);
