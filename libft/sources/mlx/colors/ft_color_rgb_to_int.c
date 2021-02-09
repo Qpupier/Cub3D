@@ -6,14 +6,13 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 15:25:36 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/09 13:22:29 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 16:29:07 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "libft.h"
 
-int		ft_color_rgb_to_int(t_rgb rgb)
+int	ft_color_rgb_to_int(t_rgb rgb)
 {
 	return ((rgb.r << 16) + (rgb.g << 8) + rgb.b);
 }

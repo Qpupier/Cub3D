@@ -1,21 +1,20 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   ft_color_convert.c                               .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: slopez <slopez@student.le-101.fr>          +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/01/29 19:19:20 by qpupier        #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/29 20:08:56 by qpupier       ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_color_convert.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/09 16:30:15 by qpupier           #+#    #+#             */
+/*   Updated: 2021/02/09 16:31:14 by qpupier          ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_rgb			hex_to_rgb(unsigned int color)
+t_rgb	hex_to_rgb(unsigned int color)
 {
-	t_rgb c;
+	t_rgb	c;
 
 	c.a = color >> 24 & 0xFF;
 	c.g = color >> 16 & 0xFF;
