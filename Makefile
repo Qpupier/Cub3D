@@ -6,17 +6,17 @@
 #    By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/12 15:48:25 by qpupier           #+#    #+#              #
-#    Updated: 2021/02/05 10:42:32 by qpupier          ###   ########lyon.fr    #
+#    Updated: 2021/02/09 16:06:50 by qpupier          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cub3d
-INC_PATH = includes
-SRC_PATH = sources
-OBJ_PATH = .objects
-SRC_SUP = 	parsing 	\
+NAME	=	cub3d
+INC_PATH	=	includes
+SRC_PATH	=	sources
+OBJ_PATH	=	.objects
+SRC_SUP	=		parsing 	\
 			parsing/textures
-SRC_NAME = 	parsing/textures/parsing_textures_no_so.c 	\
+SRC_NAME	=		parsing/textures/parsing_textures_no_so.c 	\
 			parsing/textures/parsing_textures_s.c 		\
 			parsing/textures/parsing_textures_we_ea.c 	\
 			parsing/parsing.c 							\
@@ -27,55 +27,63 @@ SRC_NAME = 	parsing/textures/parsing_textures_no_so.c 	\
 			error.c 									\
 			free.c 										\
 			main.c
-OBJ_NAME = $(SRC_NAME:.c=.o)
-INC_NAME = cub3d.h structs.h functions.h
-OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
-INC = $(addprefix $(INC_PATH)/,$(INC_NAME))
-LIBS = -L libft -L .
-LDFLAGS = -O3 -march=native -flto -ffast-math
-LDLIBS = -lm -lmlx -lft
+OBJ_NAME	=	$(SRC_NAME:.c=.o)
+INC_NAME	=	cub3d.h structs.h functions.h
+OBJ	=	$(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
+INC	=	$(addprefix $(INC_PATH)/,$(INC_NAME))
+LDFLAGS	=	-O3 -march=native -flto -ffast-math
+
 ifeq ($(OS), Windows_NT)
-	NORMINETTE = ~/.norminette/norminette.rb
-	MINILIBX =
-	OS = $(PINK)Windows
+	LIBS	=	-L libft -L mlx
+	LDLIBS	=	-lm -lmlx -lft
+	DLIBS	=	libft/libft.a
+	NORMINETTE	=	~/.norminette/norminette.rb
+	OS	=	$(PINK)Windows
 else
-	OS = $(shell uname -s)
+	OS	=	$(shell uname -s)
 	ifeq ($(OS), Darwin)
-		NORMINETTE = norminettev2
-		MINILIBX = -framework OpenGL -framework AppKit -framework OpenAL
-		OS = $(END)$(PINK)Mac OS
+		MINILIBX	=	-framework OpenGL -framework AppKit -framework OpenAL
+		LIBS	=	-L libft -L mlx
+		LDLIBS	=	-lm -lmlx -lft
+		DLIBS	=	libft/libft.a
+		NORMINETTE	=	norminettev2
+		OS	=	$(END)$(PINK)Mac OS$(END)
 	else
 		ifeq ($(OS), Linux)
-			NORMINETTE = ~/.norminette/norminette.rb
-			MINILIBX =
-			OS = $(END)$(PINK)Linux
+			LIBS	=	-L libft -L mlx
+			LDLIBS	=	-lm -lmlx -lft
+			DLIBS	=	libft/libft.a
+			NORMINETTE	=	~/.norminette/norminette.rb
+			OS	=	$(END)$(PINK)Linux$(END)
 		else
-			OS = $(RED)This OS is not supported
+			OS	=	$(END)$(RED)$(BOLD)This OS is not supported$(END)
 		endif
 	endif
 endif
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror $(LDFLAGS)
-CPPFLAGS = -I $(INC_PATH) -I libft/$(INC_PATH) -I mlx
 
-ERASE = 	\033[2K\r
-GREY = 		\033[30m
-RED = 		\033[31m
-GREEN = 	\033[32m
-YELLOW = 	\033[33m
-BLUE = 		\033[34m
-PINK = 		\033[35m
-CYAN = 		\033[36m
-WHITE = 	\033[37m
-END = 		\033[0m
-BOLD = 		\033[1m
-UNDER = 	\033[4m
-SUR = 		\033[7m
+CC	=	gcc
+CFLAGS	=	-Wall -Wextra -Werror $(LDFLAGS)
+CPPFLAGS	=	-I $(INC_PATH) -I libft/$(INC_PATH) -I mlx
 
-.PHONY: all compilation clean fclean re norme
+ERASE		=	\033[2K\r
+GREY		=	\033[30m
+RED			=	\033[31m
+GREEN		=	\033[32m
+YELLOW		=	\033[33m
+BLUE		=	\033[34m
+PINK		=	\033[35m
+CYAN		=	\033[36m
+WHITE		=	\033[37m
+BOLD		=	\033[1m
+UNDER		=	\033[4m
+SUR			=	\033[7m
+END			=	\033[0m
+
+.PHONY: all compilation clean fclean re norm
 
 all: compilation $(NAME)
-ifeq ($(OS), $(RED)This OS is not supported)
+ifeq ($(OS), $(END)$(RED)$(BOLD)This OS is not supported$(END))
+	@printf "\n$(OS)\n\n"
 	@printf "$(BLUE)> $(NAME) : $(RED)Project fail !$(END)\n"
 else
 	@printf "$(BLUE)> $(NAME) : $(YELLOW)Project ready !$(END)\n"
@@ -85,18 +93,18 @@ compilation:
 	@make -C libft
 
 $(NAME): $(OBJ)
-ifneq ($(OS), $(RED)This OS is not supported)
+ifneq ($(OS), $(END)$(RED)$(BOLD)This OS is not supported$(END))
 	@$(CC) $(CFLAGS) $(LIBS) $(MINILIBX) $(LDLIBS) $^ -o $@
 	@printf "$(ERASE)$(BLUE)> $@ : $(GREEN)Success !$(END)\n\n"
 endif
 
-$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INC) libft/libft.a
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INC) $(DLIBS)
 	@mkdir -p $(OBJ_PATH) $(addprefix $(OBJ_PATH)/,$(SRC_SUP))
-ifeq ($(OS), $(RED)This OS is not supported)
+ifeq ($(OS), $(END)$(RED)$(BOLD)This OS is not supported$(END))
 	@touch $@
 else
-	@printf "$(ERASE)$(YELLOW)$(BOLD)[COMPILE] $(END) $<"
 	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+	@printf "$(ERASE)$(BLUE)> Compilation :$(END) $<"
 endif
 
 clean:
@@ -111,9 +119,10 @@ fclean: clean
 
 re: fclean all
 
-norme:
-ifeq ($(OS), $(RED)This OS is not supported)
-	@printf "Norminette is not supported\n"
+norm:
+ifeq ($(OS), $(END)$(RED)$(BOLD)This OS is not supported$(END))
+	@printf "\n$(BOLD)$(RED)Norminette is not supported$(END)\n\n"
 else
-	$(NORMINETTE) libft/$(INC_PATH) libft/$(SRC_PATH) $(INC_PATH) $(SRC_PATH)
+	@make -C libft norm
+	$(NORMINETTE) $(INC_PATH) $(SRC_PATH)
 endif
