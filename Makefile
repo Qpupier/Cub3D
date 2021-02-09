@@ -6,7 +6,7 @@
 #    By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/12 15:48:25 by qpupier           #+#    #+#              #
-#    Updated: 2021/02/09 16:13:11 by qpupier          ###   ########lyon.fr    #
+#    Updated: 2021/02/09 16:20:42 by qpupier          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		=	cub3d
 INC_PATH	=	includes
 SRC_PATH	=	sources
 OBJ_PATH	=	.objects
-SRC_SUP		=	parsing 	\
+DIR			=	parsing 	\
 				parsing/textures
 SRC_NAME	=	parsing/textures/parsing_textures_no_so.c 	\
 				parsing/textures/parsing_textures_s.c 		\
@@ -28,7 +28,10 @@ SRC_NAME	=	parsing/textures/parsing_textures_no_so.c 	\
 				free.c 										\
 				main.c
 OBJ_NAME	=	$(SRC_NAME:.c=.o)
-INC_NAME	=	cub3d.h structs.h functions.h
+INC_NAME	=	cub3d.h 	\
+				structs.h 	\
+				functions.h
+SRC			=	$(addprefix $(SRC_PATH)/,$(SRC_NAME))
 OBJ			=	$(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 INC			=	$(addprefix $(INC_PATH)/,$(INC_NAME))
 LDFLAGS		=	-O3 -march=native -flto -ffast-math
@@ -99,7 +102,7 @@ ifneq ($(OS), $(END)$(RED)$(BOLD)This OS is not supported$(END))
 endif
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INC) $(DLIBS)
-	@mkdir -p $(OBJ_PATH) $(addprefix $(OBJ_PATH)/,$(SRC_SUP))
+	@mkdir -p $(OBJ_PATH) $(addprefix $(OBJ_PATH)/,$(DIR))
 ifeq ($(OS), $(END)$(RED)$(BOLD)This OS is not supported$(END))
 	@touch $@
 else

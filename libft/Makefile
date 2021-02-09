@@ -6,7 +6,7 @@
 #    By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/13 11:56:39 by qpupier           #+#    #+#              #
-#    Updated: 2021/02/09 16:12:29 by qpupier          ###   ########lyon.fr    #
+#    Updated: 2021/02/09 16:19:10 by qpupier          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		=	libft.a
 SRC_PATH	=	sources
 OBJ_PATH	=	.objects
 INC_PATH	=	includes
-SRC_SUP		=	display 		\
+DIR			=	display 		\
 				maths 			\
 				maths/line 		\
 				maths/cplx 		\
@@ -275,7 +275,7 @@ ifneq ($(OS), $(END)$(RED)$(BOLD)This OS is not supported$(END))
 endif
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c ../libmlx.dylib $(INC)
-	@mkdir -p $(OBJ_PATH) $(addprefix $(OBJ_PATH)/,$(SRC_SUP))
+	@mkdir -p $(OBJ_PATH) $(addprefix $(OBJ_PATH)/,$(DIR))
 ifeq ($(OS), $(END)$(RED)$(BOLD)This OS is not supported$(END))
 	@touch $@
 else
