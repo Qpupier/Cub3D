@@ -6,63 +6,63 @@
 #    By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/12 15:48:25 by qpupier           #+#    #+#              #
-#    Updated: 2021/02/09 16:06:50 by qpupier          ###   ########lyon.fr    #
+#    Updated: 2021/02/09 16:13:11 by qpupier          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	cub3d
+NAME		=	cub3d
 INC_PATH	=	includes
 SRC_PATH	=	sources
 OBJ_PATH	=	.objects
-SRC_SUP	=		parsing 	\
-			parsing/textures
-SRC_NAME	=		parsing/textures/parsing_textures_no_so.c 	\
-			parsing/textures/parsing_textures_s.c 		\
-			parsing/textures/parsing_textures_we_ea.c 	\
-			parsing/parsing.c 							\
-			parsing/parsing_error.c 					\
-			parsing/parsing_map.c 						\
-			parsing/parsing_parameters.c 				\
-			parsing/parsing_size_colors.c 				\
-			error.c 									\
-			free.c 										\
-			main.c
+SRC_SUP		=	parsing 	\
+				parsing/textures
+SRC_NAME	=	parsing/textures/parsing_textures_no_so.c 	\
+				parsing/textures/parsing_textures_s.c 		\
+				parsing/textures/parsing_textures_we_ea.c 	\
+				parsing/parsing.c 							\
+				parsing/parsing_error.c 					\
+				parsing/parsing_map.c 						\
+				parsing/parsing_parameters.c 				\
+				parsing/parsing_size_colors.c 				\
+				error.c 									\
+				free.c 										\
+				main.c
 OBJ_NAME	=	$(SRC_NAME:.c=.o)
 INC_NAME	=	cub3d.h structs.h functions.h
-OBJ	=	$(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
-INC	=	$(addprefix $(INC_PATH)/,$(INC_NAME))
-LDFLAGS	=	-O3 -march=native -flto -ffast-math
+OBJ			=	$(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
+INC			=	$(addprefix $(INC_PATH)/,$(INC_NAME))
+LDFLAGS		=	-O3 -march=native -flto -ffast-math
 
 ifeq ($(OS), Windows_NT)
-	LIBS	=	-L libft -L mlx
-	LDLIBS	=	-lm -lmlx -lft
-	DLIBS	=	libft/libft.a
+	LIBS		=	-L libft -L mlx
+	LDLIBS		=	-lm -lmlx -lft
+	DLIBS		=	libft/libft.a
 	NORMINETTE	=	~/.norminette/norminette.rb
-	OS	=	$(PINK)Windows
+	OS			=	$(PINK)Windows
 else
-	OS	=	$(shell uname -s)
+	OS			=	$(shell uname -s)
 	ifeq ($(OS), Darwin)
 		MINILIBX	=	-framework OpenGL -framework AppKit -framework OpenAL
-		LIBS	=	-L libft -L mlx
-		LDLIBS	=	-lm -lmlx -lft
-		DLIBS	=	libft/libft.a
+		LIBS		=	-L libft -L mlx
+		LDLIBS		=	-lm -lmlx -lft
+		DLIBS		=	libft/libft.a
 		NORMINETTE	=	norminettev2
-		OS	=	$(END)$(PINK)Mac OS$(END)
+		OS			=	$(END)$(PINK)Mac OS$(END)
 	else
 		ifeq ($(OS), Linux)
-			LIBS	=	-L libft -L mlx
-			LDLIBS	=	-lm -lmlx -lft
-			DLIBS	=	libft/libft.a
+			LIBS		=	-L libft -L mlx
+			LDLIBS		=	-lm -lmlx -lft
+			DLIBS		=	libft/libft.a
 			NORMINETTE	=	~/.norminette/norminette.rb
-			OS	=	$(END)$(PINK)Linux$(END)
+			OS			=	$(END)$(PINK)Linux$(END)
 		else
-			OS	=	$(END)$(RED)$(BOLD)This OS is not supported$(END)
+			OS			=	$(END)$(RED)$(BOLD)This OS is not supported$(END)
 		endif
 	endif
 endif
 
-CC	=	gcc
-CFLAGS	=	-Wall -Wextra -Werror $(LDFLAGS)
+CC			=	gcc
+CFLAGS		=	-Wall -Wextra -Werror $(LDFLAGS)
 CPPFLAGS	=	-I $(INC_PATH) -I libft/$(INC_PATH) -I mlx
 
 ERASE		=	\033[2K\r
