@@ -6,11 +6,11 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 17:59:09 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/06 18:00:16 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 13:22:29 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "libft.h"
 
 t_cplx	cplx_cosh(t_cplx z)
 {

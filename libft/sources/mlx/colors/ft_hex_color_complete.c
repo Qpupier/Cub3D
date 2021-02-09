@@ -1,17 +1,17 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   ft_hex_color_complete.c                          .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: qpupier <qpupier@student.le-101.fr>        +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/03/11 16:09:18 by qpupier      #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/17 11:58:49 by qpupier     ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_hex_color_complete.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/11 16:09:18 by qpupier           #+#    #+#             */
+/*   Updated: 2021/02/09 13:22:29 by qpupier          ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+
+#include "libft.h"
 
 char	*ft_hex_color_complete(char *c)
 {

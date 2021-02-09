@@ -6,11 +6,11 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 15:13:59 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/06 17:50:19 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 13:22:29 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "libft.h"
 
 t_cplx	ft_real_to_cplx(t_real xy)
 {

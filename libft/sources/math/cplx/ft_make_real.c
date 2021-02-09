@@ -6,11 +6,11 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 15:10:33 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/06 17:50:55 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 13:22:29 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "libft.h"
 
 t_real	ft_make_real(int x, int y)
 {

@@ -6,12 +6,12 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/13 13:23:07 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/04 10:50:41 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 13:22:29 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#include "../includes/libft.h"
+#include "libft.h"
 
 static t_gnl	*find_file(t_gnl **list, int fd)
 {

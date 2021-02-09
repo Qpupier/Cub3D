@@ -6,11 +6,11 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 14:56:08 by qpupier           #+#    #+#             */
-/*   Updated: 2021/01/21 12:08:45 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 13:22:29 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "libft.h"
 
 void	ft_pixel_put(t_mlx_img img, int x, int y, uint32_t color)
 {

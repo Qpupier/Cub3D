@@ -11,7 +11,7 @@
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "libft.h"
 
 t_rgb			ft_color_average(t_rgb c1, t_rgb c2, float p)
 {

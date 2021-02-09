@@ -1,19 +1,18 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   clamp.c                                          .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: slopez <slopez@student.le-101.fr>          +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/01/29 19:00:16 by qpupier        #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/29 19:00:40 by qpupier       ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   clamp.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/09 13:26:11 by qpupier           #+#    #+#             */
+/*   Updated: 2021/02/09 13:26:18 by qpupier          ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		fclamp(float *curr, float min, float max)
+void	fclamp(float *curr, float min, float max)
 {
 	if (*curr <= min)
 		*curr = min;
@@ -21,7 +20,7 @@ void		fclamp(float *curr, float min, float max)
 		*curr = max;
 }
 
-void		iclamp(intmax_t *curr, int min, int max)
+void	iclamp(intmax_t *curr, int min, int max)
 {
 	if (*curr <= min)
 		*curr = min;

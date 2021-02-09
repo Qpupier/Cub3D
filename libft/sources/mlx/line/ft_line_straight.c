@@ -1,17 +1,17 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   ft_line_straight.c                               .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: qpupier <qpupier@student.le-101.fr>        +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/06/17 15:07:18 by qpupier      #+#   ##    ##    #+#       */
-/*   Updated: 2019/06/19 10:57:41 by qpupier     ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_line_straight.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/06/17 15:07:18 by qpupier           #+#    #+#             */
+/*   Updated: 2021/02/09 13:22:29 by qpupier          ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+
+#include "libft.h"
 
 int		ft_line_straight(t_mlx_img img, t_cplx a, t_cplx z, t_rgb color)
 {

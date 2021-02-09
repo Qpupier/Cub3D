@@ -6,12 +6,12 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 15:00:17 by qpupier           #+#    #+#             */
-/*   Updated: 2021/01/21 12:08:59 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 13:22:29 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#include "../includes/libft.h"
+#include "libft.h"
 
 void	ft_img_dark(t_mlx_img img)
 {
