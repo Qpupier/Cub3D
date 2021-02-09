@@ -1,23 +1,23 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   vec_extract.c                                    .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: slopez <slopez@student.le-101.fr>          +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/01/29 18:51:57 by qpupier        #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/29 18:52:36 by qpupier       ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vec_extract.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/09 13:16:34 by qpupier           #+#    #+#             */
+/*   Updated: 2021/02/09 13:18:31 by qpupier          ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int			check_tvec_from_str(char *str)
+int	check_tvec_from_str(char *str)
 {
-	char		**data;
+	char	**data;
 
-	if (!(data = ft_strsplit(str, ' ')))
+	data = ft_strsplit(str, ' ');
+	if (!data)
 		return (0);
 	if (count_dstr(data) != 3 || !str_isnumber(data[0])
 		|| !str_isnumber(data[1]) || !str_isnumber(data[2]))
@@ -29,12 +29,13 @@ int			check_tvec_from_str(char *str)
 	return (1);
 }
 
-t_vec		str_to_vec3(const char *str)
+t_vec	str_to_vec3(const char *str)
 {
-	char		**data;
-	t_vec		v;
+	char	**data;
+	t_vec	v;
 
-	if (!(data = ft_strsplit(str, ' ')))
+	data = ft_strsplit(str, ' ');
+	if (!data)
 		return ((t_vec){0, 0, 0});
 	if (!data[0] || !data[1] || !data[2])
 	{
@@ -46,11 +47,12 @@ t_vec		str_to_vec3(const char *str)
 	return (v);
 }
 
-int			extract_tvec_from_str(char *str, t_vec *result)
+int	extract_tvec_from_str(char *str, t_vec *result)
 {
-	char		**data;
+	char	**data;
 
-	if (!(data = ft_strsplit(str, ' ')))
+	data = ft_strsplit(str, ' ');
+	if (!data)
 		return (0);
 	if (count_dstr(data) != 3)
 	{

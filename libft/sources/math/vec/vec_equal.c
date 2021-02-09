@@ -1,14 +1,13 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   vec_equal.c                                      .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: slopez <slopez@student.le-101.fr>          +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/10/22 22:36:11 by qpupier      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/29 18:29:58 by qpupier       ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vec_equal.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/09 13:18:38 by qpupier           #+#    #+#             */
+/*   Updated: 2021/02/09 13:18:54 by qpupier          ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
@@ -21,5 +20,5 @@ inline int	vec_equal(t_vec u, t_vec v)
 inline int	vec_equal_precision(t_vec u, t_vec v, float p)
 {
 	return (floatcmp(u.x, v.x, p) && floatcmp(u.y, v.y, p)
-			&& floatcmp(u.z, v.z, p));
+		&& floatcmp(u.z, v.z, p));
 }
