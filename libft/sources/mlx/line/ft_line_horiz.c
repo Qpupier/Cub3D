@@ -6,10 +6,9 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 15:03:43 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/09 13:22:29 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 16:38:48 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "libft.h"
 
@@ -31,6 +30,9 @@ void	ft_line_horiz(t_mlx_img img, t_cplx a, t_cplx z, t_rgb color)
 	while (z.rl - x1 > 0)
 	{
 		ft_pixel_put_rgb(img, x1, x1 * dy / dx + b, color);
-		x1 <= z.rl ? x1++ : x1--;
+		if (x1 <= z.rl)
+			x1++;
+		else
+			x1--;
 	}
 }

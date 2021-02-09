@@ -6,10 +6,9 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 15:08:15 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/09 13:22:29 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 16:37:02 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "libft.h"
 
@@ -22,5 +21,8 @@ void	ft_line(t_mlx_img img, t_cplx a, t_cplx z, t_rgb color)
 		return ;
 	dx = ft_abs(z.rl - a.rl);
 	dy = ft_abs(z.im - a.im);
-	dx >= dy ? ft_line_horiz(img, a, z, color) : ft_line_vert(img, a, z, color);
+	if (dx >= dy)
+		ft_line_horiz(img, a, z, color);
+	else
+		ft_line_vert(img, a, z, color);
 }

@@ -6,10 +6,9 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 15:04:46 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/09 13:22:29 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 16:37:36 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "libft.h"
 
@@ -31,6 +30,9 @@ void	ft_line_vert(t_mlx_img img, t_cplx a, t_cplx z, t_rgb color)
 	while (z.im - y1 > 0)
 	{
 		ft_pixel_put_rgb(img, (y1 - b) * dx / dy, y1, color);
-		y1 <= z.im ? y1++ : y1--;
+		if (y1 <= z.im)
+			y1++;
+		else
+			y1--;
 	}
 }
