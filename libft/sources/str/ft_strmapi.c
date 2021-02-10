@@ -6,10 +6,9 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 16:47:46 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/09 13:22:29 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 16:59:34 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "libft.h"
 
@@ -19,8 +18,10 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	unsigned int	i;
 
 	i = -1;
-	if (!(s && f && (new = (char*)malloc(sizeof(*new) * 	\
-						(ft_strlen(s) + 1)))))
+	if (!s || !f)
+		return (NULL);
+	new = (char*)malloc(sizeof(*new) * (ft_strlen(s) + 1));
+	if (!new)
 		return (NULL);
 	while (s[++i])
 		new[i] = f(i, s[i]);

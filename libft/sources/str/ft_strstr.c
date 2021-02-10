@@ -6,16 +6,15 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/03 20:50:33 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/09 13:22:29 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 16:54:58 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "libft.h"
 
 char	*ft_strstr(const char *haystack, const char *needle)
 {
-	int tmp;
+	int	tmp;
 
 	tmp = 0;
 	while (*needle && *haystack)
@@ -34,6 +33,6 @@ char	*ft_strstr(const char *haystack, const char *needle)
 		}
 	}
 	if (!*needle)
-		return ((char*)haystack - tmp);
+		return ((char *)haystack - tmp);
 	return (NULL);
 }

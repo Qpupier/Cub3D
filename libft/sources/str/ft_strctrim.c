@@ -6,10 +6,9 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 15:14:14 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/09 13:22:29 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 17:07:07 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "libft.h"
 
@@ -30,8 +29,9 @@ char	*ft_strctrim(char const *s, char c)
 	while (s[j] == c)
 		j--;
 	if (i > j)
-		return ((ft_strdup("")));
-	if (!(new = (char*)malloc(sizeof(*new) * (j - i + 2))))
+		return (ft_strdup(""));
+	new = (char *)malloc(sizeof(*new) * (j - i + 2));
+	if (!new)
 		return (NULL);
 	while (i <= j)
 		new[k++] = s[i++];
