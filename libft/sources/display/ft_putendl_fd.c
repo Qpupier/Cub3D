@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 20:40:40 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/09 16:23:37 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2020/04/12 21:29:30 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@ void	ft_putendl_fd(char const *s, int fd)
 		return ;
 	while (*s)
 		ft_putchar_fd(*s++, fd);
-	write(fd, "\n", 1);
+	if (write(fd, "\n", 1))
+		return ;
 }

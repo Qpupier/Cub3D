@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:52:32 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/06 17:38:33 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/11 14:10:50 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <fcntl.h>
 # include <stdio.h> // A ENLEVER
 # include "functions.h"
+# include "mlx.h"
 
 # define FOV 60
 

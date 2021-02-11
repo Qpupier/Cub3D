@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/17 14:42:01 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/09 16:56:53 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2020/04/12 21:29:30 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,18 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	int	j;
 
 	if (!*needle)
-		return ((char *)haystack);
+		return ((char*)haystack);
 	i = 0;
 	j = -1;
 	while (haystack[++j] && len)
 	{
 		len += i;
 		i = 0;
-		while (len-- && haystack[j + i] && needle[i]
-			&& haystack[j + i] == needle[i])
+		while (len-- && haystack[j + i] && needle[i] && 	\
+				haystack[j + i] == needle[i])
 			i++;
 		if (!needle[i])
-			return ((char *)haystack + j);
+			return ((char*)haystack + j);
 		if (!haystack[j + i])
 			return (NULL);
 	}

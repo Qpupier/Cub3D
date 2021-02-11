@@ -6,13 +6,13 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 18:55:44 by slopez            #+#    #+#             */
-/*   Updated: 2021/02/10 15:13:15 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2020/04/12 21:29:30 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	str_isnumber(char *str)
+int		str_isnumber(char *str)
 {
 	while (*str)
 	{
@@ -25,9 +25,9 @@ int	str_isnumber(char *str)
 	return (1);
 }
 
-int	str_isnumbern(char *str, int n)
+int		str_isnumbern(char *str, int n)
 {
-	int	i;
+	int		i;
 
 	i = -1;
 	while (*str && (++i < n))

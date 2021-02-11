@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 20:28:08 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/09 16:23:44 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2020/04/12 21:29:30 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	ft_putchar_fd(char c, int fd)
 {
-	if (ft_isascii(c))
-		write(fd, &c, 1);
+	if (ft_isascii(c) && write(fd, &c, 1))
+		return ;
 }

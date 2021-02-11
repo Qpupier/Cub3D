@@ -6,15 +6,14 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 17:31:07 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/09 13:22:29 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2020/04/12 21:29:29 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "libft.h"
 
-void	ft_error(const char *str)
+void	ft_error(char *str)
 {
 	ft_putendl(str);
-	exit(-1);
+	exit(1);
 }

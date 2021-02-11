@@ -5,16 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/10 15:12:36 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/10 15:13:05 by qpupier          ###   ########lyon.fr   */
+/*   Created: 2020/01/29 18:53:47 by slopez            #+#    #+#             */
+/*   Updated: 2020/04/12 21:29:30 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	count_dstr(char **d)
+int		count_dstr(char **d)
 {
-	register int	i;
+	register int i;
 
 	i = -1;
 	while (d[++i] != NULL)

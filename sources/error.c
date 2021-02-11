@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 17:40:27 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/06 17:22:13 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/11 14:09:04 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,5 @@ void	free_all(t_param *p)
 void	ft_error_free(t_param *p, const char *error)
 {
 	free_all(p);
-	ft_error(error);
+	ft_error((char *)error);
 }

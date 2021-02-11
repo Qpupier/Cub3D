@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 16:50:50 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/06 17:48:19 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/11 14:06:19 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@ static void	parsing_textures_no(t_param *p, char *line, char *tmp, int size)
 	if (tmp[size - 4] == '.' && tmp[size - 3] == 'x'
 		&& tmp[size - 2] == 'p' && tmp[size - 1] == 'm')
 	{
-		if (!xpm_to_img(p->mlx->mlx_ptr, &p->mlx->no, tmp))
-			parsing_line_error_tmp(p, line, tmp,
-				"Invalid texture file (NORTH)");
+		// if (!xpm_to_img(p->mlx->mlx_ptr, &p->mlx->no, tmp))
+		// 	parsing_line_error_tmp(p, line, tmp,
+		// 		"Invalid texture file (NORTH)");
 		p->free |= F_MLX_NO;
 	}
 	else if (tmp[size - 4] == '.' && tmp[size - 3] == 'p'
 		&& tmp[size - 2] == 'n' && tmp[size - 1] == 'g')
 	{
-		if (!png_to_img(p->mlx->mlx_ptr, &p->mlx->no, tmp))
-			parsing_line_error_tmp(p, line, tmp,
-				"Invalid texture file (NORTH)");
+		// if (!png_to_img(p->mlx->mlx_ptr, &p->mlx->no, tmp))
+		// 	parsing_line_error_tmp(p, line, tmp,
+		// 		"Invalid texture file (NORTH)");
 		p->free |= F_MLX_NO;
 	}
 	else
@@ -62,17 +62,17 @@ static void	parsing_textures_so(t_param *p, char *line, char *tmp, int size)
 	if (tmp[size - 4] == '.' && tmp[size - 3] == 'x'
 		&& tmp[size - 2] == 'p' && tmp[size - 1] == 'm')
 	{
-		if (!xpm_to_img(p->mlx->mlx_ptr, &p->mlx->so, tmp))
-			parsing_line_error_tmp(p, line, tmp,
-				"Invalid texture file (SOUTH)");
+		// if (!xpm_to_img(p->mlx->mlx_ptr, &p->mlx->so, tmp))
+		// 	parsing_line_error_tmp(p, line, tmp,
+		// 		"Invalid texture file (SOUTH)");
 		p->free |= F_MLX_SO;
 	}
 	else if (tmp[size - 4] == '.' && tmp[size - 3] == 'p'
 		&& tmp[size - 2] == 'n' && tmp[size - 1] == 'g')
 	{
-		if (!png_to_img(p->mlx->mlx_ptr, &p->mlx->so, tmp))
-			parsing_line_error_tmp(p, line, tmp,
-				"Invalid texture file (SOUTH)");
+		// if (!png_to_img(p->mlx->mlx_ptr, &p->mlx->so, tmp))
+		// 	parsing_line_error_tmp(p, line, tmp,
+		// 		"Invalid texture file (SOUTH)");
 		p->free |= F_MLX_SO;
 	}
 	else

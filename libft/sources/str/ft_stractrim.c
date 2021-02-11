@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/05 11:18:46 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/10 15:14:20 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2020/04/12 21:29:30 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@ char	*ft_stractrim(const char *str, const char c)
 	char	*new;
 	int		i;
 
-	if (!c || !str)
-		return (NULL);
-	new = (char*)malloc(sizeof(*new) * (ft_strlen(str) - ft_occur(str, c) + 1));
-	if (!new)
+	if (!(c && str && (new = (char*)malloc(sizeof(*new) * 	\
+						(ft_strlen(str) - ft_occur(str, c) + 1)))))
 		return (NULL);
 	i = 0;
 	if (*str != c)

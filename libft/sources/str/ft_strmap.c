@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 14:44:11 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/09 17:00:32 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2020/04/12 21:29:30 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,8 @@ char	*ft_strmap(char const *s, char (*f)(char))
 	int		i;
 
 	i = 0;
-	if (!s || !f)
-		return (NULL);
-	new = (char*)malloc(sizeof(*new) * (ft_strlen(s) + 1));
-	if (!new)
+	if (!(s && f && (new = (char*)malloc(sizeof(*new) * 	\
+						(ft_strlen(s) + 1)))))
 		return (NULL);
 	while (*s)
 		new[i++] = f(*s++);

@@ -6,10 +6,9 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/13 13:23:07 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/09 13:22:29 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/11 16:29:06 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "libft.h"
 
@@ -70,7 +69,7 @@ static int		process_file(char *s, char **result)
 	}
 }
 
-int				get_next_line(const int fd, char **line)// A VERIFIER
+int				get_next_line(const int fd, char **line)
 {
 	int				rd;
 	static t_gnl	*lst;
@@ -78,7 +77,10 @@ int				get_next_line(const int fd, char **line)// A VERIFIER
 
 	file = find_file(&lst, fd);
 	if (fd < 0 || !line || BUFF_SIZE <= 0)
+	{
+		*line = NULL;
 		return (-1);
+	}
 	if (!file->save)
 		file->save = ft_strnew(BUFF_SIZE);
 	*line = ft_strnew(0);
@@ -89,7 +91,10 @@ int				get_next_line(const int fd, char **line)// A VERIFIER
 	while ((rd = read(fd, file->save, BUFF_SIZE)))
 	{
 		if (rd < 0)
+		{
+			*line = NULL;
 			return (-1);
+		}
 		if (process_file(file->save, line))
 			return (1);
 	}

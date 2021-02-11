@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 18:41:13 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/09 16:56:22 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2020/04/12 21:29:30 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	int	i;
+	int i;
 
 	if (!c)
-		return ((char *)s + ft_strlen(s));
+		return ((char*)s + ft_strlen(s));
 	if (!*s)
 		return (NULL);
 	i = ft_strlen(s);
