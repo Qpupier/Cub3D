@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnew.c                                        :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/22 20:55:19 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/24 10:44:02 by qpupier          ###   ########lyon.fr   */
+/*   Created: 2018/10/07 17:15:23 by qpupier           #+#    #+#             */
+/*   Updated: 2021/02/24 10:43:29 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnew(size_t size)
+void	ft_bzero(void *s, size_t n)
 {
-	void	*new;
-
-	if (!(new = ft_memalloc(size + 1)))
-		return (NULL);
-	ft_bzero(new, size + 1);
-	return (new);
+	ft_memset(s, '\0', n);
 }

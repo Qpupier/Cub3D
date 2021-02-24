@@ -6,7 +6,7 @@
 #    By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 14:43:31 by qpupier           #+#    #+#              #
-#    Updated: 2021/01/08 15:43:01 by qpupier          ###   ########lyon.fr    #
+#    Updated: 2021/02/24 21:14:27 by qpupier          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -157,6 +157,7 @@ SRC_NAME = 	display/ft_putchar_fd.c 							\
 			str/ft_strnew.c 									\
 			str/ft_strnstr.c 									\
 			str/ft_strrchr.c 									\
+			str/ft_strsearch.c 									\
 			str/ft_strsplit.c 									\
 			str/ft_strstr.c 									\
 			str/ft_str_isnumber.c 								\
