@@ -1,19 +1,18 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   ft_atoi.c                                        .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: slopez <slopez@student.le-101.fr>          +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/07 19:26:40 by qpupier      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/10 16:30:54 by qpupier       ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/24 21:28:11 by qpupier           #+#    #+#             */
+/*   Updated: 2021/02/24 21:28:16 by qpupier          ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int						ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	int		i;
 	long	t;
@@ -37,7 +36,7 @@ int						ft_atoi(const char *str)
 	return (t * s);
 }
 
-unsigned long long		ft_atoull(const char *str)
+unsigned long long	ft_atoull(const char *str)
 {
 	int		i;
 	long	t;

@@ -6,14 +6,13 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 19:41:47 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/09 13:22:29 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 21:26:57 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "libft.h"
 
-int		ft_isprint(int c)
+int	ft_isprint(int c)
 {
 	if (c >= 32 && c <= 126)
 		return (1);

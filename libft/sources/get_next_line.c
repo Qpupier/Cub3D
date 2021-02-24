@@ -5,93 +5,101 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/13 13:23:07 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/09 13:22:29 by qpupier          ###   ########lyon.fr   */
+/*   Created: 2021/02/11 16:30:30 by qpupier           #+#    #+#             */
+/*   Updated: 2021/02/24 21:51:20 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "get_next_line.h"
 
-#include "libft.h"
-
-static t_gnl	*find_file(t_gnl **list, int fd)
+static t_gnl	*new_fd(int fd)
 {
-	t_gnl		*tmp;
+	t_gnl	*new;
 
-	tmp = *list;
-	while (tmp)
-	{
-		if (tmp->fd == fd)
-			return (tmp);
-		tmp = tmp->next;
-	}
-	if (!(tmp = (t_gnl *)malloc(sizeof(t_gnl))))
+	new = malloc(sizeof(t_gnl));
+	if (!new)
 		return (NULL);
-	tmp->save = ft_strnew(BUFF_SIZE);
-	tmp->fd = fd;
-	tmp->next = NULL;
-	tmp->next = *list;
-	*list = tmp;
-	return (tmp);
+	new->fd = fd;
+	new->save = NULL;
+	new->next = NULL;
+	return (new);
 }
 
-static void		ft_del_after_occ(char *s, int c)
+static t_gnl	*find_fd(t_gnl **gnl, int fd)
+{
+	t_gnl	*old;
+
+	if (!*gnl)
+	{
+		*gnl = new_fd(fd);
+		return (*gnl);
+	}
+	old = *gnl;
+	if (!old->next && old->fd == fd)
+		return (old);
+	while (old->next)
+	{
+		if (old->fd == fd)
+			return (old);
+		old = old->next;
+	}
+	old->next = new_fd(fd);
+	return (old->next);
+}
+
+static int	join_read(t_gnl *gnl, char **line)
+{
+	char	*str;
+	int		ret;
+	char	*tmp;
+
+	str = ft_strnew(BUFF_SIZE);
+	ret = read(gnl->fd, str, BUFF_SIZE);
+	tmp = gnl->save;
+	gnl->save = ft_strjoin(gnl->save, str);
+	free(tmp);
+	free(str);
+	if (ret <= 0)
+	{
+		*line = gnl->save;
+		gnl->save = NULL;
+		return (ret);
+	}
+	return (1);
+}
+
+int	recursive(t_gnl *gnl, char **line)
 {
 	int		i;
+	char	*tmp;
+	int		result;
 
-	i = -1;
-	while (s[++i])
-		if (s[i] == (char)c)
-			s[i] = 0;
-}
-
-static int		process_file(char *s, char **result)
-{
-	char	*tmp_dup_s;
-	char	*tmp_result;
-
-	if (ft_strrchr(s, '\n'))
+	i = ft_strsearch(gnl->save, '\n');
+	if (i != -1)
 	{
-		tmp_dup_s = ft_strdup(s);
-		s = ft_strcpy(s, ft_strchr(s, '\n') + 1);
-		ft_del_after_occ(tmp_dup_s, 10);
-		tmp_result = *result;
-		*result = ft_strjoin(tmp_result, tmp_dup_s);
-		free(tmp_dup_s);
-		free(tmp_result);
+		*line = ft_strnew(BUFF_SIZE);
+		*line = ft_strncpy(*line, gnl->save, i);
+		tmp = ft_strdup(gnl->save + i + 1);
+		free(gnl->save);
+		gnl->save = tmp;
 		return (1);
 	}
-	else
-	{
-		tmp_result = *result;
-		*result = ft_strjoin(tmp_result, s);
-		free(tmp_result);
-		ft_bzero(s, BUFF_SIZE);
-		return (0);
-	}
+	result = join_read(gnl, line);
+	if (result <= 0)
+		return (result);
+	return (recursive(gnl, line));
 }
 
-int				get_next_line(const int fd, char **line)// A VERIFIER
+int	get_next_line(int fd, char **line)
 {
-	int				rd;
-	static t_gnl	*lst;
+	static t_gnl	*gnl = NULL;
 	t_gnl			*file;
 
-	file = find_file(&lst, fd);
+	*line = NULL;
 	if (fd < 0 || !line || BUFF_SIZE <= 0)
 		return (-1);
-	if (!file->save)
-		file->save = ft_strnew(BUFF_SIZE);
-	*line = ft_strnew(0);
-	if (*file->save)
-		if (process_file(file->save, line))
-			return (1);
-	ft_bzero(file->save, BUFF_SIZE);
-	while ((rd = read(fd, file->save, BUFF_SIZE)))
-	{
-		if (rd < 0)
-			return (-1);
-		if (process_file(file->save, line))
-			return (1);
-	}
-	return (**line ? 1 : 0);
+	file = find_fd(&gnl, fd);
+	if (!file)
+		return (-1);
+	return (recursive(file, line));
 }

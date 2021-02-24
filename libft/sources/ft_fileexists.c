@@ -1,23 +1,22 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   ft_fileexists.c                                  .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: slopez <slopez@student.le-101.fr>          +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/01/29 19:05:04 by qpupier        #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/29 19:05:24 by qpupier       ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_fileexists.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/24 21:27:46 by qpupier           #+#    #+#             */
+/*   Updated: 2021/02/24 21:31:15 by qpupier          ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <sys/types.h>
 #include <sys/stat.h>
 
-int			fileexists(char *file)
+int	fileexists(char *file)
 {
-	struct stat fs;
+	struct stat	fs;
 
 	if (stat(file, &fs) == -1)
 		return (0);

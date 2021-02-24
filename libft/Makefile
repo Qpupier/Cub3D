@@ -6,7 +6,7 @@
 #    By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/13 11:56:39 by qpupier           #+#    #+#              #
-#    Updated: 2021/02/09 16:19:10 by qpupier          ###   ########lyon.fr    #
+#    Updated: 2021/02/24 21:25:08 by qpupier          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -147,6 +147,7 @@ SRC_NAME	=	display/ft_putchar_fd.c 							\
 				mlx/ft_img_dark.c 									\
 				mlx/ft_pixel_put.c 									\
 				mlx/ft_get_pixel.c 									\
+				str/ft_bzero.c 										\
 				str/ft_stractrim.c 									\
 				str/ft_strcat.c 									\
 				str/ft_strchr.c 									\
@@ -177,6 +178,7 @@ SRC_NAME	=	display/ft_putchar_fd.c 							\
 				str/ft_strnew.c 									\
 				str/ft_strnstr.c 									\
 				str/ft_strrchr.c 									\
+				str/ft_strsearch.c 									\
 				str/ft_strsplit.c 									\
 				str/ft_strstr.c 									\
 				str/ft_str_isnumber.c 								\
@@ -186,7 +188,6 @@ SRC_NAME	=	display/ft_putchar_fd.c 							\
 				ft_atoi.c 											\
 				ft_atof.c 											\
 				ft_atoi_hexa.c 										\
-				ft_bzero.c 											\
 				ft_count_words.c 									\
 				ft_error.c 											\
 				ft_exit.c 											\

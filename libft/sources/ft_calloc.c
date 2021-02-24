@@ -1,14 +1,13 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   ft_calloc.c                                      .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: slopez <slopez@student.le-101.fr>          +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/02/04 15:30:31 by qpupier        #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/04 15:30:50 by qpupier       ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/24 21:28:03 by qpupier           #+#    #+#             */
+/*   Updated: 2021/02/24 21:31:04 by qpupier          ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
@@ -19,7 +18,8 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	char				*ptr;
 
 	s = nmemb * size;
-	if (!(ptr = malloc(s)))
+	ptr = malloc(s);
+	if (!ptr)
 		return (NULL);
 	ft_memset(ptr, 0, s);
 	return (ptr);

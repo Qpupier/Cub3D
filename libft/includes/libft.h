@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/03 16:49:53 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/09 16:14:14 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 21:24:34 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -371,6 +371,7 @@ char				*ft_strnew(size_t size);
 char				*ft_strnstr(const char *haystack, const char *needle, 	\
 		size_t len);
 char				*ft_strrchr(const char *s, int c);
+int					ft_strsearch(char *str, char c);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_strstr(const char *haystack, const char *needle);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);

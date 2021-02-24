@@ -1,32 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_count_words.c                                   :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/24 20:26:11 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/24 21:27:58 by qpupier          ###   ########lyon.fr   */
+/*   Created: 2018/10/07 17:15:23 by qpupier           #+#    #+#             */
+/*   Updated: 2021/02/24 21:50:09 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_count_words(char *s, char c)
+void	ft_bzero(void *s, size_t n)
 {
-	int	j;
-	int	nb;
-
-	nb = 0;
-	while (*s)
-	{
-		j = 0;
-		while (*s && *s++ != c)
-			j++;
-		if (j)
-			nb++;
-		while (*s == c)
-			s++;
-	}
-	return (nb);
+	ft_memset(s, '\0', n);
 }
