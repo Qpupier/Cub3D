@@ -8,11 +8,11 @@ int	main(void)
 	int		test;
 	char	*line;
 
-	fd = open("main.c", O_RDONLY);
+	fd = open("libft/sources/get_next_line.c", O_RDONLY);
 	test = get_next_line(fd, &line);
 	printf("%d | %s\n", test, line);
 	free(line);
-	test = get_next_line(open("libft/sources/get_next_line.c", O_RDONLY), &line);
+	test = get_next_line(open("test", O_RDONLY), &line);
 	printf("%d | %s\n", test, line);
 	free(line);
 	while ((test = get_next_line(fd, &line)))

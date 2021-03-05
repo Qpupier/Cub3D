@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 16:30:30 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/24 21:51:20 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/03/05 11:49:23 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,11 @@ int	recursive(t_gnl *gnl, char **line)
 	i = ft_strsearch(gnl->save, '\n');
 	if (i != -1)
 	{
-		*line = ft_strnew(BUFF_SIZE);
-		*line = ft_strncpy(*line, gnl->save, i);
-		tmp = ft_strdup(gnl->save + i + 1);
-		free(gnl->save);
-		gnl->save = tmp;
+		tmp = gnl->save;
+		*line = ft_strdup(gnl->save);
+		ft_bzero(*line + i, ft_strlen(gnl->save) - i);
+		gnl->save = ft_strdup(gnl->save + i + 1);
+		free(tmp);
 		return (1);
 	}
 	result = join_read(gnl, line);

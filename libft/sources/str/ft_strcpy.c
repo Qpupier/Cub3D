@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/03 16:29:07 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/10 15:14:29 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/03/05 10:43:28 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,11 @@ char	*ft_strcpy(char *dst, const char *src)
 {
 	int	i;
 
-	i = 0;
-	while (src[i])
-	{
+	i = -1;
+	if (!src)
+		return (NULL);
+	while (src[++i])
 		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = src[i];
+	dst[i] = '\0';
 	return (dst);
 }

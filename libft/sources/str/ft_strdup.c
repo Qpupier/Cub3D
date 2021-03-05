@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/03 16:29:26 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/09 17:04:33 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/03/05 10:10:03 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strdup(const char *s1)
 
 	if (!s1)
 		return (NULL);
-	cpy = (char*)malloc(sizeof(*cpy) * (ft_strlen(s1) + 1));
+	cpy = ft_strnew(ft_strlen(s1));
 	if (!cpy)
 		return (NULL);
 	ft_strcpy(cpy, s1);
