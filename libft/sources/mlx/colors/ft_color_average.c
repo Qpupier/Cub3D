@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 16:30:21 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/09 16:30:44 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/03/05 13:47:36 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_rgb	ft_color_average(t_rgb c1, t_rgb c2, float p)
 
 int	color_avg_calc(int start, int end, double percentage)
 {
-	return ((int)((1 - percentage) *start + percentage * end));
+	return ((int)((1 - percentage) * start + percentage * end));
 }
 
 int	color_avg(unsigned int s_col, unsigned int end_col, double p)

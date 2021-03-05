@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 16:09:18 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/09 16:32:46 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/03/05 13:47:44 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_hex_color_complete(char *c)
 
 	if (!c)
 		return (ft_strdup("0xFFFFFF00"));
-	color = (char*)malloc(sizeof(*color) * 11);
+	color = (char *)malloc(sizeof(*color) * 11);
 	if (!color)
 		ft_error("Malloc error");
 	i = -1;

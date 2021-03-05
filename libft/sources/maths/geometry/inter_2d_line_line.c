@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 15:45:18 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/06 18:11:31 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/03/05 13:46:01 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	inter_2d_line_line(t_2d_line l1, t_2d_line l2, t_real *result)
 	if (!tmp)
 		return (0);
 	tmp = 1 / tmp;
-	result->x = (l1.b * l2.c - l2.b * l1.c) *tmp;
-	result->y = (l1.c * l2.a - l2.c * l1.a) *tmp;
+	result->x = (l1.b * l2.c - l2.b * l1.c) * tmp;
+	result->y = (l1.c * l2.a - l2.c * l1.a) * tmp;
 	return (1);
 }

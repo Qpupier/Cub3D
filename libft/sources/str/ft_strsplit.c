@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 15:01:00 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/09 16:56:10 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/03/05 13:48:50 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	**ft_strsplit(char const *s, char c)
 
 	if (!s)
 		return (NULL);
-	str = (char**)malloc(sizeof(*str) * (ft_count_words((char*)s, c) + 1));
+	str = (char **)malloc(sizeof(*str) * (ft_count_words((char *)s, c) + 1));
 	if (!str || !c)
 		return (NULL);
 	new = ft_strctrim(s, c);

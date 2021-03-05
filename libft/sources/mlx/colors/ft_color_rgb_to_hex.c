@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 16:11:44 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/09 16:29:27 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/03/05 13:50:18 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_color_rgb_to_hex(t_rgb rgb)
 	char	*color;
 	char	*hex;
 
-	color = (char*)malloc(sizeof(*color) * 7);
+	color = (char *)malloc(sizeof(*color) * 7);
 	if (!color)
 		ft_error("error");
 	hex = "0123456789ABCDEF";

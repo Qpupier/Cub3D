@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 14:44:11 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/09 17:00:32 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/03/05 13:48:33 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strmap(char const *s, char (*f)(char))
 	i = 0;
 	if (!s || !f)
 		return (NULL);
-	new = (char*)malloc(sizeof(*new) * (ft_strlen(s) + 1));
+	new = (char *)malloc(sizeof(*new) * (ft_strlen(s) + 1));
 	if (!new)
 		return (NULL);
 	while (*s)

@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 20:08:09 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/24 21:49:41 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/03/05 14:31:18 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*ft_memalloc(size_t size)
 
 	if (!size)
 		return (NULL);
-	new = (void*)malloc(sizeof(*new) * size);
+	new = (void *)malloc(sizeof(*new) * size);
 	if (!new)
 		return (NULL);
 	ft_memset(new, 0, size);

@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 15:29:53 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/09 16:53:30 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/03/05 13:50:00 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	**ft_strtrimsplit(char **str, char *n, char c)
 			i++;
 			j++;
 		}
-		str[k++] = ft_strsub((const char*)n, i - j, j);
+		str[k++] = ft_strsub((const char *)n, i - j, j);
 		while (n[i] == c)
 			i++;
 	}
