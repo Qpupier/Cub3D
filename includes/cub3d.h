@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:52:32 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/06 17:38:33 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 19:39:12 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,14 @@ typedef enum e_free
 	F_MLX = 256,
 	F_WIN = 512,
 	F_MAP_MAP = 1024,
-	F_MAP = 2048,
-	F_RAYS = 4096,
-	F_CLOSE = 8192
+	F_MAP_PN = 2048,
+	F_MAP_PS = 4096,
+	F_MAP_PE = 8192,
+	F_MAP_PW = 16384,
+	F_MAP = 32768,
+	F_RAYS = 65536,
+	F_SPRITES = 131072,
+	F_CLOSE = 262144
 }t_free;
 
 typedef enum e_parameters

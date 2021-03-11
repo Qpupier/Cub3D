@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 16:50:50 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/06 17:48:19 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 20:18:02 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	parsing_we(t_param *p, char *line, int i)
 	if (size < 4)
 		parsing_line_error_tmp(p, line, tmp, "Invalid map parameter (WEST)");
 	parsing_textures_we(p, line, tmp, size);
+	free(tmp);
 	p->parameters |= P_WE;
 }
 
@@ -97,5 +98,6 @@ void	parsing_ea(t_param *p, char *line, int i)
 	if (size < 4)
 		parsing_line_error_tmp(p, line, tmp, "Invalid map parameter (EAST)");
 	parsing_textures_ea(p, line, tmp, size);
+	free(tmp);
 	p->parameters |= P_EA;
 }

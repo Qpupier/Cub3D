@@ -6,7 +6,7 @@
 #    By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/12 15:48:25 by qpupier           #+#    #+#              #
-#    Updated: 2021/03/02 15:25:33 by qpupier          ###   ########lyon.fr    #
+#    Updated: 2021/03/11 20:27:44 by qpupier          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,18 @@ NAME		=	cub3d
 INC_PATH	=	includes
 SRC_PATH	=	sources
 OBJ_PATH	=	.objects
-DIR			=	parsing 	\
+DIR			=	engine 		\
+				init 		\
+				parsing 	\
 				parsing/textures
-SRC_NAME	=	parsing/textures/parsing_textures_no_so.c 	\
+SRC_NAME	=	engine/algo.c 								\
+				engine/calc.c 								\
+				init/init.c 								\
+				init/init_structs.c 						\
+				parsing/textures/parsing_textures_no_so.c 	\
 				parsing/textures/parsing_textures_s.c 		\
 				parsing/textures/parsing_textures_we_ea.c 	\
+				parsing/check_map.c 						\
 				parsing/parsing.c 							\
 				parsing/parsing_error.c 					\
 				parsing/parsing_map.c 						\

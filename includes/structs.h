@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 17:24:54 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/06 17:38:13 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 19:33:01 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,11 @@ typedef struct s_win
 	float	r_fov_v;
 }t_win;
 
+typedef struct s_wall
+{
+	t_plane	p;
+}t_wall;
+
 typedef struct s_map
 {
 	int		w;
@@ -48,19 +53,30 @@ typedef struct s_map
 	int		b;
 	int		dir;
 	int		**map;
+	t_wall	*p_n;
+	t_wall	*p_s;
+	t_wall	*p_e;
+	t_wall	*p_w;
 	t_vec	player;
 }t_map;
 
+typedef struct s_sprite
+{
+	t_plane	p;
+}t_sprite;
+
 typedef struct s_param
 {
-	int		free;
-	int		fd;
-	t_mlx	*mlx;
-	t_win	*win;
-	t_map	*map;
-	int		parameters;
-	t_vec	*rays;
-	float	angle;
+	int			free;
+	int			fd;
+	t_mlx		*mlx;
+	t_win		*win;
+	t_map		*map;
+	int			parameters;
+	t_vec		*rays;
+	float		angle;
+	int			nb_sprites;
+	t_sprite	*sprites;
 }t_param;
 
 typedef struct s_parsing

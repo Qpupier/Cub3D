@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 15:43:13 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/06 17:48:44 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 18:24:30 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,11 @@ void		verif_parameters(t_param *p);
 void		parsing_error(t_param *p, const char *error);
 void		parsing_array_error(t_param *p, t_parsing *map, int nb, 	\
 		const char *error);
+void		verif_map(t_param *p, t_parsing *map);
+void		verif_defines(void);
+void		init(t_param *p);
+void		init_parameters(t_param *p);
+void		algo(t_param *p);
+void		calc(t_param *p);
 
 #endif

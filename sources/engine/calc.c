@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   calc.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/03 16:28:17 by qpupier           #+#    #+#             */
-/*   Updated: 2021/03/11 16:22:59 by qpupier          ###   ########lyon.fr   */
+/*   Created: 2021/03/11 18:16:24 by qpupier           #+#    #+#             */
+/*   Updated: 2021/03/11 20:28:58 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "cub3d.h"
 
-int	ft_strcmp(const char *s1, const char *s2)
+void	calc(t_param *p)
 {
-	while (*s1 && *s2 && *s1 == *s2)
+	int	i;
+
+	i = -1;
+	while (++i <= p->map->w)
 	{
-		s1++;
-		s2++;
+		p->map->p_n[i] = (t_wall){(t_plane){1, 0, 0, -i}};
+		p->map->p_s[i] = (t_wall){(t_plane){1, 0, 0, -i}};
 	}
-	return ((unsigned char)*s1 - (unsigned char)* s2);
+	i = -1;
+	while (++i <= p->map->h)
+	{
+		p->map->p_e[i] = (t_wall){(t_plane){0, 1, 0, -i}};
+		p->map->p_w[i] = (t_wall){(t_plane){0, 1, 0, -i}};
+	}
 }

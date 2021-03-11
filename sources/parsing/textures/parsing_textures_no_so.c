@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 16:50:50 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/06 17:48:19 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 20:18:46 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static void	parsing_textures_no(t_param *p, char *line, char *tmp, int size)
 	}
 	else
 		parsing_line_error_tmp(p, line, tmp, "Invalid texture file (NORTH)");
-	free(tmp);
 }
 
 void	parsing_no(t_param *p, char *line, int i)
@@ -54,6 +53,7 @@ void	parsing_no(t_param *p, char *line, int i)
 	if (size < 4)
 		parsing_line_error_tmp(p, line, tmp, "Invalid map parameter (NORTH)");
 	parsing_textures_no(p, line, tmp, size);
+	free(tmp);
 	p->parameters |= P_NO;
 }
 
@@ -98,5 +98,6 @@ void	parsing_so(t_param *p, char *line, int i)
 	if (size < 4)
 		parsing_line_error_tmp(p, line, tmp, "Invalid map parameter (SOUTH)");
 	parsing_textures_so(p, line, tmp, size);
+	free(tmp);
 	p->parameters |= P_SO;
 }

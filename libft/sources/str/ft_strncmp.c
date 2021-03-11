@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 18:01:35 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/09 16:57:32 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 16:23:12 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,5 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	}
 	if (n <= 0)
 		return (0);
-	return ((unsigned char)*s1 - (unsigned char)*s2);
+	return ((unsigned char)*s1 - (unsigned char)* s2);
 }
