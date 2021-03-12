@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:53:10 by qpupier           #+#    #+#             */
-/*   Updated: 2021/03/11 18:37:03 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/03/12 19:36:49 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,14 @@ static int	hook(int key, t_param *p)
 		p->angle -= 5 * M_PI / 180;
 	if (key == 124)
 		p->angle += 5 * M_PI / 180;
+	if (key == 13)
+		p->map->player.y -= 0.3;
+	if (key == 1)
+		p->map->player.y += 0.3;
+	if (key == 1)
+		p->map->player.x -= 0.3;
+	if (key == 2)
+		p->map->player.x += 0.3;
 	algo(p);
 	return (0);
 }

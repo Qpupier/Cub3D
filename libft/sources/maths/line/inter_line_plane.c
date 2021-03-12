@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 18:23:08 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/06 18:23:58 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/03/12 20:22:06 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	inter_line_plane(t_line l, t_plane p, t_vec *result)
 	if (!tmp)
 		return (0);
 	t = - (p.a * l.x.o + p.b * l.y.o + p.c * l.z.o + p.d) / tmp;
+	if (t < 0)
+		return (0);
 	*result = vec_add((t_vec){l.x.o, l.y.o, l.z.o},
 			vec_mult_float((t_vec){l.x.u, l.y.u, l.z.u}, t));
 	return (1);

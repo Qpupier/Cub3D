@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:16:24 by qpupier           #+#    #+#             */
-/*   Updated: 2021/03/11 20:28:58 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/03/12 21:53:09 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void	calc(t_param *p)
 	i = -1;
 	while (++i <= p->map->w)
 	{
-		p->map->p_n[i] = (t_wall){(t_plane){1, 0, 0, -i}};
-		p->map->p_s[i] = (t_wall){(t_plane){1, 0, 0, -i}};
+		p->map->p_n[i] = (t_wall){(t_plane){0, 1, 0, -i}};
+		p->map->p_s[i] = (t_wall){(t_plane){0, 1, 0, -i}};
 	}
 	i = -1;
 	while (++i <= p->map->h)
 	{
-		p->map->p_e[i] = (t_wall){(t_plane){0, 1, 0, -i}};
-		p->map->p_w[i] = (t_wall){(t_plane){0, 1, 0, -i}};
+		p->map->p_e[i] = (t_wall){(t_plane){1, 0, 0, -i}};
+		p->map->p_w[i] = (t_wall){(t_plane){1, 0, 0, -i}};
 	}
 }
