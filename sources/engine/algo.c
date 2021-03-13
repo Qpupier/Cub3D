@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:06:25 by qpupier           #+#    #+#             */
-/*   Updated: 2021/03/13 16:43:49 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/03/13 17:36:35 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	find_card(float check[])
 	card = -1;
 	i = -1;
 	while (++i < 4)
-		if (check[i] > 0 && (dis < 0 || check[i] < dis))
+		if (check[i] > 0 && (dis < 0 || check[i] <= dis))
 		{
 			dis = check[i];
 			card = i;
@@ -30,77 +30,96 @@ static int	find_card(float check[])
 	return (card);
 }
 
-static uint32_t	ray_casting(t_param *p, t_vec ray)
+static float	intersec_planes_e(t_param *p, t_line line)
 {
-	t_vec result;
-	int	i;
-	t_line line = line_create_point_vec(p->map->player, ray);
-	int	x;
-	int	y;
-	float	t;
-	float	check[4] = {-1, -1, -1, -1};
+	int			i;
+	t_vec		result;
+	float		t;
+	int			x;
+	int			y;
 
-	if (ray.x >= 0)
-	{
-		i = (int)p->map->player.x;
-		while (++i <= p->map->w)
-			if (inter_line_plane(line, p->map->p_e[i].p, &result, &t) && t > 0 && result.z >= 0 && result.z < 1)
-			{
-				x = (int)-p->map->p_e[i].p.d;
-				y = (int)result.y;
-				if (x >= 0 && x < p->map->w && y >= 0 && y < p->map->h && p->map->map[y][x])
-				{
-					check[0] = t;
-					break ;
-				}
-			}
-	}
-	else
-	{
-		i = (int)p->map->player.x + 1;
-		while (i--)
-			if (inter_line_plane(line, p->map->p_w[i].p, &result, &t) && t > 0 && result.z >= 0 && result.z < 1)
-			{
-				x = (int)-p->map->p_w[i].p.d - 1;
-				y = (int)result.y;
-				if (x >= 0 && x < p->map->w && y >= 0 && y < p->map->h && p->map->map[y][x])
-				{
-					check[1] = t;
-					break ;
-				}
-			}
-	}
-	if (ray.y >= 0)
-	{
-		i = (int)p->map->player.y;
-		while (++i <= p->map->h)
-			if (inter_line_plane(line, p->map->p_s[i].p, &result, &t) && t > 0 && result.z >= 0 && result.z < 1)
-			{
-				x = (int)result.x;
-				y = (int)-p->map->p_s[i].p.d;
-				if (x >= 0 && x < p->map->w && y >= 0 && y < p->map->h && p->map->map[y][x])
-				{
-					check[2] = t;
-					break ;
-				}
-			}
-	}
-	else
-	{
-		i = (int)p->map->player.y + 1;
-		while (i--)
-			if (inter_line_plane(line, p->map->p_n[i].p, &result, &t) && t > 0 && result.z >= 0 && result.z < 1)
-			{
-				x = (int)result.x;
-				y = (int)-p->map->p_n[i].p.d - 1;
-				if (x >= 0 && x < p->map->w && y >= 0 && y < p->map->h && p->map->map[y][x])
-				{
-					check[3] = t;
-					break ;
-				}
-			}
-	}
-	int wall = find_card(check);
+	i = (int)p->map->player.x;
+	while (++i <= p->map->w)
+		if (inter_line_plane(line, p->map->p_e[i].p, &result, &t) && t > 0
+			&& result.z >= 0 && result.z < 1)
+		{
+			x = (int)-p->map->p_e[i].p.d;
+			y = (int)result.y;
+			if (x >= 0 && x < p->map->w && y >= 0 && y < p->map->h
+				&& p->map->map[y][x])
+				return (t);
+		}
+	return (-1);
+}
+
+static float	intersec_planes_w(t_param *p, t_line line)
+{
+	int			i;
+	t_vec		result;
+	float		t;
+	int			x;
+	int			y;
+
+	i = (int)p->map->player.x + 1;
+	while (i--)
+		if (inter_line_plane(line, p->map->p_w[i].p, &result, &t) && t > 0
+			&& result.z >= 0 && result.z < 1)
+		{
+			x = (int)-p->map->p_w[i].p.d - 1;
+			y = (int)result.y;
+			if (x >= 0 && x < p->map->w && y >= 0 && y < p->map->h
+				&& p->map->map[y][x])
+				return (t);
+		}
+	return (-1);
+}
+
+static float	intersec_planes_s(t_param *p, t_line line)
+{
+	int			i;
+	t_vec		result;
+	float		t;
+	int			x;
+	int			y;
+
+	i = (int)p->map->player.y;
+	while (++i <= p->map->h)
+		if (inter_line_plane(line, p->map->p_s[i].p, &result, &t) && t > 0
+			&& result.z >= 0 && result.z < 1)
+		{
+			x = (int)result.x;
+			y = (int)-p->map->p_s[i].p.d;
+			if (x >= 0 && x < p->map->w && y >= 0 && y < p->map->h
+				&& p->map->map[y][x])
+				return (t);
+		}
+	return (-1);
+}
+
+static float	intersec_planes_n(t_param *p, t_line line)
+{
+	int			i;
+	t_vec		result;
+	float		t;
+	int			x;
+	int			y;
+
+	i = (int)p->map->player.y + 1;
+	while (i--)
+		if (inter_line_plane(line, p->map->p_n[i].p, &result, &t) && t > 0
+			&& result.z >= 0 && result.z < 1)
+		{
+			x = (int)result.x;
+			y = (int)-p->map->p_n[i].p.d - 1;
+			if (x >= 0 && x < p->map->w && y >= 0 && y < p->map->h
+				&& p->map->map[y][x])
+				return (t);
+		}
+	return (-1);
+}
+
+static uint32_t	choose_color(int wall)
+{
 	if (!wall)
 		return (0xffffff);
 	if (wall == 1)
@@ -110,6 +129,27 @@ static uint32_t	ray_casting(t_param *p, t_vec ray)
 	if (wall == 3)
 		return (0x0000ff);
 	return (0x000000);
+}
+
+static uint32_t	ray_casting(t_param *p, t_vec ray)
+{
+	t_line line;
+	float	check[4];
+
+	line = line_create_point_vec(p->map->player, ray);
+	check[0] = -1;
+	check[1] = -1;
+	check[2] = -1;
+	check[3] = -1;
+	if (ray.x >= 0)
+		check[0] = intersec_planes_e(p, line);
+	else
+		check[1] = intersec_planes_w(p, line);
+	if (ray.y >= 0)
+		check[2] = intersec_planes_s(p, line);
+	else
+		check[3] = intersec_planes_n(p, line);
+	return (choose_color(find_card(check)));
 }
 
 void	algo(t_param *p)

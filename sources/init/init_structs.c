@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 20:24:44 by qpupier           #+#    #+#             */
-/*   Updated: 2021/03/13 16:43:30 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/03/13 17:08:51 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,8 @@ static void	init_rays(t_param *p)
 	p->free |= F_RAYS;
 	i = -1;
 	while (++i < size)
-		p->rays[i] = vec_create(p->win->r_fov_h
-				* (i % p->win->w - p->win->w05), -1,
-				p->win->r_fov_v * (i / p->win->w - p->win->h05));
+		p->rays[i] = (t_vec){p->win->r_fov_h * (i % p->win->w - p->win->w05),
+			-1, -p->win->r_fov_v * (i / p->win->w - p->win->h05)};
 }
 
 static void	init_sprites(t_param *p)
