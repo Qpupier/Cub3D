@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/03 16:49:53 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/24 21:24:34 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/03/13 14:30:13 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,7 +196,8 @@ int					point_line_in_seg(t_vec p, t_seg s);
 t_vec				proj_point_plane(t_vec point, t_plane plane, float *dist);
 int					inter_seg_plane(t_seg s, t_plane p, 					\
 		t_inter_seg_plane *result);
-int					inter_line_plane(t_line l, t_plane p, t_vec *result);
+int					inter_line_plane(t_line l, t_plane p, t_vec *result, 	\
+		float *t);
 t_vec				proj_point_plane(t_vec point, t_plane plane, float *dist);
 t_vec				proj_point_seg(t_vec p, t_seg s, float *dist);
 t_vec				proj_point_line(t_vec p, t_line l, float *dist);
