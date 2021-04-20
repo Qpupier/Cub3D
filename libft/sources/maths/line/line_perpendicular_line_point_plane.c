@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 22:44:47 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/06 18:15:20 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/04/18 18:56:45 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 t_line	line_perpendicular_line_point_plane(t_line l, t_vec p, t_vec n)
 {
-	return (line_create_point_vec(p, vec_cross_product(n, line_vec_dir(l))));
+	return (line_create_point_vec(p, vec_cross_product(n, l.u)));
 }

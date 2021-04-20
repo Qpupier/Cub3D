@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:07:08 by qpupier           #+#    #+#             */
-/*   Updated: 2021/03/11 20:25:49 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/04/19 18:20:55 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	init(t_param *p)
 	if (!p->mlx->mlx_ptr)
 		ft_error_free(p, "Impossible to start Minilibx");
 	p->free |= F_MLX_PTR;
+	p->mlx->hook = 0;
 	p->win = malloc(sizeof(t_win));
 	if (!p->win)
 		ft_error_free(p, "Malloc error - Win struct");
@@ -30,7 +31,8 @@ void	init(t_param *p)
 	if (!p->map)
 		ft_error_free(p, "Malloc error - Map struct");
 	p->free |= F_MAP;
-	p->angle = 0;
+	p->angle_h = 0;
+	p->angle_v = 0;
 	p->win->fov_h = FOV * M_PI / 180;
 	p->win->fov_h = 2 * tan(p->win->fov_h * 0.5);
 	p->parameters = 0;
@@ -38,7 +40,7 @@ void	init(t_param *p)
 	p->nb_sprites = 0;
 }
 
-void	verif_defines(void)
+void	verif_defines(void)// A modidfier
 {
 	if (FOV < 0 || FOV > 360)
 		ft_error("Impossible Field Of View (FOV)");

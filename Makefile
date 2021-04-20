@@ -6,7 +6,7 @@
 #    By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/12 15:48:25 by qpupier           #+#    #+#              #
-#    Updated: 2021/03/11 20:27:44 by qpupier          ###   ########lyon.fr    #
+#    Updated: 2021/04/20 13:46:52 by qpupier          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,11 +15,15 @@ INC_PATH	=	includes
 SRC_PATH	=	sources
 OBJ_PATH	=	.objects
 DIR			=	engine 		\
+				events 		\
 				init 		\
 				parsing 	\
 				parsing/textures
 SRC_NAME	=	engine/algo.c 								\
 				engine/calc.c 								\
+				events/events.c 							\
+				events/hook.c 								\
+				events/key_release.c 						\
 				init/init.c 								\
 				init/init_structs.c 						\
 				parsing/textures/parsing_textures_no_so.c 	\
@@ -56,7 +60,7 @@ else
 		LIBS		=	-L libft -L mlx
 		LDLIBS		=	-lm -lmlx -lft
 		DLIBS		=	libft/libft.a
-		NORMINETTE	=	norminettev2
+		NORMINETTE	=	norminette
 		OS			=	$(END)$(PINK)Mac OS$(END)
 	else
 		ifeq ($(OS), Linux)

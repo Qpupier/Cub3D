@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 15:43:13 by qpupier           #+#    #+#             */
-/*   Updated: 2021/03/11 18:24:30 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/04/20 13:25:34 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,11 @@ void		verif_map(t_param *p, t_parsing *map);
 void		verif_defines(void);
 void		init(t_param *p);
 void		init_parameters(t_param *p);
-void		algo(t_param *p);
+int			algo(t_param *p);
 void		calc(t_param *p);
+int	key_press(int key, t_param *p);
+int	win_exit(t_param *p);
+void	events(t_param *p);
+int	key_release(int key, t_param *p);
 
 #endif

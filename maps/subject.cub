@@ -1,18 +1,17 @@
 R 960 540
 SO ./assets/action.xpm
 WE assets/action.xpm
-NO ./assets/action.xpm
+NO assets/block/acacia_log_top.png
 EA assets/action.xpm
 
 S ./assets/action.xpm
 F 220,100,0
 C 225,30,0
 
-111111
-100001
-100001
-100001
-10N001
-100001
-100001
-111111
+1111111111
+1000000001
+1000000001
+10N0000001
+1000000001
+1000000001
+1111111111

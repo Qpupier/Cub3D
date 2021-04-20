@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 18:02:08 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/06 18:03:26 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/04/18 18:44:33 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,11 @@ t_vec	proj_point_seg(t_vec p, t_seg s, float *dist)
 
 t_vec	proj_point_line(t_vec p, t_line l, float *dist)
 {
-	t_vec	o;
-	t_vec	u;
 	float	t;
 	t_vec	result;
 
-	o = (t_vec){l.x.o, l.y.o, l.z.o};
-	u = (t_vec){l.x.u, l.y.u, l.z.u};
-	t = vec_scale_product(vec_sub(p, o), vec_normalize(u));
-	result = vec_add(o, vec_mult_float(u, t));
+	t = vec_scale_product(vec_sub(p, l.o), vec_normalize(l.u));
+	result = vec_add(l.o, vec_mult_float(l.u, t));
 	*dist = vec_norm(vec_sub(result, p));
 	return (result);
 }

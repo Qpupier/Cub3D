@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/03 16:49:53 by qpupier           #+#    #+#             */
-/*   Updated: 2021/03/13 17:26:01 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/04/18 19:45:13 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,23 +68,10 @@ typedef struct s_seg
 	t_vec	b;
 }t_seg;
 
-typedef struct s_half_line
-{
-	t_vec	p;
-	t_vec	d;
-}t_half_line;
-
-typedef struct s_line_parameter
-{
-	float	o;
-	float	u;
-}t_line_parameter;
-
 typedef struct s_line
 {
-	t_line_parameter	x;
-	t_line_parameter	y;
-	t_line_parameter	z;
+	t_vec	o;
+	t_vec	u;
 }t_line;
 
 typedef struct s_plane
@@ -245,15 +232,13 @@ int					line_check(t_line l, int nb_points, t_vec *points, 		\
 t_line				line_create_points(t_vec p1, t_vec p2);
 t_line				line_create_point_vec(t_vec o, t_vec u);
 int					line_equal(t_line l1, t_line l2);
-int					line_half_inter_seg(t_half_line l, t_seg s, t_vec *result);
+int					line_half_inter_seg(t_line l, t_seg s, t_vec *result);
 t_line				line_init(void);
 int					line_inter_line(t_line l1, t_line l2, t_vec *result);
 int					line_inter_seg(t_line l, t_seg s, t_vec *result);
 t_line				line_parallel_line_point(t_line l, t_vec p);
 t_line				line_perpendicular_line_point_plane(t_line l, t_vec p, 	\
 		t_vec n);
-t_vec				line_point(t_line l);
-t_vec				line_vec_dir(t_line l);
 int					sys_solve_1equ_1var_deg1(float a, float b, 				\
 		t_sys_sol_1var_deg1 *s);
 int					sys_solve_2equ_2var_deg1(t_equ_2var_deg1 e1, 			\
@@ -290,7 +275,7 @@ void				ft_error(const char *str);
 int					ft_exit(void);
 int					ft_find(char *str, char c);
 char				*ft_ftoa(float nb, int p);
-t_rgb				ft_get_pixel(t_mlx_img img, int x, int y);
+uint32_t			ft_get_pixel(t_mlx_img img, int x, int y);
 char				*ft_hex_color_complete(char *c);
 void				ft_img_dark(t_mlx_img img);
 int					ft_intlen(long int nb);

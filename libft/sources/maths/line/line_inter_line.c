@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 18:17:46 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/06 18:18:31 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/04/18 18:50:01 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,21 @@ static int	line_inter_line__2(t_line l1, t_line l2, t_vec *result)
 	int					stop;
 
 	stop = 0;
-	if (!stop && l1.y.u && l2.z.u)
+	if (!stop && l1.u.y && l2.u.z)
 		stop = sys_solve_2equ_2var_deg1(
-				(t_equ_2var_deg1){l1.y.u, -l2.y.u, l1.y.o - l2.y.o},
-				(t_equ_2var_deg1){l1.z.u, -l2.z.u, l1.z.o - l2.z.o}, &s);
-	if (!stop && l1.z.u && l2.x.u)
+				(t_equ_2var_deg1){l1.u.y, -l2.u.y, l1.o.y - l2.o.y},
+				(t_equ_2var_deg1){l1.u.z, -l2.u.z, l1.o.z - l2.o.z}, &s);
+	if (!stop && l1.u.z && l2.u.x)
 		stop = sys_solve_2equ_2var_deg1(
-				(t_equ_2var_deg1){l1.z.u, -l2.z.u, l1.z.o - l2.z.o},
-				(t_equ_2var_deg1){l1.x.u, -l2.x.u, l1.x.o - l2.x.o}, &s);
-	if (!stop && l1.z.u && l2.y.u)
+				(t_equ_2var_deg1){l1.u.z, -l2.u.z, l1.o.z - l2.o.z},
+				(t_equ_2var_deg1){l1.u.x, -l2.u.x, l1.o.x - l2.o.x}, &s);
+	if (!stop && l1.u.z && l2.u.y)
 		stop = sys_solve_2equ_2var_deg1(
-				(t_equ_2var_deg1){l1.z.u, -l2.z.u, l1.z.o - l2.z.o},
-				(t_equ_2var_deg1){l1.y.u, -l2.y.u, l1.y.o - l2.y.o}, &s);
+				(t_equ_2var_deg1){l1.u.z, -l2.u.z, l1.o.z - l2.o.z},
+				(t_equ_2var_deg1){l1.u.y, -l2.u.y, l1.o.y - l2.o.y}, &s);
 	if (stop)
-		*result = vec_create(l1.x.o + l1.x.u * s.x,
-				l1.y.o + l1.y.u * s.x, l1.z.o + l1.z.u * s.x);
+		*result = vec_create(l1.o.x + l1.u.x * s.x,
+				l1.o.y + l1.u.y * s.x, l1.o.z + l1.u.z * s.x);
 	return (stop);
 }
 
@@ -42,21 +42,21 @@ int	line_inter_line(t_line l1, t_line l2, t_vec *result)
 	int					stop;
 
 	stop = 0;
-	if (l1.x.u && l2.y.u)
+	if (l1.u.x && l2.u.y)
 		stop = sys_solve_2equ_2var_deg1(
-				(t_equ_2var_deg1){l1.x.u, -l2.x.u, l1.x.o - l2.x.o},
-				(t_equ_2var_deg1){l1.y.u, -l2.y.u, l1.y.o - l2.y.o}, &s);
-	if (!stop && l1.x.u && l2.z.u)
+				(t_equ_2var_deg1){l1.u.x, -l2.u.x, l1.o.x - l2.o.x},
+				(t_equ_2var_deg1){l1.u.y, -l2.u.y, l1.o.y - l2.o.y}, &s);
+	if (!stop && l1.u.x && l2.u.z)
 		stop = sys_solve_2equ_2var_deg1(
-				(t_equ_2var_deg1){l1.x.u, -l2.x.u, l1.x.o - l2.x.o},
-				(t_equ_2var_deg1){l1.z.u, -l2.z.u, l1.z.o - l2.z.o}, &s);
-	if (!stop && l1.y.u && l2.x.u)
+				(t_equ_2var_deg1){l1.u.x, -l2.u.x, l1.o.x - l2.o.x},
+				(t_equ_2var_deg1){l1.u.z, -l2.u.z, l1.o.z - l2.o.z}, &s);
+	if (!stop && l1.u.y && l2.u.x)
 		stop = sys_solve_2equ_2var_deg1(
-				(t_equ_2var_deg1){l1.y.u, -l2.y.u, l1.y.o - l2.y.o},
-				(t_equ_2var_deg1){l1.x.u, -l2.x.u, l1.x.o - l2.x.o}, &s);
+				(t_equ_2var_deg1){l1.u.y, -l2.u.y, l1.o.y - l2.o.y},
+				(t_equ_2var_deg1){l1.u.x, -l2.u.x, l1.o.x - l2.o.x}, &s);
 	if (stop)
-		*result = vec_create(l1.x.o + l1.x.u * s.x,
-				l1.y.o + l1.y.u * s.x, l1.z.o + l1.z.u * s.x);
+		*result = vec_create(l1.o.x + l1.u.x * s.x,
+				l1.o.y + l1.u.y * s.x, l1.o.z + l1.u.z * s.x);
 	else
 		stop = line_inter_line__2(l1, l2, result);
 	return (stop);

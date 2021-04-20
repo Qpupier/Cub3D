@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 17:24:54 by qpupier           #+#    #+#             */
-/*   Updated: 2021/03/11 19:33:01 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/04/19 18:19:52 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,17 @@
 
 typedef struct s_mlx
 {
-	void		*mlx_ptr;
-	void		*win_ptr;
-	t_mlx_img	img;
-	t_mlx_img	no;
-	t_mlx_img	so;
-	t_mlx_img	we;
-	t_mlx_img	ea;
-	t_mlx_img	s;
-	uint32_t	f;
-	uint32_t	c;
+	void			*mlx_ptr;
+	void			*win_ptr;
+	t_mlx_img		img;
+	t_mlx_img		no;
+	t_mlx_img		so;
+	t_mlx_img		we;
+	t_mlx_img		ea;
+	t_mlx_img		s;
+	uint32_t		f;
+	uint32_t		c;
+	unsigned int	hook;
 }t_mlx;
 
 typedef struct s_win
@@ -67,16 +68,17 @@ typedef struct s_sprite
 
 typedef struct s_param
 {
-	int			free;
-	int			fd;
-	t_mlx		*mlx;
-	t_win		*win;
-	t_map		*map;
-	int			parameters;
-	t_vec		*rays;
-	float		angle;
-	int			nb_sprites;
-	t_sprite	*sprites;
+	unsigned int	free;
+	int				fd;
+	t_mlx			*mlx;
+	t_win			*win;
+	t_map			*map;
+	int				parameters;
+	t_vec			*rays;
+	float			angle_h;
+	float			angle_v;
+	int				nb_sprites;
+	t_sprite		*sprites;
 }t_param;
 
 typedef struct s_parsing
@@ -84,5 +86,12 @@ typedef struct s_parsing
 	char				*line;
 	struct s_parsing	*next;
 }t_parsing;
+
+typedef struct s_inter
+{
+	float	t;
+	float	r_w;
+	float	r_h;
+}t_inter;
 
 #endif

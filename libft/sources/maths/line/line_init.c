@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 18:18:44 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/06 18:19:02 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/04/18 18:47:19 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,5 @@
 
 t_line	line_init(void)
 {
-	return ((t_line){(t_line_parameter){0, 0}, (t_line_parameter){0, 0},
-		(t_line_parameter){0, 0}});
+	return ((t_line){(t_vec){0, 0, 0}, (t_vec){0, 0, 0}});
 }

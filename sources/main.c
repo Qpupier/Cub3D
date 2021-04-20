@@ -6,31 +6,38 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:53:10 by qpupier           #+#    #+#             */
-/*   Updated: 2021/03/12 19:36:49 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/04/20 13:22:47 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	hook(int key, t_param *p)
+/*static int	hook(t_key key, t_param *p)
 {
-	if (key == 53)
-		exit(0);
-	if (key == 123)
-		p->angle -= 5 * M_PI / 180;
-	if (key == 124)
-		p->angle += 5 * M_PI / 180;
-	if (key == 13)
-		p->map->player.y -= 0.3;
-	if (key == 1)
-		p->map->player.y += 0.3;
-	if (key == 1)
-		p->map->player.x -= 0.3;
-	if (key == 2)
-		p->map->player.x += 0.3;
-	algo(p);
+	if (key == K_ESC)
+		win_exit(p);
+	else if (key == K_LEFT)
+		p->angle_h -= 0.1;
+	else if (key == K_RIGHT)
+		p->angle_h += 0.1;
+	else if (key == K_UP)
+		p->angle_v -= 0.05;
+	else if (key == K_DOWN)
+		p->angle_v += 0.05;
+	else if (key == K_W)
+		p->map->player = vec_add(p->map->player, vec_rot_z((t_vec){0, -0.3, 0}, p->angle_h));
+	else if (key == K_S)
+		p->map->player = vec_add(p->map->player, vec_rot_z((t_vec){0, 0.3, 0}, p->angle_h));
+	else if (key == K_A)
+		p->map->player = vec_add(p->map->player, vec_rot_z((t_vec){-0.3, 0, 0}, p->angle_h));
+	else if (key == K_D)
+		p->map->player = vec_add(p->map->player, vec_rot_z((t_vec){0.3, 0, 0}, p->angle_h));
+	else if (key == K_R)
+		p->map->player.z += 0.3;
+	else if (key == K_F)
+		p->map->player.z -= 0.3;
 	return (0);
-}
+}*/
 
 static void	ft_usage(void)
 {
@@ -72,7 +79,11 @@ int	main(int ac, char **av)
 	free_fd(p, "Impossible to close map file");
 	calc(p);
 	algo(p);
-	mlx_key_hook(p->mlx->win_ptr, hook, p);
+	mlx_do_key_autorepeatoff(p->mlx->mlx_ptr);
+	mlx_hook(p->mlx->win_ptr, 2, 0, key_press, p);
+	mlx_hook(p->mlx->win_ptr, 3, 0, key_release, p);
+	mlx_hook(p->mlx->win_ptr, 17, 0, win_exit, p);
+	mlx_loop_hook(p->mlx->mlx_ptr, algo, p);
 	mlx_loop(p->mlx->mlx_ptr);
 	free_all(p);
 	return (0);

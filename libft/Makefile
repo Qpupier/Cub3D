@@ -6,7 +6,7 @@
 #    By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/13 11:56:39 by qpupier           #+#    #+#              #
-#    Updated: 2021/02/24 21:25:08 by qpupier          ###   ########lyon.fr    #
+#    Updated: 2021/04/20 13:47:11 by qpupier          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,8 +76,6 @@ SRC_NAME	=	display/ft_putchar_fd.c 							\
 				maths/line/line_inter_seg.c 						\
 				maths/line/line_parallel_line_point.c 				\
 				maths/line/line_perpendicular_line_point_plane.c 	\
-				maths/line/line_point.c 							\
-				maths/line/line_vec_dir.c 							\
 				maths/line/inter_line_plane.c 						\
 				maths/line/inter_seg_plane.c 						\
 				maths/matrix/matrix_mult_matrix.c 					\
@@ -227,7 +225,7 @@ ifeq ($(OS), Windows_NT)
 else
 	OS = $(shell uname -s)
 	ifeq ($(OS), Darwin)
-		NORMINETTE = norminettev2
+		NORMINETTE = norminette
 		OS = $(END)$(PINK)Mac OS$(END)
 	else
 		ifeq ($(OS), Linux)
