@@ -1,8 +1,8 @@
 R 960 540
-SO ./assets/action.xpm
-WE assets/action.xpm
+SO assets/block/acacia_log.png
+WE assets/block/andesite.png
 NO assets/block/acacia_log_top.png
-EA assets/action.xpm
+EA assets/block/blackstone.png
 
 S ./assets/action.xpm
 F 220,100,0
@@ -10,7 +10,7 @@ C 225,30,0
 
 1111111111
 1000000001
-1000000001
+1000001001
 10N0000001
 1000000001
 1000000001

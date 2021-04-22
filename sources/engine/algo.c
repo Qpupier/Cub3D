@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:06:25 by qpupier           #+#    #+#             */
-/*   Updated: 2021/04/20 13:54:29 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/04/22 18:01:23 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,36 +32,27 @@ static int	find_card(t_inter check[])
 
 static int	inter_line_plane_x(t_line l, t_plane p, t_vec *result, float *t)
 {
-	float	tmp;
-
-	tmp = p.a * l.u.x;
-	if (!tmp)
+	if (!l.u.x)
 		return (0);
-	*t = -(p.a * l.o.x + p.d) / tmp;
+	*t = -(l.o.x + p.d) / l.u.x;
 	*result = vec_add(l.o, vec_mult_float(l.u, *t));
 	return (1);
 }
 
 static int	inter_line_plane_y(t_line l, t_plane p, t_vec *result, float *t)
 {
-	float	tmp;
-
-	tmp = p.b * l.u.y;
-	if (!tmp)
+	if (!l.u.y)
 		return (0);
-	*t = -(p.b * l.o.y + p.d) / tmp;
+	*t = -(l.o.y + p.d) / l.u.y;
 	*result = vec_add(l.o, vec_mult_float(l.u, *t));
 	return (1);
 }
 
 /*static int	inter_line_plane_z(t_line l, t_plane p, t_vec *result, float *t)
 {
-	float	tmp;
-
-	tmp = p.c * l.u.z;
-	if (!tmp)
+	if (!l.u.z)
 		return (0);
-	*t = -(p.c * l.o.z + p.d) / tmp;
+	*t = -(l.o.z + p.d) / l.u.z;
 	*result = vec_add(l.o, vec_mult_float(l.u, *t));
 	return (1);
 }*/
@@ -80,7 +71,7 @@ static float	intersec_planes_e(t_param *p, t_line line, float *r_w, \
 		i = -1;
 	while (++i <= p->map->w)
 		if (inter_line_plane_x(line, p->map->p_e[i].p, &result, &t) && t > 0 \
-				&& result.z >= 0 && result.z < 1)
+				&& result.z >= 0 && result.z < 1 && result.y >= 0)
 		{
 			x = i;
 			y = result.y;
@@ -107,9 +98,9 @@ static float	intersec_planes_w(t_param *p, t_line line, float *r_w, \
 	i = p->map->player.x + 1;
 	if (i > p->map->w + 1)
 		i = p->map->w + 1;
-	while (i--)
+	while (i-- >= 0)
 		if (inter_line_plane_x(line, p->map->p_w[i].p, &result, &t) && t > 0 \
-				&& result.z >= 0 && result.z < 1)
+				&& result.z >= 0 && result.z < 1 && result.y >= 0)
 		{
 			x = i - 1;
 			y = result.y;
@@ -138,7 +129,7 @@ static float	intersec_planes_s(t_param *p, t_line line, float *r_w, \
 		i = -1;
 	while (++i <= p->map->h)
 		if (inter_line_plane_y(line, p->map->p_s[i].p, &result, &t) && t > 0 \
-				&& result.z >= 0 && result.z < 1)
+				&& result.z >= 0 && result.z < 1 && result.x >= 0)
 		{
 			x = result.x;
 			y = i;
@@ -165,9 +156,9 @@ static float	intersec_planes_n(t_param *p, t_line line, float *r_w, \
 	i = p->map->player.y + 1;
 	if (i > p->map->h + 1)
 		i = p->map->h + 1;
-	while (i--)
+	while (i-- >= 0)
 		if (inter_line_plane_y(line, p->map->p_n[i].p, &result, &t) && t > 0 \
-				&& result.z >= 0 && result.z < 1)
+				&& result.z >= 0 && result.z < 1 && result.x >= 0)
 		{
 			x = result.x;
 			y = i - 1;
@@ -184,17 +175,31 @@ static float	intersec_planes_n(t_param *p, t_line line, float *r_w, \
 
 static uint32_t	choose_color(t_param *p, int wall, t_inter check[])
 {
-	if (wall > -1)
-		return (ft_get_pixel(p->mlx->no, check[wall].r_w * p->mlx->no.w, check[wall].r_h * p->mlx->no.h));
+	float	w;
+	float	h;
+
+	if (wall < 0 || wall > 3)
+		return (0x000000);
+	w = check[wall].r_w;
+	h = check[wall].r_h;
 	if (!wall)
+	{
+		return (ft_get_pixel(p->mlx->ea, w * p->mlx->ea.w, h * p->mlx->ea.h));
 		return (0xffffff);
+	}
 	if (wall == 1)
+	{
+		return (ft_get_pixel(p->mlx->we, w * p->mlx->we.w, h * p->mlx->we.h));
 		return (0xff0000);
+	}
 	if (wall == 2)
+	{
+		return (ft_get_pixel(p->mlx->so, w * p->mlx->so.w, h * p->mlx->so.h));
 		return (0x00ff00);
-	if (wall == 3)
-		return (0x0000ff);
-	return (0x000000);
+	}
+	return (ft_get_pixel(p->mlx->no, w * p->mlx->no.w, h * p->mlx->no.h));
+	return (0x0000ff);
+	(void)p;
 }
 
 static uint32_t	ray_casting(t_param *p, t_vec ray)
@@ -207,13 +212,13 @@ static uint32_t	ray_casting(t_param *p, t_vec ray)
 	check[1] = (t_inter){-1, -1, -1};
 	check[2] = (t_inter){-1, -1, -1};
 	check[3] = (t_inter){-1, -1, -1};
-	if (ray.x >= 0)
+	if (ray.x > 0)
 		check[0].t = intersec_planes_e(p, line, &check[0].r_w, &check[0].r_h);
-	else
+	else if (ray.x)
 		check[1].t = intersec_planes_w(p, line, &check[1].r_w, &check[1].r_h);
-	if (ray.y >= 0)
+	if (ray.y > 0)
 		check[2].t = intersec_planes_s(p, line, &check[2].r_w, &check[2].r_h);
-	else
+	else if (ray.y)
 		check[3].t = intersec_planes_n(p, line, &check[3].r_w, &check[3].r_h);
 	return (choose_color(p, find_card(check), check));
 }

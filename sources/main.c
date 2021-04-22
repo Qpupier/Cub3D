@@ -6,38 +6,11 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:53:10 by qpupier           #+#    #+#             */
-/*   Updated: 2021/04/20 13:22:47 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/04/22 16:28:25 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-/*static int	hook(t_key key, t_param *p)
-{
-	if (key == K_ESC)
-		win_exit(p);
-	else if (key == K_LEFT)
-		p->angle_h -= 0.1;
-	else if (key == K_RIGHT)
-		p->angle_h += 0.1;
-	else if (key == K_UP)
-		p->angle_v -= 0.05;
-	else if (key == K_DOWN)
-		p->angle_v += 0.05;
-	else if (key == K_W)
-		p->map->player = vec_add(p->map->player, vec_rot_z((t_vec){0, -0.3, 0}, p->angle_h));
-	else if (key == K_S)
-		p->map->player = vec_add(p->map->player, vec_rot_z((t_vec){0, 0.3, 0}, p->angle_h));
-	else if (key == K_A)
-		p->map->player = vec_add(p->map->player, vec_rot_z((t_vec){-0.3, 0, 0}, p->angle_h));
-	else if (key == K_D)
-		p->map->player = vec_add(p->map->player, vec_rot_z((t_vec){0.3, 0, 0}, p->angle_h));
-	else if (key == K_R)
-		p->map->player.z += 0.3;
-	else if (key == K_F)
-		p->map->player.z -= 0.3;
-	return (0);
-}*/
 
 static void	ft_usage(void)
 {
