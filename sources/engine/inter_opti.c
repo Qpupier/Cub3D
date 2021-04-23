@@ -6,26 +6,26 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 09:42:18 by qpupier           #+#    #+#             */
-/*   Updated: 2021/04/23 09:43:03 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/04/23 10:04:28 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	inter_line_plane_x(t_line l, t_plane p, t_vec *result, float *t)
+int	inter_line_plane_x(t_line l, float d, t_vec *result, float *t)
 {
 	if (!l.u.x)
 		return (0);
-	*t = -(l.o.x + p.d) / l.u.x;
+	*t = -(l.o.x + d) / l.u.x;
 	*result = vec_add(l.o, vec_mult_float(l.u, *t));
 	return (1);
 }
 
-int	inter_line_plane_y(t_line l, t_plane p, t_vec *result, float *t)
+int	inter_line_plane_y(t_line l, float d, t_vec *result, float *t)
 {
 	if (!l.u.y)
 		return (0);
-	*t = -(l.o.y + p.d) / l.u.y;
+	*t = -(l.o.y + d) / l.u.y;
 	*result = vec_add(l.o, vec_mult_float(l.u, *t));
 	return (1);
 }

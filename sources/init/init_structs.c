@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 20:24:44 by qpupier           #+#    #+#             */
-/*   Updated: 2021/03/13 17:08:51 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/04/23 10:14:57 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,19 @@ static void	init_win(t_param *p)
 
 static void	init_map(t_param *p)
 {
-	p->map->p_n = malloc(sizeof(t_wall) * (p->map->h + 1));
+	p->map->p_n = malloc(sizeof(int) * (p->map->h + 1));
 	if (!p->map->p_n)
 		ft_error_free(p, "Malloc error - North map array");
 	p->free |= F_MAP_PN;
-	p->map->p_s = malloc(sizeof(t_wall) * (p->map->h + 1));
+	p->map->p_s = malloc(sizeof(int) * (p->map->h + 1));
 	if (!p->map->p_s)
 		ft_error_free(p, "Malloc error - South map array");
 	p->free |= F_MAP_PS;
-	p->map->p_e = malloc(sizeof(t_wall) * (p->map->w + 1));
+	p->map->p_e = malloc(sizeof(int) * (p->map->w + 1));
 	if (!p->map->p_e)
 		ft_error_free(p, "Malloc error - East map array");
 	p->free |= F_MAP_PE;
-	p->map->p_w = malloc(sizeof(t_wall) * (p->map->w + 1));
+	p->map->p_w = malloc(sizeof(int) * (p->map->w + 1));
 	if (!p->map->p_w)
 		ft_error_free(p, "Malloc error - West map array");
 	p->free |= F_MAP_PW;

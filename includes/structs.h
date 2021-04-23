@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 17:24:54 by qpupier           #+#    #+#             */
-/*   Updated: 2021/04/19 18:19:52 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/04/23 10:13:19 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,22 +42,17 @@ typedef struct s_win
 	float	r_fov_v;
 }t_win;
 
-typedef struct s_wall
-{
-	t_plane	p;
-}t_wall;
-
 typedef struct s_map
 {
-	int		w;
-	int		h;
-	int		b;
-	int		dir;
-	int		**map;
-	t_wall	*p_n;
-	t_wall	*p_s;
-	t_wall	*p_e;
-	t_wall	*p_w;
+	int	w;
+	int	h;
+	int	b;
+	int	dir;
+	int	**map;
+	int	*p_n;
+	int	*p_s;
+	int	*p_e;
+	int	*p_w;
 	t_vec	player;
 }t_map;
 
