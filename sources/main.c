@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:53:10 by qpupier           #+#    #+#             */
-/*   Updated: 2021/04/22 16:28:25 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/04/23 09:46:13 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static t_param	*pre_init(int ac, char **av)
 		ft_error("Malloc error - Struct");
 	p->free = 0;
 	p->fd = -1;
-	if (!ft_strstr(av[1], ".cub"))//PRECISER
+	if (!ft_strstr(av[1], ".cub")) //PRECISER
 		ft_error_free(p, "Invalid map file (must be a .cub)");
 	p->fd = open(av[1], O_RDONLY);
 	if (!p->fd)

@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:06:25 by qpupier           #+#    #+#             */
-/*   Updated: 2021/04/22 18:01:23 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/04/23 09:45:42 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,155 +22,14 @@ static int	find_card(t_inter check[])
 	card = -1;
 	i = -1;
 	while (++i < 4)
+	{
 		if (check[i].t > 0 && (dis < 0 || check[i].t <= dis))
 		{
 			dis = check[i].t;
 			card = i;
 		}
+	}
 	return (card);
-}
-
-static int	inter_line_plane_x(t_line l, t_plane p, t_vec *result, float *t)
-{
-	if (!l.u.x)
-		return (0);
-	*t = -(l.o.x + p.d) / l.u.x;
-	*result = vec_add(l.o, vec_mult_float(l.u, *t));
-	return (1);
-}
-
-static int	inter_line_plane_y(t_line l, t_plane p, t_vec *result, float *t)
-{
-	if (!l.u.y)
-		return (0);
-	*t = -(l.o.y + p.d) / l.u.y;
-	*result = vec_add(l.o, vec_mult_float(l.u, *t));
-	return (1);
-}
-
-/*static int	inter_line_plane_z(t_line l, t_plane p, t_vec *result, float *t)
-{
-	if (!l.u.z)
-		return (0);
-	*t = -(l.o.z + p.d) / l.u.z;
-	*result = vec_add(l.o, vec_mult_float(l.u, *t));
-	return (1);
-}*/
-
-static float	intersec_planes_e(t_param *p, t_line line, float *r_w, \
-		float *r_h)
-{
-	int			i;
-	t_vec		result;
-	float		t;
-	int			x;
-	int			y;
-
-	i = p->map->player.x;
-	if (i < -1)
-		i = -1;
-	while (++i <= p->map->w)
-		if (inter_line_plane_x(line, p->map->p_e[i].p, &result, &t) && t > 0 \
-				&& result.z >= 0 && result.z < 1 && result.y >= 0)
-		{
-			x = i;
-			y = result.y;
-			if (x >= 0 && x < p->map->w && y >= 0 && y < p->map->h
-				&& p->map->map[y][x])
-			{
-				*r_w = result.y - y;
-				*r_h = 1 - result.z;
-				return (t);
-			}
-		}
-	return (-1);
-}
-
-static float	intersec_planes_w(t_param *p, t_line line, float *r_w, \
-		float *r_h)
-{
-	int			i;
-	t_vec		result;
-	float		t;
-	int			x;
-	int			y;
-
-	i = p->map->player.x + 1;
-	if (i > p->map->w + 1)
-		i = p->map->w + 1;
-	while (i-- >= 0)
-		if (inter_line_plane_x(line, p->map->p_w[i].p, &result, &t) && t > 0 \
-				&& result.z >= 0 && result.z < 1 && result.y >= 0)
-		{
-			x = i - 1;
-			y = result.y;
-			if (x >= 0 && x < p->map->w && y >= 0 && y < p->map->h \
-					&& p->map->map[y][x])
-			{
-				*r_w = 1 - result.y + y;
-				*r_h = 1 - result.z;
-				return (t);
-			}
-		}
-	return (-1);
-}
-
-static float	intersec_planes_s(t_param *p, t_line line, float *r_w, \
-		float *r_h)
-{
-	int			i;
-	t_vec		result;
-	float		t;
-	int			x;
-	int			y;
-
-	i = p->map->player.y;
-	if (i < -1)
-		i = -1;
-	while (++i <= p->map->h)
-		if (inter_line_plane_y(line, p->map->p_s[i].p, &result, &t) && t > 0 \
-				&& result.z >= 0 && result.z < 1 && result.x >= 0)
-		{
-			x = result.x;
-			y = i;
-			if (x >= 0 && x < p->map->w && y >= 0 && y < p->map->h \
-					&& p->map->map[y][x])
-			{
-				*r_w = 1 - result.x + x;
-				*r_h = 1 - result.z;
-				return (t);
-			}
-		}
-	return (-1);
-}
-
-static float	intersec_planes_n(t_param *p, t_line line, float *r_w, \
-		float *r_h)
-{
-	int			i;
-	t_vec		result;
-	float		t;
-	int			x;
-	int			y;
-
-	i = p->map->player.y + 1;
-	if (i > p->map->h + 1)
-		i = p->map->h + 1;
-	while (i-- >= 0)
-		if (inter_line_plane_y(line, p->map->p_n[i].p, &result, &t) && t > 0 \
-				&& result.z >= 0 && result.z < 1 && result.x >= 0)
-		{
-			x = result.x;
-			y = i - 1;
-			if (x >= 0 && x < p->map->w && y >= 0 && y < p->map->h \
-					&& p->map->map[y][x])
-			{
-				*r_w = result.x - x;
-				*r_h = 1 - result.z;
-				return (t);
-			}
-		}
-	return (-1);
 }
 
 static uint32_t	choose_color(t_param *p, int wall, t_inter check[])
@@ -204,7 +63,7 @@ static uint32_t	choose_color(t_param *p, int wall, t_inter check[])
 
 static uint32_t	ray_casting(t_param *p, t_vec ray)
 {
-	t_line line;
+	t_line	line;
 	t_inter	check[4];
 
 	line = line_create_point_vec(p->map->player, ray);

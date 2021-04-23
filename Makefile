@@ -6,7 +6,7 @@
 #    By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/12 15:48:25 by qpupier           #+#    #+#              #
-#    Updated: 2021/04/20 13:46:52 by qpupier          ###   ########lyon.fr    #
+#    Updated: 2021/04/23 09:43:26 by qpupier          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,8 @@ DIR			=	engine 		\
 				parsing/textures
 SRC_NAME	=	engine/algo.c 								\
 				engine/calc.c 								\
+				engine/inter_cards.c 						\
+				engine/inter_opti.c 						\
 				events/events.c 							\
 				events/hook.c 								\
 				events/key_release.c 						\
