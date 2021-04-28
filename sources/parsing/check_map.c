@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:49:46 by qpupier           #+#    #+#             */
-/*   Updated: 2021/03/11 17:51:52 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 16:40:00 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ static void	check_char(t_param *p, t_parsing *map, char c)
 		else
 			p->map->dir = C_W;
 	}
-	else if (c == '2')
-		p->nb_sprites++;
+	// else if (c == '2')
+	// 	p->nb_sprites++;
 	else if (c != '1' && c != ' ')
 		parsing_lst_error(p, map, "Invalid map character");
 }

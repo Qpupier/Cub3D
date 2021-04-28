@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 15:43:13 by qpupier           #+#    #+#             */
-/*   Updated: 2021/04/23 10:05:00 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 18:23:47 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,9 @@ float	intersec_planes_n(t_param *p, t_line line, float *r_w, float *r_h);
 float	intersec_planes_s(t_param *p, t_line line, float *r_w, float *r_h);
 float	intersec_planes_w(t_param *p, t_line line, float *r_w, float *r_h);
 float	intersec_planes_e(t_param *p, t_line line, float *r_w, float *r_h);
-int	inter_line_plane_x(t_line l, float d, t_vec *result, float *t);
-int	inter_line_plane_y(t_line l, float d, t_vec *result, float *t);
+unsigned char	inter_line_plane_x(t_line l, float d, t_vec *result, float *t);
+unsigned char	inter_line_plane_y(t_line l, float d, t_vec *result, float *t);
+short int	inter_break(float player, float inter);
+unsigned int	ray_casting(t_param *p, t_vec ray);
 
 #endif

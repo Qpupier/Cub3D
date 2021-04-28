@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 20:24:44 by qpupier           #+#    #+#             */
-/*   Updated: 2021/04/23 10:14:57 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 16:39:20 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ static void	init_rays(t_param *p)
 			-1, -p->win->r_fov_v * (i / p->win->w - p->win->h05)};
 }
 
-static void	init_sprites(t_param *p)
-{
-	p->sprites = malloc(sizeof(t_sprite) * p->nb_sprites);
-	if (!p->sprites)
-		ft_error_free(p, "Malloc error - Sprites array");
-	p->free |= F_SPRITES;
-}
+// static void	init_sprites(t_param *p)
+// {
+// 	p->sprites = malloc(sizeof(t_sprite) * p->nb_sprites);
+// 	if (!p->sprites)
+// 		ft_error_free(p, "Malloc error - Sprites array");
+// 	p->free |= F_SPRITES;
+// }
 
 static void	init_win(t_param *p)
 {
@@ -88,5 +88,5 @@ void	init_parameters(t_param *p)
 	init_win(p);
 	init_map(p);
 	init_rays(p);
-	init_sprites(p);
+	// init_sprites(p);
 }

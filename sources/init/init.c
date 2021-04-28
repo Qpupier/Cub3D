@@ -6,11 +6,22 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:07:08 by qpupier           #+#    #+#             */
-/*   Updated: 2021/04/19 18:20:55 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 16:38:28 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	init_mlx(t_param *p)
+{
+	p->mlx->mlx_ptr = mlx_init();
+	if (!p->mlx->mlx_ptr)
+		ft_error_free(p, "Impossible to start Minilibx");
+	p->free |= F_MLX_PTR;
+	p->mlx->hook = 0;
+	p->mlx->time = 0;
+	p->mlx->fps = 0;
+}
 
 void	init(t_param *p)
 {
@@ -18,29 +29,26 @@ void	init(t_param *p)
 	if (!p->mlx)
 		ft_error_free(p, "Malloc error - Mlx struct");
 	p->free |= F_MLX;
-	p->mlx->mlx_ptr = mlx_init();
-	if (!p->mlx->mlx_ptr)
-		ft_error_free(p, "Impossible to start Minilibx");
-	p->free |= F_MLX_PTR;
-	p->mlx->hook = 0;
+	init_mlx(p);
 	p->win = malloc(sizeof(t_win));
 	if (!p->win)
 		ft_error_free(p, "Malloc error - Win struct");
 	p->free |= F_WIN;
+	p->win->fov_h = FOV * M_PI / 180;
+	p->win->fov_h = 2 * tan(p->win->fov_h * 0.5);
 	p->map = malloc(sizeof(t_map));
 	if (!p->map)
 		ft_error_free(p, "Malloc error - Map struct");
 	p->free |= F_MAP;
+	p->map->w = 0;
 	p->angle_h = 0;
 	p->angle_v = 0;
-	p->win->fov_h = FOV * M_PI / 180;
-	p->win->fov_h = 2 * tan(p->win->fov_h * 0.5);
 	p->parameters = 0;
-	p->map->w = 0;
-	p->nb_sprites = 0;
+	// p->nb_sprites = 0;
+	p->fps = 0;
 }
 
-void	verif_defines(void)// A modidfier
+void	verif_defines(void)// A modidfier et compléter
 {
 	if (FOV < 0 || FOV > 360)
 		ft_error("Impossible Field Of View (FOV)");

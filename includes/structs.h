@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 17:24:54 by qpupier           #+#    #+#             */
-/*   Updated: 2021/04/23 10:13:19 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 18:23:25 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,11 @@ typedef struct s_mlx
 	t_mlx_img		we;
 	t_mlx_img		ea;
 	t_mlx_img		s;
-	uint32_t		f;
-	uint32_t		c;
+	unsigned int	f;
+	unsigned int	c;
 	unsigned int	hook;
+	unsigned long	time;
+	unsigned short	fps;
 }t_mlx;
 
 typedef struct s_win
@@ -56,24 +58,25 @@ typedef struct s_map
 	t_vec	player;
 }t_map;
 
-typedef struct s_sprite
-{
-	t_plane	p;
-}t_sprite;
+// typedef struct s_sprite
+// {
+// 	t_plane	p;
+// }t_sprite;
 
 typedef struct s_param
 {
-	unsigned int	free;
-	int				fd;
-	t_mlx			*mlx;
-	t_win			*win;
-	t_map			*map;
-	int				parameters;
-	t_vec			*rays;
-	float			angle_h;
-	float			angle_v;
-	int				nb_sprites;
-	t_sprite		*sprites;
+	unsigned int		free;
+	int					fd;
+	t_mlx				*mlx;
+	t_win				*win;
+	t_map				*map;
+	int					parameters;
+	t_vec				*rays;
+	float				angle_h;
+	float				angle_v;
+	// int					nb_sprites;
+	// t_sprite			*sprites;
+	unsigned short int	fps;
 }t_param;
 
 typedef struct s_parsing

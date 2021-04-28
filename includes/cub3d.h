@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:52:32 by qpupier           #+#    #+#             */
-/*   Updated: 2021/04/20 13:45:24 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 17:07:05 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <fcntl.h>
 # include <stdio.h> // A ENLEVER
+# include <time.h>
 # include "functions.h"
 
 # define FOV 60
@@ -64,41 +65,41 @@ typedef enum e_cardinal//unsigned short
 
 typedef enum e_key
 {
-	K_A = 0,//A verifier
-	K_B = 11,
-	K_C = 8,
-	K_D = 2,
-	K_E = 14,
-	K_F = 3,
-	K_G = 5,
-	K_H = 4,
-	K_I = 34,
-	K_J = 38,
-	K_K = 40,
-	K_L = 37,
-	K_M = 46,
-	K_N = 45,
-	K_O = 31,
-	K_P = 35,
-	K_Q = 12,
-	K_R = 15,
-	K_S = 1,
-	K_T = 17,
-	K_U = 32,
-	K_V = 9,
-	K_W = 13,
-	K_X = 7,
-	K_Y = 16,
-	K_Z = 6,
-	K_ESC = 53,
-	K_LEFT = 123,
-	K_RIGHT = 124,
-	K_DOWN = 125,
-	K_UP = 126,
-	K_CTRL = 256,
-	K_SHIFT = 257,
-	K_CMD = 259,
-	K_ALT = 261
+	K_A		= 0,//A verifier
+	K_B		= 11,
+	K_C		= 8,
+	K_D		= 2,
+	K_E		= 14,
+	K_F		= 3,
+	K_G		= 5,
+	K_H		= 4,
+	K_I		= 34,
+	K_J		= 38,
+	K_K		= 40,
+	K_L		= 37,
+	K_M		= 46,
+	K_N		= 45,
+	K_O		= 31,
+	K_P		= 35,
+	K_Q		= 12,
+	K_R		= 15,
+	K_S		= 1,
+	K_T		= 17,
+	K_U		= 32,
+	K_V		= 9,
+	K_W		= 13,
+	K_X		= 7,
+	K_Y		= 16,
+	K_Z		= 6,
+	K_ESC	= 53,
+	K_LEFT	= 123,
+	K_RIGHT	= 124,
+	K_DOWN	= 125,
+	K_UP	= 126,
+	K_CTRL	= 256,
+	K_SHIFT	= 257,
+	K_CMD	= 259,
+	K_ALT	= 261
 }t_key;
 
 typedef enum e_hook//unsigned int

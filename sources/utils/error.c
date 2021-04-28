@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 17:40:27 by qpupier           #+#    #+#             */
-/*   Updated: 2021/03/11 20:00:21 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 16:40:29 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ void	free_all(t_param *p)
 		free_map(p);
 	if (p->free & F_RAYS)
 		free_one(p, p->rays, F_RAYS);
-	if (p->free & F_SPRITES)
-		free_one(p, p->sprites, F_SPRITES);
+	// if (p->free & F_SPRITES)
+		// free_one(p, p->sprites, F_SPRITES);
 	if (p->free & F_CLOSE)
 		free_fd(p, "Impossible to close map file");
 	free(p);

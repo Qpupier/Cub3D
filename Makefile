@@ -6,7 +6,7 @@
 #    By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/12 15:48:25 by qpupier           #+#    #+#              #
-#    Updated: 2021/04/23 09:43:26 by qpupier          ###   ########lyon.fr    #
+#    Updated: 2021/04/28 18:22:25 by qpupier          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,15 +14,17 @@ NAME		=	cub3d
 INC_PATH	=	includes
 SRC_PATH	=	sources
 OBJ_PATH	=	.objects
-DIR			=	engine 		\
-				events 		\
-				init 		\
-				parsing 	\
-				parsing/textures
+DIR			=	engine 				\
+				events 				\
+				init 				\
+				parsing 			\
+				parsing/textures 	\
+				utils
 SRC_NAME	=	engine/algo.c 								\
 				engine/calc.c 								\
 				engine/inter_cards.c 						\
 				engine/inter_opti.c 						\
+				engine/raycasting.c 						\
 				events/events.c 							\
 				events/hook.c 								\
 				events/key_release.c 						\
@@ -37,8 +39,8 @@ SRC_NAME	=	engine/algo.c 								\
 				parsing/parsing_map.c 						\
 				parsing/parsing_parameters.c 				\
 				parsing/parsing_size_colors.c 				\
-				error.c 									\
-				free.c 										\
+				utils/error.c 								\
+				utils/free.c 								\
 				main.c
 OBJ_NAME	=	$(SRC_NAME:.c=.o)
 INC_NAME	=	cub3d.h 	\

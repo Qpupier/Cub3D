@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/03 16:49:53 by qpupier           #+#    #+#             */
-/*   Updated: 2021/04/18 19:45:13 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 18:15:02 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -275,7 +275,7 @@ void				ft_error(const char *str);
 int					ft_exit(void);
 int					ft_find(char *str, char c);
 char				*ft_ftoa(float nb, int p);
-uint32_t			ft_get_pixel(t_mlx_img img, int x, int y);
+unsigned int		ft_get_pixel(t_mlx_img img, int x, int y);
 char				*ft_hex_color_complete(char *c);
 void				ft_img_dark(t_mlx_img img);
 int					ft_intlen(long int nb);
@@ -312,7 +312,8 @@ void				*ft_memset(void *b, int c, size_t len);
 float				ft_min(float a, float b);
 int					ft_mod(int a, int b);
 int					ft_occur(const char *str, const char c);
-void				ft_pixel_put(t_mlx_img img, int x, int y, uint32_t color);
+void				ft_pixel_put(t_mlx_img img, int x, int y, 				\
+		unsigned int color);
 void				ft_pixel_put_rgb(t_mlx_img img, int x, int y, t_rgb color);
 int					ft_pow(float nb, int pow);
 void				ft_putchar(char c);
