@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:07:08 by qpupier           #+#    #+#             */
-/*   Updated: 2021/04/28 16:38:28 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 18:59:04 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	init_mlx(t_param *p)
 	p->mlx->hook = 0;
 	p->mlx->time = 0;
 	p->mlx->fps = 0;
+	init_strings_fps(p->mlx->strings_fps);
 }
 
 void	init(t_param *p)

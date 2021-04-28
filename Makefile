@@ -6,7 +6,7 @@
 #    By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/12 15:48:25 by qpupier           #+#    #+#              #
-#    Updated: 2021/04/28 18:22:25 by qpupier          ###   ########lyon.fr    #
+#    Updated: 2021/04/28 18:56:51 by qpupier          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRC_NAME	=	engine/algo.c 								\
 				events/hook.c 								\
 				events/key_release.c 						\
 				init/init.c 								\
+				init/init_strings_fps.c 					\
 				init/init_structs.c 						\
 				parsing/textures/parsing_textures_no_so.c 	\
 				parsing/textures/parsing_textures_s.c 		\

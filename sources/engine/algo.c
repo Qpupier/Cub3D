@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:06:25 by qpupier           #+#    #+#             */
-/*   Updated: 2021/04/28 18:23:06 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 18:57:50 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ static void	display(t_param *p)
 	if (mlx_put_image_to_window(p->mlx->mlx_ptr, p->mlx->win_ptr, \
 			p->mlx->img.ptr, 0, 0))
 		ft_error_free(p, "Mlx error - Impossible to put image to window");
-	if (p->fps)
-		string = ft_itoa(p->fps);//A remplacer par un tableau
+	if (p->fps > 0)
+		string = p->mlx->strings_fps[p->fps - 1];
 	else
-		string = "No FPS";
+		string = "FPS : 0";
 	if (mlx_string_put(p->mlx->mlx_ptr, p->mlx->win_ptr, 10, 20, 0xFFFFFF, \
 			string))
 		ft_error_free(p, "Mlx error - Impossible to put string to window");

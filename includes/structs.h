@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 17:24:54 by qpupier           #+#    #+#             */
-/*   Updated: 2021/04/28 18:23:25 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 18:58:05 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_mlx
 	unsigned int	hook;
 	unsigned long	time;
 	unsigned short	fps;
+	char			*strings_fps[120];
 }t_mlx;
 
 typedef struct s_win
