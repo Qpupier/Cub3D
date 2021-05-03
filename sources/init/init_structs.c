@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 20:24:44 by qpupier           #+#    #+#             */
-/*   Updated: 2021/04/28 16:39:20 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/03 14:16:26 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,11 @@ static void	init_rays(t_param *p)
 	p->free |= F_RAYS;
 	i = -1;
 	while (++i < size)
-		p->rays[i] = (t_vec){p->win->r_fov_h * (i % p->win->w - p->win->w05),
-			-1, -p->win->r_fov_v * (i / p->win->w - p->win->h05)};
+		p->rays[i] = (t_vec){\
+				p->win->r_fov_h * (i % p->win->w - p->win->w05), \
+				-1, \
+				-p->win->r_fov_v * (i / p->win->w - p->win->h05) \
+				};
 }
 
 // static void	init_sprites(t_param *p)
@@ -77,7 +80,7 @@ void	init_parameters(t_param *p)
 		p->win->w = w;
 	if (h < p->win->h)
 		p->win->h = h;
-	p->mlx->win_ptr = mlx_new_window(p->mlx->mlx_ptr, p->win->w, p->win->h,
+	p->mlx->win_ptr = mlx_new_window(p->mlx->mlx_ptr, p->win->w, p->win->h, \
 			"Cub3D");
 	if (!p->mlx->win_ptr)
 		ft_error_free(p, "Minilibx error - Impossible to open a window");
@@ -88,5 +91,7 @@ void	init_parameters(t_param *p)
 	init_win(p);
 	init_map(p);
 	init_rays(p);
+	init_trigo(p);
+	init_rays_theta(p);
 	// init_sprites(p);
 }

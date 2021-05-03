@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 18:40:51 by qpupier           #+#    #+#             */
-/*   Updated: 2021/04/28 15:49:13 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/03 14:12:22 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ void	events(t_param *p)
 	if (p->mlx->hook & H_ESC)
 		win_exit(p);
 	if (p->mlx->hook & H_LEFT)
-		p->angle_h -= 0.1;
+		p->angle_h -= 5;
 	if (p->mlx->hook & H_RIGHT)
-		p->angle_h += 0.1;
+		p->angle_h += 5;
 	if (p->mlx->hook & H_UP)
-		p->angle_v -= 0.05;
+		p->angle_v -= 3;
 	if (p->mlx->hook & H_DOWN)
-		p->angle_v += 0.05;
+		p->angle_v += 3;
 	if (p->mlx->hook & H_W)
 		p->map->player = vec_add(p->map->player, vec_rot_z((t_vec){0, -0.3, 0}, p->angle_h));//PRECALCULER
 	if (p->mlx->hook & H_S)

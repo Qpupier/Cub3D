@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:06:25 by qpupier           #+#    #+#             */
-/*   Updated: 2021/04/28 18:57:50 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/03 14:15:19 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ int	algo(t_param *p)
 		i = -1;
 		while (++i < p->win->w)
 		{
-			ray = vec_rot_x(p->rays[j * p->win->w + i], p->angle_v);//PRECALCUL
-			ray = vec_rot_z(ray, p->angle_h);//
+			ray = vec_rot_z_pre(p, \
+					p->rays_theta[p->angle_v][j * p->win->w + i], p->angle_h);
 			ft_pixel_put(p->mlx->img, i, j, ray_casting(p, ray));
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 17:40:27 by qpupier           #+#    #+#             */
-/*   Updated: 2021/04/28 16:40:29 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/03 11:59:14 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,28 +40,6 @@ static void	free_mlx(t_param *p)
 	free_one(p, p->mlx, F_MLX);
 }
 
-void	free_map(t_param *p)
-{
-	int	i;
-
-	if (p->free & F_MAP_MAP)
-	{
-		i = -1;
-		while (++i < p->map->h)
-			free(p->map->map[i]);
-		free_one(p, p->map->map, F_MAP_MAP);
-	}
-	if (p->free & F_MAP_PN)
-		free_one(p, p->map->p_n, F_MAP_PN);
-	if (p->free & F_MAP_PS)
-		free_one(p, p->map->p_s, F_MAP_PS);
-	if (p->free & F_MAP_PE)
-		free_one(p, p->map->p_e, F_MAP_PE);
-	if (p->free & F_MAP_PW)
-		free_one(p, p->map->p_w, F_MAP_PW);
-	free_one(p, p->map, F_MAP);
-}
-
 void	free_all(t_param *p)
 {
 	if (p->free & F_MLX)
@@ -72,6 +50,8 @@ void	free_all(t_param *p)
 		free_map(p);
 	if (p->free & F_RAYS)
 		free_one(p, p->rays, F_RAYS);
+	if (p->free & F_RAYS_THETA)
+		free_rays_theta(p);
 	// if (p->free & F_SPRITES)
 		// free_one(p, p->sprites, F_SPRITES);
 	if (p->free & F_CLOSE)
@@ -83,4 +63,15 @@ void	ft_error_free(t_param *p, const char *error)
 {
 	free_all(p);
 	ft_error(error);
+}
+
+void	ft_error_free_array(t_param *p, int theta, const char *error)
+{
+	int	i;
+
+	i = -1;
+	while (++i <= theta)
+		free(p->rays_theta[i]);
+	free(p->rays_theta);
+	ft_error_free(p, error);
 }

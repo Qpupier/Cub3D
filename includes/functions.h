@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 15:43:13 by qpupier           #+#    #+#             */
-/*   Updated: 2021/04/28 18:59:21 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/03 14:22:46 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,12 @@ unsigned char	inter_line_plane_y(t_line l, float d, t_vec *result, float *t);
 short int	inter_break(float player, float inter);
 unsigned int	ray_casting(t_param *p, t_vec ray);
 void	init_strings_fps(char *strings_fps[]);
+void	ft_error_free_array(t_param *p, int theta, const char *error);
+void	free_map(t_param *p);
+void	free_rays_theta(t_param *p);
+t_vec	vec_rot_x_pre(t_param *p, t_vec v, int angle);
+t_vec	vec_rot_z_pre(t_param *p, t_vec v, int angle);
+void	init_trigo(t_param *p);
+void	init_rays_theta(t_param *p);
 
 #endif

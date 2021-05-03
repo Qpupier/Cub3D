@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:52:32 by qpupier           #+#    #+#             */
-/*   Updated: 2021/04/28 17:07:05 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/03 11:45:26 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,25 +22,26 @@
 
 typedef enum e_free//unsigned int
 {
-	F_MLX_PTR	= 1 << 0,
-	F_MLX_WIN	= 1 << 1,
-	F_MLX_IMG	= 1 << 2,
-	F_MLX_NO	= 1 << 3,
-	F_MLX_SO	= 1 << 4,
-	F_MLX_WE	= 1 << 5,
-	F_MLX_EA	= 1 << 6,
-	F_MLX_S		= 1 << 7,
-	F_MLX		= 1 << 8,
-	F_WIN		= 1 << 9,
-	F_MAP_MAP	= 1 << 10,
-	F_MAP_PN	= 1 << 11,
-	F_MAP_PS	= 1 << 12,
-	F_MAP_PE	= 1 << 13,
-	F_MAP_PW	= 1 << 14,
-	F_MAP		= 1 << 15,
-	F_RAYS		= 1 << 16,
-	F_SPRITES	= 1 << 17,
-	F_CLOSE		= 1 << 18
+	F_MLX_PTR		= 1 << 0,
+	F_MLX_WIN		= 1 << 1,
+	F_MLX_IMG		= 1 << 2,
+	F_MLX_NO		= 1 << 3,
+	F_MLX_SO		= 1 << 4,
+	F_MLX_WE		= 1 << 5,
+	F_MLX_EA		= 1 << 6,
+	F_MLX_S			= 1 << 7,
+	F_MLX			= 1 << 8,
+	F_WIN			= 1 << 9,
+	F_MAP_MAP		= 1 << 10,
+	F_MAP_PN		= 1 << 11,
+	F_MAP_PS		= 1 << 12,
+	F_MAP_PE		= 1 << 13,
+	F_MAP_PW		= 1 << 14,
+	F_MAP			= 1 << 15,
+	F_RAYS			= 1 << 16,
+	F_RAYS_THETA	= 1 << 17,
+	F_SPRITES		= 1 << 18,
+	F_CLOSE			= 1 << 19
 }t_free;
 
 typedef enum e_parameters//unsigned short

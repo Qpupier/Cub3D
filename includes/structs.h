@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 17:24:54 by qpupier           #+#    #+#             */
-/*   Updated: 2021/04/28 18:58:05 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/03 14:06:37 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,17 +66,21 @@ typedef struct s_map
 
 typedef struct s_param
 {
-	unsigned int		free;
-	int					fd;
-	t_mlx				*mlx;
-	t_win				*win;
-	t_map				*map;
-	int					parameters;
-	t_vec				*rays;
-	float				angle_h;
-	float				angle_v;
-	// int					nb_sprites;
-	// t_sprite			*sprites;
+	unsigned	free;
+	int			fd;
+	t_mlx		*mlx;
+	t_win		*win;
+	t_map		*map;
+	int			parameters;
+	t_vec		*rays;
+	t_vec		**rays_theta;
+	float		rad;
+	float		trigo_cos[360];
+	float		trigo_sin[360];
+	float		angle_h;
+	int			angle_v;
+	// int			nb_sprites;
+	// t_sprite	*sprites;
 	unsigned short int	fps;
 }t_param;
 
