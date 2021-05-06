@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 14:17:00 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/03 14:17:17 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/06 18:01:53 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	init_trigo(t_param *p)
 {
 	int	i;
 
-	p->rad = M_PI / 180;
 	i = -1;
 	while (++i < 360)
 	{

@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 20:24:44 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/03 14:16:26 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/06 18:02:42 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,7 @@ static void	init_win(t_param *p)
 {
 	p->win->w05 = p->win->w * 0.5;
 	p->win->h05 = p->win->h * 0.5;
-	p->win->fov_v = p->win->fov_h * p->win->h / p->win->w;
-	p->win->fov_v = 2 * tan(p->win->fov_v * 0.5);
+	p->win->fov_v = 2 * tan(p->win->fov_h * p->win->h * 0.5 / p->win->w);
 	p->win->r_fov_h = p->win->fov_h / p->win->w;
 	p->win->r_fov_v = p->win->fov_v / p->win->h;
 }
@@ -91,7 +90,6 @@ void	init_parameters(t_param *p)
 	init_win(p);
 	init_map(p);
 	init_rays(p);
-	init_trigo(p);
 	init_rays_theta(p);
 	// init_sprites(p);
 }

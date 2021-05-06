@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 18:40:51 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/06 14:28:08 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/06 17:34:03 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	test(t_param *p)
 {
+	if (!p->jump->jump)
 	(void)p;
 }
 

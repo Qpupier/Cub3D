@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:52:32 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/06 14:26:23 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/06 17:36:26 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ typedef enum e_free//unsigned int
 	F_RAYS			= 1 << 16,
 	F_RAYS_THETA	= 1 << 17,
 	F_SPRITES		= 1 << 18,
-	F_CLOSE			= 1 << 19
+	F_NEWTON		= 1 << 19,
+	F_CLOSE			= 1 << 20
 }t_free;
 
 typedef enum e_parameters//unsigned short

@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 17:40:27 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/03 11:59:14 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/06 17:56:52 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void	free_all(t_param *p)
 		free_rays_theta(p);
 	// if (p->free & F_SPRITES)
 		// free_one(p, p->sprites, F_SPRITES);
+	if (p->free & F_NEWTON)
+		free_one(p, p->jump, F_NEWTON);
 	if (p->free & F_CLOSE)
 		free_fd(p, "Impossible to close map file");
 	free(p);

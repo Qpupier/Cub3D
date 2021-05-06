@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 17:24:54 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/06 17:12:47 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/06 18:09:38 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ typedef struct s_mlx
 	unsigned int		c;
 	unsigned int		hook_alpha;
 	unsigned int		hook_buttons;
-	unsigned long int	time;
 	unsigned short int	fps;
+	unsigned long int	time;
 	char				*strings_fps[120];
 }t_mlx;
 
@@ -50,7 +50,7 @@ typedef struct s_map
 {
 	int				w;
 	int				h;
-	int	b;
+	int				b;
 	t_cardinal		dir;
 	unsigned int	**map;
 	unsigned int	*p_n;
@@ -65,34 +65,34 @@ typedef struct s_map
 // 	t_plane	p;
 // }t_sprite;
 
-typedef struct s_jump
+typedef struct s_newton
 {
-	unsigned short int	jump;
 	t_vec				p0;
-	t_vec				v0;
-	unsigned short int	theta;
+	unsigned short int	jump;
 	unsigned short int	phi;
-}t_jump;
+	unsigned short int	theta;
+	float				v0;
+}t_newton;
 
 typedef struct s_param
 {
-	unsigned int		free;
-	unsigned short int	fd;
 	t_mlx				*mlx;
 	t_win				*win;
 	t_map				*map;
-	unsigned short int	parameters;
+	t_newton			*jump;
 	t_vec				*rays;
 	t_vec				**rays_theta;
+	unsigned int		free;
+	unsigned short int	fd;
+	unsigned short int	fps;
+	unsigned short int	parameters;
+	short int			angle_h;
+	short int			angle_v;
 	float				rad;
 	float				trigo_cos[360];
 	float				trigo_sin[360];
-	short int			angle_h;
-	short int			angle_v;
 	// int				nb_sprites;
 	// t_sprite			*sprites;
-	unsigned short int	fps;
-	t_jump				jump;
 }t_param;
 
 typedef struct s_parsing
