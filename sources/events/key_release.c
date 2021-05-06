@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 13:26:27 by qpupier           #+#    #+#             */
-/*   Updated: 2021/04/20 13:26:45 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/06 14:31:37 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,36 +15,36 @@
 static int	key_release_quater(t_key key, t_param *p)
 {
 	if (key == K_CMD)
-		p->mlx->hook ^= H_CMD;
+		p->mlx->hook_buttons ^= H_CMD;
 	else if (key == K_ALT)
-		p->mlx->hook ^= H_ALT;
+		p->mlx->hook_buttons ^= H_ALT;
 	return (0);
 }
 
 static int	key_release_ter(t_key key, t_param *p)
 {
 	if (key == K_W)
-		p->mlx->hook ^= H_W;
+		p->mlx->hook_alpha ^= H_W;
 	else if (key == K_X)
-		p->mlx->hook ^= H_X;
+		p->mlx->hook_alpha ^= H_X;
 	else if (key == K_Y)
-		p->mlx->hook ^= H_Y;
+		p->mlx->hook_alpha ^= H_Y;
 	else if (key == K_Z)
-		p->mlx->hook ^= H_Z;
+		p->mlx->hook_alpha ^= H_Z;
 	else if (key == K_ESC)
-		p->mlx->hook ^= H_ESC;
+		p->mlx->hook_buttons ^= H_ESC;
 	else if (key == K_LEFT)
-		p->mlx->hook ^= H_LEFT;
+		p->mlx->hook_buttons ^= H_LEFT;
 	else if (key == K_RIGHT)
-		p->mlx->hook ^= H_RIGHT;
+		p->mlx->hook_buttons ^= H_RIGHT;
 	else if (key == K_DOWN)
-		p->mlx->hook ^= H_DOWN;
+		p->mlx->hook_buttons ^= H_DOWN;
 	else if (key == K_UP)
-		p->mlx->hook ^= H_UP;
+		p->mlx->hook_buttons ^= H_UP;
 	else if (key == K_CTRL)
-		p->mlx->hook ^= H_CTRL;
+		p->mlx->hook_buttons ^= H_CTRL;
 	else if (key == K_SHIFT)
-		p->mlx->hook ^= H_SHIFT;
+		p->mlx->hook_buttons ^= H_SHIFT;
 	else
 		return (key_release_quater(key, p));
 	return (0);
@@ -53,27 +53,27 @@ static int	key_release_ter(t_key key, t_param *p)
 static int	key_release_bis(t_key key, t_param *p)
 {
 	if (key == K_L)
-		p->mlx->hook ^= H_L;
+		p->mlx->hook_alpha ^= H_L;
 	else if (key == K_M)
-		p->mlx->hook ^= H_M;
+		p->mlx->hook_alpha ^= H_M;
 	else if (key == K_N)
-		p->mlx->hook ^= H_N;
+		p->mlx->hook_alpha ^= H_N;
 	else if (key == K_O)
-		p->mlx->hook ^= H_O;
+		p->mlx->hook_alpha ^= H_O;
 	else if (key == K_P)
-		p->mlx->hook ^= H_P;
+		p->mlx->hook_alpha ^= H_P;
 	else if (key == K_Q)
-		p->mlx->hook ^= H_Q;
+		p->mlx->hook_alpha ^= H_Q;
 	else if (key == K_R)
-		p->mlx->hook ^= H_R;
+		p->mlx->hook_alpha ^= H_R;
 	else if (key == K_S)
-		p->mlx->hook ^= H_S;
+		p->mlx->hook_alpha ^= H_S;
 	else if (key == K_T)
-		p->mlx->hook ^= H_T;
+		p->mlx->hook_alpha ^= H_T;
 	else if (key == K_U)
-		p->mlx->hook ^= H_U;
+		p->mlx->hook_alpha ^= H_U;
 	else if (key == K_V)
-		p->mlx->hook ^= H_V;
+		p->mlx->hook_alpha ^= H_V;
 	else
 		return (key_release_ter(key, p));
 	return (0);
@@ -82,27 +82,27 @@ static int	key_release_bis(t_key key, t_param *p)
 int	key_release(int key, t_param *p)
 {
 	if (key == K_A)
-		p->mlx->hook ^= H_A;
+		p->mlx->hook_alpha ^= H_A;
 	else if (key == K_B)
-		p->mlx->hook ^= H_B;
+		p->mlx->hook_alpha ^= H_B;
 	else if (key == K_C)
-		p->mlx->hook ^= H_C;
+		p->mlx->hook_alpha ^= H_C;
 	else if (key == K_D)
-		p->mlx->hook ^= H_D;
+		p->mlx->hook_alpha ^= H_D;
 	else if (key == K_E)
-		p->mlx->hook ^= H_E;
+		p->mlx->hook_alpha ^= H_E;
 	else if (key == K_F)
-		p->mlx->hook ^= H_F;
+		p->mlx->hook_alpha ^= H_F;
 	else if (key == K_G)
-		p->mlx->hook ^= H_G;
+		p->mlx->hook_alpha ^= H_G;
 	else if (key == K_H)
-		p->mlx->hook ^= H_H;
+		p->mlx->hook_alpha ^= H_H;
 	else if (key == K_I)
-		p->mlx->hook ^= H_I;
+		p->mlx->hook_alpha ^= H_I;
 	else if (key == K_J)
-		p->mlx->hook ^= H_J;
+		p->mlx->hook_alpha ^= H_J;
 	else if (key == K_K)
-		p->mlx->hook ^= H_K;
+		p->mlx->hook_alpha ^= H_K;
 	else
 		return (key_release_bis(key, p));
 	return (0);

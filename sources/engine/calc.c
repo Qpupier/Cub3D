@@ -6,13 +6,13 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:16:24 by qpupier           #+#    #+#             */
-/*   Updated: 2021/04/23 11:37:09 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/04 16:49:55 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	compare_columns_e(t_map *map, int i)
+static short int	compare_columns_e(t_map *map, int i)
 {
 	int	j;
 
@@ -23,7 +23,7 @@ static int	compare_columns_e(t_map *map, int i)
 	return (0);
 }
 
-static int	compare_columns_w(t_map *map, int i)
+static short int	compare_columns_w(t_map *map, int i)
 {
 	int	j;
 
@@ -34,7 +34,7 @@ static int	compare_columns_w(t_map *map, int i)
 	return (0);
 }
 
-static int	compare_lines_n(t_map *map, int i)
+static short int	compare_lines_n(t_map *map, int i)
 {
 	int	j;
 
@@ -45,7 +45,7 @@ static int	compare_lines_n(t_map *map, int i)
 	return (0);
 }
 
-static int	compare_lines_s(t_map *map, int i)
+static short int	compare_lines_s(t_map *map, int i)
 {
 	int	j;
 

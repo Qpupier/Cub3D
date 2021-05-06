@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:52:32 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/03 11:45:26 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/06 14:26:23 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 # include <fcntl.h>
 # include <stdio.h> // A ENLEVER
 # include <time.h>
-# include "functions.h"
 
-# define FOV 60
+# define FOV 60//A verifier
+# define G 9.80665//A verifier
 
 typedef enum e_free//unsigned int
 {
@@ -92,6 +92,7 @@ typedef enum e_key
 	K_X		= 7,
 	K_Y		= 16,
 	K_Z		= 6,
+	K_SPACE	= 49,
 	K_ESC	= 53,
 	K_LEFT	= 123,
 	K_RIGHT	= 124,
@@ -103,7 +104,7 @@ typedef enum e_key
 	K_ALT	= 261
 }t_key;
 
-typedef enum e_hook//unsigned int
+typedef enum e_hook_alpha//unsigned int
 {
 	H_A		= 1 << 0,//A verifier
 	H_B		= 1 << 1,
@@ -130,16 +131,24 @@ typedef enum e_hook//unsigned int
 	H_W		= 1 << 22,
 	H_X		= 1 << 23,
 	H_Y		= 1 << 24,
-	H_Z		= 1 << 25,
-	H_ESC	= 1 << 26,
-	H_LEFT	= 1 << 27,
-	H_RIGHT	= 1 << 28,
-	H_DOWN	= 1 << 29,
-	H_UP	= 1 << 30,
-	H_CTRL	= 1 << 31,
-	H_SHIFT	= 1 << 32,
-	H_CMD	= 1 << 33,
-	H_ALT	= 1 << 34
-}t_hook;
+	H_Z		= 1 << 25
+}t_hook_alpha;
+
+typedef enum e_hook_buttons//unsigned int
+{
+	H_SPACE	= 1 << 0,//A verifier
+	H_ESC	= 1 << 1,
+	H_LEFT	= 1 << 2,
+	H_RIGHT	= 1 << 3,
+	H_DOWN	= 1 << 4,
+	H_UP	= 1 << 5,
+	H_CTRL	= 1 << 6,
+	H_SHIFT	= 1 << 7,
+	H_CMD	= 1 << 8,
+	H_ALT	= 1 << 9
+}t_hook_buttons;
+
+# include "structs.h"
+# include "functions.h"
 
 #endif

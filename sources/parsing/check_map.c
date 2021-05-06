@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:49:46 by qpupier           #+#    #+#             */
-/*   Updated: 2021/04/28 16:40:00 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/04 17:45:07 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	check_char(t_param *p, t_parsing *map, char c)
 		c = ' ';
 	else if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 	{
-		if (p->map->dir != -1)
+		if (p->map->dir > -1)
 			parsing_lst_error(p, map, "Multiple player positions");
 		if (c == 'N')
 			p->map->dir = C_N;
@@ -84,6 +84,6 @@ void	verif_map(t_param *p, t_parsing *map)
 				"Invalid map (No perimeter - Empty line)");
 		tmp = tmp->next;
 	}
-	if (p->map->dir == -1)
+	if (p->map->dir < 0)
 		parsing_lst_error(p, map, "No player position");
 }

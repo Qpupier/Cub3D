@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:07:08 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/03 11:49:52 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/06 14:32:10 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	init_mlx(t_param *p)
 	if (!p->mlx->mlx_ptr)
 		ft_error_free(p, "Impossible to start Minilibx");
 	p->free |= F_MLX_PTR;
-	p->mlx->hook = 0;
+	p->mlx->hook_alpha = 0;
+	p->mlx->hook_buttons = 0;
 	p->mlx->time = 0;
 	p->mlx->fps = 0;
 	init_strings_fps(p->mlx->strings_fps);

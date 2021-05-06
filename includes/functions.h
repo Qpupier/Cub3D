@@ -6,14 +6,12 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 15:43:13 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/03 14:22:46 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/04 16:51:41 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FUNCTIONS_H
 # define FUNCTIONS_H
-
-# include "structs.h"
 
 void		parsing(t_param *p);
 void		parsing_line_error_tmp(t_param *p, char *line, char *tmp, 	\
