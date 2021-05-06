@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 17:24:54 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/06 18:09:38 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/06 19:10:11 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ typedef struct s_newton
 	unsigned short int	jump;
 	unsigned short int	phi;
 	unsigned short int	theta;
+	// unsigned long int	t;
+	float	t;
 	float				v0;
 }t_newton;
 

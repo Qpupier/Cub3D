@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 18:40:51 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/06 17:34:03 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/06 19:14:20 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,32 @@
 
 void	test(t_param *p)
 {
+	// unsigned short int	t;
+	t_vec				vec;
+	t_vec				tmp;
+
 	if (!p->jump->jump)
-	(void)p;
+	{
+		p->jump->jump = 1;
+		p->jump->p0 = p->map->player;
+		// p->jump->t = time(NULL);
+		p->jump->t = 0;
+	}
+	// t = time(NULL) - p->jump->t;
+	p->jump->t += 0.03;
+	vec.x = p->jump->v0 * p->trigo_cos[p->jump->phi] * p->trigo_sin[p->jump->theta] * p->jump->t;
+	vec.y = p->jump->v0 * p->trigo_sin[p->jump->phi] * p->trigo_sin[p->jump->theta] * p->jump->t;
+	vec.z = -G * p->jump->t * p->jump->t * 0.5 + p->jump->v0 * p->trigo_cos[p->jump->theta] * p->jump->t;
+	// if (p->jump->jump)
+		// printf("%f\n", vec.z);
+	tmp = vec_add(p->jump->p0, vec);
+	if (tmp.z >= 0.5)
+		p->map->player = tmp;
+	else
+	{
+		p->map->player.z = 0.5;
+		p->jump->jump = 0;
+	}
 }
 
 void	events(t_param *p)
@@ -58,6 +82,6 @@ void	events(t_param *p)
 		p->map->player.z += 0.3;//A LIMITER
 	if (p->mlx->hook_alpha & H_F)
 		p->map->player.z -= 0.3;//A LIMITER
-	if (p->mlx->hook_alpha & H_SPACE)
+	if (p->mlx->hook_buttons & H_SPACE)
 		test(p);
 }

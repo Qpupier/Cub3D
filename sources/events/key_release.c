@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 13:26:27 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/06 14:31:37 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/06 18:46:19 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ static int	key_release_ter(t_key key, t_param *p)
 		p->mlx->hook_alpha ^= H_Y;
 	else if (key == K_Z)
 		p->mlx->hook_alpha ^= H_Z;
+	else if (key == K_SPACE)
+		p->mlx->hook_buttons ^= H_SPACE;
 	else if (key == K_ESC)
 		p->mlx->hook_buttons ^= H_ESC;
 	else if (key == K_LEFT)

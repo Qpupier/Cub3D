@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:07:08 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/06 18:10:05 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/06 19:02:07 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ static void	init_newton(t_param *p)
 	p->jump->jump = 0;
 	p->jump->phi = 0;
 	p->jump->theta = 0;
-	p->jump->v0 = 0.3;
+	p->jump->t = time(NULL);
+	p->jump->v0 = 3;
 }
 
 void	init(t_param *p)
