@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 18:40:51 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/06 19:14:20 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/07 13:57:19 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	test(t_param *p)
 	// unsigned short int	t;
 	t_vec				vec;
 	t_vec				tmp;
+	float				prec1;
+	float				prec2;
 
 	if (!p->jump->jump)
 	{
@@ -27,9 +29,12 @@ void	test(t_param *p)
 	}
 	// t = time(NULL) - p->jump->t;
 	p->jump->t += 0.03;
-	vec.x = p->jump->v0 * p->trigo_cos[p->jump->phi] * p->trigo_sin[p->jump->theta] * p->jump->t;
-	vec.y = p->jump->v0 * p->trigo_sin[p->jump->phi] * p->trigo_sin[p->jump->theta] * p->jump->t;
-	vec.z = -G * p->jump->t * p->jump->t * 0.5 + p->jump->v0 * p->trigo_cos[p->jump->theta] * p->jump->t;
+	// p->jump->theta = 40;
+	prec1 = p->jump->v0 * p->jump->t;
+	prec2 = p->trigo_sin[p->jump->theta] * prec1;
+	vec.x = p->trigo_cos[p->jump->phi] * prec2;
+	vec.y = p->trigo_sin[p->jump->phi] * prec2;
+	vec.z = -G * p->jump->t * p->jump->t * 0.5 + p->trigo_cos[p->jump->theta] * prec1;
 	// if (p->jump->jump)
 		// printf("%f\n", vec.z);
 	tmp = vec_add(p->jump->p0, vec);
@@ -71,13 +76,13 @@ void	events(t_param *p)
 			p->angle_v -= 360;
 	}
 	if (p->mlx->hook_alpha & H_W)
-		p->map->player = vec_add(p->map->player, vec_rot_z((t_vec){0, -0.3, 0}, p->angle_h));//PRECALCULER
+		p->map->player = vec_add(p->map->player, vec_rot_z((t_vec){0, -0.3, 0}, p->angle_h * M_PI / 180));//PRECALCULER
 	if (p->mlx->hook_alpha & H_S)
-		p->map->player = vec_add(p->map->player, vec_rot_z((t_vec){0, 0.3, 0}, p->angle_h));//PRECALCULER
+		p->map->player = vec_add(p->map->player, vec_rot_z((t_vec){0, 0.3, 0}, p->angle_h * M_PI / 180));//PRECALCULER
 	if (p->mlx->hook_alpha & H_A)
-		p->map->player = vec_add(p->map->player, vec_rot_z((t_vec){-0.3, 0, 0}, p->angle_h));//PRECALCULER
+		p->map->player = vec_add(p->map->player, vec_rot_z((t_vec){-0.3, 0, 0}, p->angle_h * M_PI / 180));//PRECALCULER
 	if (p->mlx->hook_alpha & H_D)
-		p->map->player = vec_add(p->map->player, vec_rot_z((t_vec){0.3, 0, 0}, p->angle_h));//PRECALCULER
+		p->map->player = vec_add(p->map->player, vec_rot_z((t_vec){0.3, 0, 0}, p->angle_h * M_PI / 180));//PRECALCULER
 	if (p->mlx->hook_alpha & H_R)
 		p->map->player.z += 0.3;//A LIMITER
 	if (p->mlx->hook_alpha & H_F)

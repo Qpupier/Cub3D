@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 15:43:13 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/04 16:51:41 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/07 14:24:14 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ float	intersec_planes_w(t_param *p, t_line line, float *r_w, float *r_h);
 float	intersec_planes_e(t_param *p, t_line line, float *r_w, float *r_h);
 unsigned char	inter_line_plane_x(t_line l, float d, t_vec *result, float *t);
 unsigned char	inter_line_plane_y(t_line l, float d, t_vec *result, float *t);
-short int	inter_break(float player, float inter);
 unsigned int	ray_casting(t_param *p, t_vec ray);
 void	init_strings_fps(char *strings_fps[]);
 void	ft_error_free_array(t_param *p, int theta, const char *error);

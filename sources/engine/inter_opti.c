@@ -6,16 +6,11 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 09:42:18 by qpupier           #+#    #+#             */
-/*   Updated: 2021/04/28 18:21:57 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/07 14:24:02 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-inline short	inter_break(float player, float inter)
-{
-	return (player >= 0 && player < 1 && (inter < 0 || inter >= 1));
-}
 
 unsigned char	inter_line_plane_x(t_line l, float d, t_vec *result, float *t)
 {
