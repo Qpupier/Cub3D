@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 17:24:54 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/06 19:10:11 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/12 18:46:53 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ typedef struct s_param
 	unsigned short int	parameters;
 	short int			angle_h;
 	short int			angle_v;
+	short int			key_ceil;
+	short int			ceil;
 	float				rad;
 	float				trigo_cos[360];
 	float				trigo_sin[360];

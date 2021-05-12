@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 18:40:51 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/07 13:57:19 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/12 18:49:56 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,12 @@ void	events(t_param *p)
 		p->map->player.z -= 0.3;//A LIMITER
 	if (p->mlx->hook_buttons & H_SPACE)
 		test(p);
+	if (p->mlx->hook_alpha & H_C)
+	{
+		if (!p->key_ceil)
+			p->ceil = !p->ceil;
+		p->key_ceil = 1;
+	}
+	else
+		p->key_ceil = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 15:43:13 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/07 14:24:14 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/07 15:49:57 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,7 @@ t_vec	vec_rot_x_pre(t_param *p, t_vec v, int angle);
 t_vec	vec_rot_z_pre(t_param *p, t_vec v, int angle);
 void	init_trigo(t_param *p);
 void	init_rays_theta(t_param *p);
+float	intersec_plane_c(t_param *p, t_line line, float *r_w, float *r_h);
+float	intersec_plane_f(t_param *p, t_line line, float *r_w, float *r_h);
 
 #endif

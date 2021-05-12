@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:07:08 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/06 19:02:07 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/12 18:47:21 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ void	init(t_param *p)
 	p->parameters = 0;
 	p->angle_h = 0;
 	p->angle_v = 0;
+	p->key_ceil = 0;
+	p->ceil = 0;
 	p->rad = M_PI / 180;
 	init_trigo(p);
 	// p->nb_sprites = 0;

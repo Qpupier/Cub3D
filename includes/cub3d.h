@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:52:32 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/06 17:36:26 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/10 09:46:29 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,9 @@ typedef enum e_cardinal//unsigned short
 	C_N,//A verifier
 	C_S,
 	C_W,
-	C_E
+	C_E,
+	C_C,
+	C_F
 }t_cardinal;
 
 typedef enum e_key
