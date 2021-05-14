@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 18:03:09 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/12 18:27:11 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/14 15:40:00 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,36 +41,12 @@ static unsigned int	choose_color(t_param *p, int wall, t_inter check[])
 		return (0x000000);
 	w = check[wall].r_w;
 	h = check[wall].r_h;
-	if (wall == C_N)
-	{
-		return (ft_get_pixel(p->mlx->no, w * p->mlx->no.w, h * p->mlx->no.h));
-		return (0xffffff);
-	}
-	else if (wall == C_S)
-	{
-		return (ft_get_pixel(p->mlx->so, w * p->mlx->so.w, h * p->mlx->so.h));
-		return (0xff0000);
-	}
-	else if (wall == C_W)
-	{
-		return (ft_get_pixel(p->mlx->we, w * p->mlx->we.w, h * p->mlx->we.h));
-		return (0x00ff00);
-	}
-	else if (wall == C_E)
-	{
-		return (ft_get_pixel(p->mlx->ea, w * p->mlx->ea.w, h * p->mlx->ea.h));
-		return (0x00ff00);
-	}
-	else if (wall == C_C)
-	{
-		return (ft_get_pixel(p->mlx->so, w * p->mlx->so.w, h * p->mlx->so.h));
-		return (0x00ff00);
-	}
-	else if (wall == C_F)
-	{
-		return (ft_get_pixel(p->mlx->no, w * p->mlx->no.w, h * p->mlx->no.h));
-		return (0x0000ff);
-	}
+	if (p->mlx->walls[wall].wall)
+		return (ft_get_pixel(p->mlx->walls[wall].texture, \
+				w * p->mlx->walls[wall].texture.w, \
+				h * p->mlx->walls[wall].texture.h));
+	else
+		return (p->mlx->walls[wall].color);
 	return (0x000000);
 }
 

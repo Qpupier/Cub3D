@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:52:32 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/10 09:46:29 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/14 15:56:47 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,22 @@ typedef enum e_free//unsigned int
 	F_MLX_SO		= 1 << 4,
 	F_MLX_WE		= 1 << 5,
 	F_MLX_EA		= 1 << 6,
-	F_MLX_S			= 1 << 7,
-	F_MLX			= 1 << 8,
-	F_WIN			= 1 << 9,
-	F_MAP_MAP		= 1 << 10,
-	F_MAP_PN		= 1 << 11,
-	F_MAP_PS		= 1 << 12,
-	F_MAP_PE		= 1 << 13,
-	F_MAP_PW		= 1 << 14,
-	F_MAP			= 1 << 15,
-	F_RAYS			= 1 << 16,
-	F_RAYS_THETA	= 1 << 17,
-	F_SPRITES		= 1 << 18,
-	F_NEWTON		= 1 << 19,
-	F_CLOSE			= 1 << 20
+	F_MLX_F			= 1 << 7,
+	F_MLX_C			= 1 << 8,
+	F_MLX_S			= 1 << 9,
+	F_MLX			= 1 << 10,
+	F_WIN			= 1 << 11,
+	F_MAP_MAP		= 1 << 12,
+	F_MAP_PN		= 1 << 13,
+	F_MAP_PS		= 1 << 14,
+	F_MAP_PE		= 1 << 15,
+	F_MAP_PW		= 1 << 16,
+	F_MAP			= 1 << 17,
+	F_RAYS			= 1 << 18,
+	F_RAYS_THETA	= 1 << 19,
+	F_SPRITES		= 1 << 20,
+	F_NEWTON		= 1 << 21,
+	F_CLOSE			= 1 << 22
 }t_free;
 
 typedef enum e_parameters//unsigned short
@@ -52,9 +54,9 @@ typedef enum e_parameters//unsigned short
 	P_SO	= 1 << 2,
 	P_WE	= 1 << 3,
 	P_EA	= 1 << 4,
-	P_S		= 1 << 5,
-	P_F		= 1 << 6,
-	P_C		= 1 << 7
+	P_F		= 1 << 5,
+	P_C		= 1 << 6,
+	P_S		= 1 << 7
 }t_parameters;
 
 typedef enum e_cardinal//unsigned short

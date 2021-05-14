@@ -6,13 +6,13 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 09:42:18 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/12 18:40:57 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/14 09:53:32 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-unsigned char	inter_line_plane_x(t_line l, float d, t_vec *result, float *t)
+unsigned short int	inter_line_plane_x(t_line l, float d, t_vec *result, float *t)
 {
 	if (!l.u.x)
 		return (0);
@@ -21,7 +21,7 @@ unsigned char	inter_line_plane_x(t_line l, float d, t_vec *result, float *t)
 	return (1);
 }
 
-unsigned char	inter_line_plane_y(t_line l, float d, t_vec *result, float *t)
+unsigned short int	inter_line_plane_y(t_line l, float d, t_vec *result, float *t)
 {
 	if (!l.u.y)
 		return (0);

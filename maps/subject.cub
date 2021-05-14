@@ -5,8 +5,8 @@ NO assets/block/acacia_log_top.png
 EA assets/block/blackstone.png
 
 S ./assets/action.xpm
-F 220,100,0
-C 225,30,0
+F assets/block/acacia_log_top.png
+C 255,0,0,100
 
 1111111111
 1000000001

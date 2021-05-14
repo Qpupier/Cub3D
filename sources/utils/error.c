@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 17:40:27 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/06 17:56:52 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/14 10:15:50 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ static void	free_mlx(t_param *p)
 			p->mlx->img.ptr);
 	if (p->free & F_MLX_NO)
 		free_image(p, "Impossible to destroy image (NORTH)", F_MLX_NO,
-			p->mlx->no.ptr);
+			p->mlx->walls[C_N].texture.ptr);
 	if (p->free & F_MLX_SO)
 		free_image(p, "Impossible to destroy image (SOUTH)", F_MLX_SO,
-			p->mlx->so.ptr);
+			p->mlx->walls[C_S].texture.ptr);
 	if (p->free & F_MLX_WE)
 		free_image(p, "Impossible to destroy image (WEST)", F_MLX_WE,
-			p->mlx->we.ptr);
+			p->mlx->walls[C_W].texture.ptr);
 	if (p->free & F_MLX_EA)
 		free_image(p, "Impossible to destroy image (EAST)", F_MLX_EA,
-			p->mlx->ea.ptr);
+			p->mlx->walls[C_E].texture.ptr);//RAJOUTER SOL ET PLAFOND
 	if (p->free & F_MLX_S)
 		free_image(p, "Impossible to destroy image (SPRITE)", F_MLX_S,
 			p->mlx->s.ptr);

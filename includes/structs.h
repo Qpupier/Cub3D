@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 17:24:54 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/12 18:46:53 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/14 15:03:43 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,20 @@
 
 # include "libft.h"
 
+typedef struct s_wall
+{
+	t_mlx_img		texture;
+	unsigned int	color;
+	unsigned short int	wall;
+}t_wall;
+
 typedef struct s_mlx
 {
 	void				*mlx_ptr;
 	void				*win_ptr;
 	t_mlx_img			img;
-	t_mlx_img			no;
-	t_mlx_img			so;
-	t_mlx_img			we;
-	t_mlx_img			ea;
+	t_wall				walls[6];
 	t_mlx_img			s;
-	unsigned int		f;
-	unsigned int		c;
 	unsigned int		hook_alpha;
 	unsigned int		hook_buttons;
 	unsigned short int	fps;

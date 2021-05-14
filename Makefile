@@ -6,7 +6,7 @@
 #    By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/12 15:48:25 by qpupier           #+#    #+#              #
-#    Updated: 2021/05/03 14:19:11 by qpupier          ###   ########lyon.fr    #
+#    Updated: 2021/05/14 15:24:33 by qpupier          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRC_NAME	=	engine/algo.c 								\
 				init/rotation_matrix.c 						\
 				parsing/textures/parsing_textures_no_so.c 	\
 				parsing/textures/parsing_textures_s.c 		\
+				parsing/textures/parsing_textures_utils.c 	\
 				parsing/textures/parsing_textures_we_ea.c 	\
 				parsing/check_map.c 						\
 				parsing/parsing.c 							\

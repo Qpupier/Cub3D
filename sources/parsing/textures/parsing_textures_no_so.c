@@ -6,26 +6,24 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 16:50:50 by qpupier           #+#    #+#             */
-/*   Updated: 2021/03/11 20:18:46 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/14 16:26:59 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	parsing_textures_no(t_param *p, char *line, char *tmp, int size)
+static void	parsing_textures_no(t_param *p, char *line, char *tmp)
 {
-	if (tmp[size - 4] == '.' && tmp[size - 3] == 'x'
-		&& tmp[size - 2] == 'p' && tmp[size - 1] == 'm')
+	if (p->mlx->walls[C_N].wall == 1)
 	{
-		if (!xpm_to_img(p->mlx->mlx_ptr, &p->mlx->no, tmp))
+		if (!xpm_to_img(p->mlx->mlx_ptr, &p->mlx->walls[C_N].texture, tmp))
 			parsing_line_error_tmp(p, line, tmp,
 				"Invalid texture file (NORTH)");
 		p->free |= F_MLX_NO;
 	}
-	else if (tmp[size - 4] == '.' && tmp[size - 3] == 'p'
-		&& tmp[size - 2] == 'n' && tmp[size - 1] == 'g')
+	else if (p->mlx->walls[C_N].wall == 2)
 	{
-		if (!png_to_img(p->mlx->mlx_ptr, &p->mlx->no, tmp))
+		if (!png_to_img(p->mlx->mlx_ptr, &p->mlx->walls[C_N].texture, tmp))
 			parsing_line_error_tmp(p, line, tmp,
 				"Invalid texture file (NORTH)");
 		p->free |= F_MLX_NO;
@@ -52,25 +50,27 @@ void	parsing_no(t_param *p, char *line, int i)
 	size = ft_strlen(tmp);
 	if (size < 4)
 		parsing_line_error_tmp(p, line, tmp, "Invalid map parameter (NORTH)");
-	parsing_textures_no(p, line, tmp, size);
+	p->mlx->walls[C_N].wall = select_texture(tmp, size);
+	if (!p->mlx->walls[C_N].wall)
+		p->mlx->walls[C_N].color = parsing_rgb(p, tmp);
+	else
+		parsing_textures_no(p, line, tmp);
 	free(tmp);
 	p->parameters |= P_NO;
 }
 
-static void	parsing_textures_so(t_param *p, char *line, char *tmp, int size)
+static void	parsing_textures_so(t_param *p, char *line, char *tmp)
 {
-	if (tmp[size - 4] == '.' && tmp[size - 3] == 'x'
-		&& tmp[size - 2] == 'p' && tmp[size - 1] == 'm')
+	if (p->mlx->walls[C_S].wall == 1)
 	{
-		if (!xpm_to_img(p->mlx->mlx_ptr, &p->mlx->so, tmp))
+		if (!xpm_to_img(p->mlx->mlx_ptr, &p->mlx->walls[C_S].texture, tmp))
 			parsing_line_error_tmp(p, line, tmp,
 				"Invalid texture file (SOUTH)");
 		p->free |= F_MLX_SO;
 	}
-	else if (tmp[size - 4] == '.' && tmp[size - 3] == 'p'
-		&& tmp[size - 2] == 'n' && tmp[size - 1] == 'g')
+	else if (p->mlx->walls[C_S].wall == 2)
 	{
-		if (!png_to_img(p->mlx->mlx_ptr, &p->mlx->so, tmp))
+		if (!png_to_img(p->mlx->mlx_ptr, &p->mlx->walls[C_S].texture, tmp))
 			parsing_line_error_tmp(p, line, tmp,
 				"Invalid texture file (SOUTH)");
 		p->free |= F_MLX_SO;
@@ -97,7 +97,11 @@ void	parsing_so(t_param *p, char *line, int i)
 	size = ft_strlen(tmp);
 	if (size < 4)
 		parsing_line_error_tmp(p, line, tmp, "Invalid map parameter (SOUTH)");
-	parsing_textures_so(p, line, tmp, size);
+	p->mlx->walls[C_S].wall = select_texture(tmp, size);
+	if (!p->mlx->walls[C_S].wall)
+		p->mlx->walls[C_S].color = parsing_rgb(p, tmp);
+	else
+		parsing_textures_so(p, line, tmp);
 	free(tmp);
 	p->parameters |= P_SO;
 }
