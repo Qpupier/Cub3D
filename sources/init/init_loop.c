@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 14:17:00 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/06 18:01:53 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/14 17:36:02 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	init_rays_theta(t_param *p)
 	int	theta;
 	int	i;
 
-	p->rays_theta = malloc(sizeof(t_vec*) * 360);
+	p->rays_theta = malloc(sizeof(t_vec *) * 360);
 	theta = -1;
 	if (!p->rays_theta)
 		ft_error_free_array(p, theta, "Malloc error - Init rays_theta");

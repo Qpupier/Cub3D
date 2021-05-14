@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 13:26:27 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/12 18:44:03 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/14 17:37:28 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 static int	key_release_quater(t_key key, t_param *p)
 {
-	if (key == K_CMD)
+	if (key == K_SHIFT)
+		p->mlx->hook_buttons ^= H_SHIFT;
+	else if (key == K_CMD)
 		p->mlx->hook_buttons ^= H_CMD;
 	else if (key == K_ALT)
 		p->mlx->hook_buttons ^= H_ALT;
@@ -45,8 +47,6 @@ static int	key_release_ter(t_key key, t_param *p)
 		p->mlx->hook_buttons ^= H_UP;
 	else if (key == K_CTRL)
 		p->mlx->hook_buttons ^= H_CTRL;
-	else if (key == K_SHIFT)
-		p->mlx->hook_buttons ^= H_SHIFT;
 	else
 		return (key_release_quater(key, p));
 	return (0);

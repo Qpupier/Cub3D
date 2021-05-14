@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 15:32:53 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/06 16:24:20 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/14 17:19:35 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	parsing_parameters(t_param *p, char *line)
 	if (!line)
 		return (0);
 	i = 0;
-	while (line[i] && line[i] == ' ')
+	while (line[i] && (line[i] == ' ' || line[i] == '	'))
 		i++;
 	if (!line[i])
 		return (0);

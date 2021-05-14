@@ -6,35 +6,46 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 17:40:27 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/14 10:15:50 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/14 17:44:34 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+static void	free_mlx_floor_ceil(t_param *p)
+{
+	if (p->free & F_MLX_F)
+		free_image(p, "Impossible to destroy image (FLOOR)", F_MLX_F, \
+				p->mlx->walls[C_F].texture.ptr);
+	if (p->free & F_MLX_C)
+		free_image(p, "Impossible to destroy image (CEIL)", F_MLX_C, \
+				p->mlx->walls[C_C].texture.ptr);
+}
+
 static void	free_mlx(t_param *p)
 {
 	if (p->free & F_MLX_IMG)
-		free_image(p, "Impossible to destroy image", F_MLX_IMG,
-			p->mlx->img.ptr);
+		free_image(p, "Impossible to destroy image", F_MLX_IMG, \
+				p->mlx->img.ptr);
 	if (p->free & F_MLX_NO)
-		free_image(p, "Impossible to destroy image (NORTH)", F_MLX_NO,
-			p->mlx->walls[C_N].texture.ptr);
+		free_image(p, "Impossible to destroy image (NORTH)", F_MLX_NO, \
+				p->mlx->walls[C_N].texture.ptr);
 	if (p->free & F_MLX_SO)
-		free_image(p, "Impossible to destroy image (SOUTH)", F_MLX_SO,
-			p->mlx->walls[C_S].texture.ptr);
+		free_image(p, "Impossible to destroy image (SOUTH)", F_MLX_SO, \
+				p->mlx->walls[C_S].texture.ptr);
 	if (p->free & F_MLX_WE)
-		free_image(p, "Impossible to destroy image (WEST)", F_MLX_WE,
-			p->mlx->walls[C_W].texture.ptr);
+		free_image(p, "Impossible to destroy image (WEST)", F_MLX_WE, \
+				p->mlx->walls[C_W].texture.ptr);
 	if (p->free & F_MLX_EA)
-		free_image(p, "Impossible to destroy image (EAST)", F_MLX_EA,
-			p->mlx->walls[C_E].texture.ptr);//RAJOUTER SOL ET PLAFOND
+		free_image(p, "Impossible to destroy image (EAST)", F_MLX_EA, \
+				p->mlx->walls[C_E].texture.ptr);
+	free_mlx_floor_ceil(p);
 	if (p->free & F_MLX_S)
-		free_image(p, "Impossible to destroy image (SPRITE)", F_MLX_S,
-			p->mlx->s.ptr);
+		free_image(p, "Impossible to destroy image (SPRITE)", F_MLX_S, \
+				p->mlx->s.ptr);
 	if (p->free & F_MLX_WIN)
-		free_window(p, "Impossible to destroy window", F_MLX_WIN,
-			p->mlx->win_ptr);
+		free_window(p, "Impossible to destroy window", F_MLX_WIN, \
+				p->mlx->win_ptr);
 	if (p->free & F_MLX_PTR)
 		free_one(p, p->mlx->mlx_ptr, F_MLX_PTR);
 	free_one(p, p->mlx, F_MLX);

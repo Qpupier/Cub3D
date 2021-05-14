@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 16:50:50 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/14 16:26:59 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/14 17:21:44 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ void	parsing_no(t_param *p, char *line, int i)
 
 	if (p->parameters & P_NO)
 		parsing_line_error(p, line, "Parameter already declared (NORTH)");
-	if (!line[i] || line[i] != 'O' || !line[++i] || line[i] != ' ')
+	if (!line[i] || line[i] != 'O' || !line[++i] || (line[i] != ' ' \
+			&& line[i] != '	'))
 		parsing_line_error(p, line, "Invalid map parameter (NORTH)");
 	while (line[i] && line[i] == ' ')
 		i++;
@@ -64,15 +65,15 @@ static void	parsing_textures_so(t_param *p, char *line, char *tmp)
 	if (p->mlx->walls[C_S].wall == 1)
 	{
 		if (!xpm_to_img(p->mlx->mlx_ptr, &p->mlx->walls[C_S].texture, tmp))
-			parsing_line_error_tmp(p, line, tmp,
-				"Invalid texture file (SOUTH)");
+			parsing_line_error_tmp(p, line, tmp, \
+					"Invalid texture file (SOUTH)");
 		p->free |= F_MLX_SO;
 	}
 	else if (p->mlx->walls[C_S].wall == 2)
 	{
 		if (!png_to_img(p->mlx->mlx_ptr, &p->mlx->walls[C_S].texture, tmp))
-			parsing_line_error_tmp(p, line, tmp,
-				"Invalid texture file (SOUTH)");
+			parsing_line_error_tmp(p, line, tmp, \
+					"Invalid texture file (SOUTH)");
 		p->free |= F_MLX_SO;
 	}
 	else
@@ -86,7 +87,8 @@ void	parsing_so(t_param *p, char *line, int i)
 
 	if (p->parameters & P_SO)
 		parsing_line_error(p, line, "Parameter already declared (SOUTH)");
-	if (!line[i] || line[i] != 'O' || !line[++i] || line[i] != ' ')
+	if (!line[i] || line[i] != 'O' || !line[++i] || (line[i] != ' ' \
+			&& line[i] != '	'))
 		parsing_line_error(p, line, "Invalid map parameter (SOUTH)");
 	while (line[i] && line[i] == ' ')
 		i++;

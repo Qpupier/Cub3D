@@ -6,11 +6,22 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 16:50:50 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/14 15:51:51 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/14 17:35:10 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+unsigned short int	select_texture(char *tmp, int size)
+{
+	if (tmp[size - 4] == '.' && tmp[size - 3] == 'x' \
+			&& tmp[size - 2] == 'p' && tmp[size - 1] == 'm')
+		return (1);
+	if (tmp[size - 4] == '.' && tmp[size - 3] == 'p' \
+			&& tmp[size - 2] == 'n' && tmp[size - 1] == 'g')
+		return (2);
+	return (0);
+}
 
 static void	parsing_textures_s(t_param *p, char *line, char *tmp, int size)
 {
@@ -41,9 +52,9 @@ void	parsing_s(t_param *p, char *line, int i)
 
 	if (p->parameters & P_S)
 		parsing_line_error(p, line, "Parameter already declared (SPRITE)");
-	if (!line[i] || line[i] != ' ')
+	if (!line[i] || (line[i] != ' ' && line[i] != '	'))
 		parsing_line_error(p, line, "Invalid map parameter (SPRITE)");
-	while (line[i] && line[i] == ' ')
+	while (line[i] && (line[i] == ' ' || line[i] == '	'))
 		i++;
 	size = ft_strlen(line);
 	if (size < 4 || !line[i])

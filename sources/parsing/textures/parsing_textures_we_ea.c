@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 16:50:50 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/14 16:26:49 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/14 17:23:09 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void	parsing_we(t_param *p, char *line, int i)
 
 	if (p->parameters & P_WE)
 		parsing_line_error(p, line, "Parameter already declared (WEST)");
-	if (!line[i] || line[i] != 'E' || !line[++i] || line[i] != ' ')
+	if (!line[i] || line[i] != 'E' || !line[++i] || (line[i] != ' ' \
+			&& line[i] != ' '))
 		parsing_line_error(p, line, "Invalid map parameter (WEST)");
 	while (line[i] && line[i] == ' ')
 		i++;
@@ -82,7 +83,8 @@ void	parsing_ea(t_param *p, char *line, int i)
 
 	if (p->parameters & P_EA)
 		parsing_line_error(p, line, "Parameter already declared (EAST)");
-	if (!line[i] || line[i] != 'A' || !line[++i] || line[i] != ' ')
+	if (!line[i] || line[i] != 'A' || !line[++i] || (line[i] != ' ' \
+			&& line[i] != ' '))
 		parsing_line_error(p, line, "Invalid map parameter (EAST)");
 	while (line[i] && line[i] == ' ')
 		i++;
