@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 10:55:35 by qpupier           #+#    #+#             */
-/*   Updated: 2021/03/11 20:23:05 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/14 18:53:51 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	convert_array_line(t_map *map, char *line, int j)
 			break ;
 		if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 		{
-			map->player = (t_vec){i + 0.5, j + 0.5, 0.5};
+			map->player = (t_vec){i + 0.5, j + 0.5, Z};
 			c = ' ';
 		}
 		if (c != ' ')

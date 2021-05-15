@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:52:32 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/14 15:56:47 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/14 18:56:00 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 # define FOV 60//A verifier
 # define G 9.80665//A verifier
+# define Z 0.7// A VERIFIER
 
 typedef enum e_free//unsigned int
 {

@@ -6,7 +6,7 @@
 #    By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/12 15:48:25 by qpupier           #+#    #+#              #
-#    Updated: 2021/05/14 15:24:33 by qpupier          ###   ########lyon.fr    #
+#    Updated: 2021/05/14 17:51:52 by qpupier          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ INC_NAME	=	cub3d.h 	\
 SRC			=	$(addprefix $(SRC_PATH)/,$(SRC_NAME))
 OBJ			=	$(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 INC			=	$(addprefix $(INC_PATH)/,$(INC_NAME))
-LDFLAGS		=	-O3 -march=native -flto -ffast-math
+LDFLAGS		=	-O3 -march=native -flto -ffast-math -Ofast
 
 ifeq ($(OS), Windows_NT)
 	LIBS		=	-L libft -L mlx

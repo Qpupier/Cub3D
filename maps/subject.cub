@@ -6,7 +6,7 @@ EA assets/block/blackstone.png
 
 S ./assets/action.xpm
 F assets/block/acacia_log_top.png
-C 200,200,255,100
+C 200,200,255,42
 
 1111111111
 1000000001
