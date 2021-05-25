@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 20:24:44 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/14 17:29:49 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/25 12:48:39 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@ static void	init_win(t_param *p)
 	p->win->w05 = p->win->w * 0.5;
 	p->win->h05 = p->win->h * 0.5;
 	p->win->fov_v = 2 * tan(p->win->fov_h * p->win->h * 0.5 / p->win->w);
+	if (p->win->fov_v < 0)
+		p->win->fov_v = -p->win->fov_v;
+	if (p->win->fov_h > 2 || p->win->fov_v > 1)
+		ft_putendl("Beware, this field of vision is not humanly possible !");
 	p->win->r_fov_h = p->win->fov_h / p->win->w;
 	p->win->r_fov_v = p->win->fov_v / p->win->h;
 }

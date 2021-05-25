@@ -6,7 +6,7 @@
 #    By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/12 15:48:25 by qpupier           #+#    #+#              #
-#    Updated: 2021/05/14 17:51:52 by qpupier          ###   ########lyon.fr    #
+#    Updated: 2021/05/25 14:26:16 by qpupier          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRC_NAME	=	engine/algo.c 								\
 				events/events.c 							\
 				events/hook.c 								\
 				events/key_release.c 						\
+				events/newton.c 							\
 				init/init.c 								\
 				init/init_loop.c 							\
 				init/init_strings_fps.c 					\
