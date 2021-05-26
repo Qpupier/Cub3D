@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 18:40:51 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/26 19:17:37 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/26 20:18:17 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	collisions(t_param *p, t_vec vec)
 			|| !p->map->map[(int)vec.y][(int)p->map->player.x];
 	move_xy = (move_x || move_y) && (out_x || out_y \
 			|| !p->map->map[(int)vec.y][(int)vec.x]);
-	if (move_xy)
+	if (p->map->player.z > 1 || move_xy)
 		p->map->player = vec;
 	else if (!move_x || !move_y)
 	{
@@ -74,22 +74,47 @@ void	events(t_param *p)
 		p->map->player.z += 0.3;
 	if (p->mlx->hook_alpha & H_F && p->map->player.z - 0.3 < 1 - MAXFLOAT)
 		p->map->player.z -= 0.3;
-	if (!(p->mlx->hook_buttons & H_SPACE))
+	if (!p->jump->jump)
 	{
-		if (!(p->mlx->hook_buttons & H_SHIFT))
+		if (!(p->mlx->hook_buttons & H_SPACE))
 		{
-			vec = (t_vec){0, 0, 0};
-			if (p->mlx->hook_alpha & H_W)
-				vec = vec_add(vec, p->pre_move[0][p->angle_h]);
-			if (p->mlx->hook_alpha & H_A)
-				vec = vec_add(vec, p->pre_move[1][p->angle_h]);
-			if (p->mlx->hook_alpha & H_S)
-				vec = vec_add(vec, p->pre_move[2][p->angle_h]);
-			if (p->mlx->hook_alpha & H_D)
-				vec = vec_add(vec, p->pre_move[3][p->angle_h]);
-			collisions(p, vec_add(p->map->player, vec));
+			if (!(p->mlx->hook_buttons & H_SHIFT))
+			{
+				vec = (t_vec){0, 0, 0};
+				if (p->mlx->hook_alpha & H_W)
+					vec = vec_add(vec, p->pre_move[0][p->angle_h]);
+				if (p->mlx->hook_alpha & H_A)
+					vec = vec_add(vec, p->pre_move[1][p->angle_h]);
+				if (p->mlx->hook_alpha & H_S)
+					vec = vec_add(vec, p->pre_move[2][p->angle_h]);
+				if (p->mlx->hook_alpha & H_D)
+					vec = vec_add(vec, p->pre_move[3][p->angle_h]);
+				collisions(p, vec_add(p->map->player, vec));
+				if (p->gravity && p->map->player.z > Z)
+				{
+					p->jump->jump = 1;
+					p->jump->p0 = p->map->player;
+					p->jump->t = 0;
+					p->jump->phi = 0;
+					p->jump->theta = 0;
+					p->jump->v0 = 0;
+				}
+			}
+			else
+			{
+				card = 0;
+				if (p->mlx->hook_alpha & H_W)
+					card += M_W;
+				if (p->mlx->hook_alpha & H_A)
+					card += M_A;
+				if (p->mlx->hook_alpha & H_S)
+					card += M_S;
+				if (p->mlx->hook_alpha & H_D)
+					card += M_D;
+				move(p, card);
+			}
 		}
-		else if (!p->jump->jump)
+		else if (!(p->mlx->hook_buttons & H_SHIFT))
 		{
 			card = 0;
 			if (p->mlx->hook_alpha & H_W)
@@ -100,21 +125,8 @@ void	events(t_param *p)
 				card += M_S;
 			if (p->mlx->hook_alpha & H_D)
 				card += M_D;
-			move(p, card);
+			jump(p, card);
 		}
-	}
-	else if (!(p->mlx->hook_buttons & H_SHIFT || p->jump->jump))
-	{
-		card = 0;
-		if (p->mlx->hook_alpha & H_W)
-			card += M_W;
-		if (p->mlx->hook_alpha & H_A)
-			card += M_A;
-		if (p->mlx->hook_alpha & H_S)
-			card += M_S;
-		if (p->mlx->hook_alpha & H_D)
-			card += M_D;
-		jump(p, card);
 	}
 	if (p->mlx->hook_alpha & H_C)
 	{
@@ -124,6 +136,14 @@ void	events(t_param *p)
 	}
 	else
 		p->key_ceil = 0;
+	if (p->mlx->hook_alpha & H_G)
+	{
+		if (!p->key_gravity)
+			p->gravity = !p->gravity;
+		p->key_gravity = 1;
+	}
+	else
+		p->key_gravity = 0;
 	if (p->jump->jump)
 		ft_newton(p);
 }

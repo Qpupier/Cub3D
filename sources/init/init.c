@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:07:08 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/14 16:00:34 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/26 20:15:05 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void	init(t_param *p)
 	p->rays = NULL;
 	p->rays_theta = NULL;
 	p->fps = 0;
+	p->gravity = 1;
 	p->parameters = 0;
 	p->angle_h = 0;
 	p->angle_v = 0;

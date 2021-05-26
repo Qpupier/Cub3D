@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 17:24:54 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/26 19:06:32 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/26 20:16:55 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,15 @@ typedef struct s_param
 	t_vec				*rays;
 	t_vec				**rays_theta;
 	unsigned int		free;
+	unsigned short int	ceil;
 	unsigned short int	fd;
 	unsigned short int	fps;
+	unsigned short int	gravity;
+	unsigned short int	key_gravity;
+	unsigned short int	key_ceil;
 	unsigned short int	parameters;
 	short int			angle_h;
 	short int			angle_v;
-	short int			key_ceil;
-	short int			ceil;
 	float				rad;
 	float				trigo_cos[360];
 	float				trigo_sin[360];
