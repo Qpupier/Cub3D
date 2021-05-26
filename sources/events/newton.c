@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 14:22:26 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/25 18:20:11 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/26 12:36:29 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,10 +107,8 @@ static t_vec	equation(t_param *p)
 
 	ext1 = (t_vec){p->jump->p0.x, p->jump->p0.y, Z};
 	ext2 = (t_vec){p->jump->p0.x, p->jump->p0.y, Z};
-	// printf("%f, %f | %f, %f\n", ext1.x, ext1.y, ext2.x, ext2.y);
 	equation_x(p, &ext1.x, &ext2.x);
 	equation_y(p, &ext1.y, &ext2.y);
-	// printf("%f, %f | %f, %f\n\n", ext1.x, ext1.y, ext2.x, ext2.y);
 	return (choice_equation_point(p, ext1, ext2, &result));
 }
 

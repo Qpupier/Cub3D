@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 18:06:30 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/07 15:44:55 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/26 14:41:23 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ float	intersec_planes_e(t_param *p, t_line line, float *r_w, float *r_h)
 	float		t;
 
 	i = p->map->player.x;
-	if (i < -1)
+	if (p->map->player.x < 0)
 		i = -1;
 	while (++i <= p->map->w)
 	{
@@ -80,7 +80,7 @@ float	intersec_planes_s(t_param *p, t_line line, float *r_w, float *r_h)
 	float		t;
 
 	i = p->map->player.y;
-	if (i < -1)
+	if (p->map->player.y < 0)
 		i = -1;
 	while (++i <= p->map->h)
 	{
