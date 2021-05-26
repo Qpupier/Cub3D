@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 14:22:26 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/26 12:36:29 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/26 19:09:45 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,10 @@ static t_vec	choice_equation_point(t_param *p, t_vec ext1, t_vec ext2, \
 		float	*result)
 {
 	t_vec	potential[4];
-	t_vec	orig;
 	t_vec	point;
 	int		i;
 	float	v[4];
 
-	orig = vec_rot_z((t_vec){1, 0, 0}, p->jump->phi * M_PI / 180);//A MODIFIER avec les avancements
 	potential[0] = (t_vec){ext1.x, ext1.y, Z};
 	potential[1] = (t_vec){ext1.x, ext2.y, Z};
 	potential[2] = (t_vec){ext2.x, ext1.y, Z};
@@ -89,7 +87,8 @@ static t_vec	choice_equation_point(t_param *p, t_vec ext1, t_vec ext2, \
 	i = -1;
 	while (++i < 4)
 	{
-		v[i] = vec_scale_product(orig, vec_sub(potential[i], p->map->player));
+		v[i] = vec_scale_product(p->pre_move[4][p->jump->phi], \
+				vec_sub(potential[i], p->map->player));
 		if (v[i] > *result)
 		{
 			*result = v[i];

@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 17:24:54 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/14 15:03:43 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/26 19:06:32 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ typedef struct s_param
 	float				rad;
 	float				trigo_cos[360];
 	float				trigo_sin[360];
+	t_vec				pre_move[5][360];
 	// int				nb_sprites;
 	// t_sprite			*sprites;
 }t_param;

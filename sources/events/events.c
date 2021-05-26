@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 18:40:51 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/26 17:44:23 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/26 19:17:37 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,23 +70,23 @@ void	events(t_param *p)
 		if (p->angle_v >= 360)
 			p->angle_v -= 360;
 	}
-	if (p->mlx->hook_alpha & H_R)
-		p->map->player.z += 0.3;//A LIMITER
-	if (p->mlx->hook_alpha & H_F)
-		p->map->player.z -= 0.3;//A LIMITER
+	if (p->mlx->hook_alpha & H_R && p->map->player.z + 0.3 < MAXFLOAT)
+		p->map->player.z += 0.3;
+	if (p->mlx->hook_alpha & H_F && p->map->player.z - 0.3 < 1 - MAXFLOAT)
+		p->map->player.z -= 0.3;
 	if (!(p->mlx->hook_buttons & H_SPACE))
 	{
 		if (!(p->mlx->hook_buttons & H_SHIFT))
 		{
 			vec = (t_vec){0, 0, 0};
 			if (p->mlx->hook_alpha & H_W)
-				vec = vec_add(vec, vec_rot_z((t_vec){0, -0.3, 0}, p->angle_h * M_PI / 180));//PRECALCULER
-			if (p->mlx->hook_alpha & H_S)
-				vec = vec_add(vec, vec_rot_z((t_vec){0, 0.3, 0}, p->angle_h * M_PI / 180));//PRECALCULER
+				vec = vec_add(vec, p->pre_move[0][p->angle_h]);
 			if (p->mlx->hook_alpha & H_A)
-				vec = vec_add(vec, vec_rot_z((t_vec){-0.3, 0, 0}, p->angle_h * M_PI / 180));//PRECALCULER
+				vec = vec_add(vec, p->pre_move[1][p->angle_h]);
+			if (p->mlx->hook_alpha & H_S)
+				vec = vec_add(vec, p->pre_move[2][p->angle_h]);
 			if (p->mlx->hook_alpha & H_D)
-				vec = vec_add(vec, vec_rot_z((t_vec){0.3, 0, 0}, p->angle_h * M_PI / 180));//PRECALCULER
+				vec = vec_add(vec, p->pre_move[3][p->angle_h]);
 			collisions(p, vec_add(p->map->player, vec));
 		}
 		else if (!p->jump->jump)
