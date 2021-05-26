@@ -6,69 +6,16 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 18:40:51 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/25 18:14:13 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/26 11:56:53 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	jump(t_param *p)
-{
-	p->jump->jump = 1;
-	p->jump->p0 = p->map->player;
-	p->jump->t = 0;
-	p->jump->phi = 0;
-	p->jump->theta = 0;
-}
-
-void	jump_w(t_param *p)
-{
-	p->jump->jump = 1;
-	p->jump->p0 = p->map->player;
-	p->jump->t = 0;
-	p->jump->phi = p->angle_h - 90;
-	if (p->jump->phi < 0)
-		p->jump->phi += 360;
-	p->jump->theta = 65;
-	p->jump->v0 = 4;
-}
-
-void	jump_a(t_param *p)
-{
-	p->jump->jump = 1;
-	p->jump->p0 = p->map->player;
-	p->jump->t = 0;
-	p->jump->phi = p->angle_h + 180;
-	if (p->jump->phi >= 360)
-		p->jump->phi -= 360;
-	p->jump->theta = 65;
-	p->jump->v0 = 4;
-}
-
-void	jump_s(t_param *p)
-{
-	p->jump->jump = 1;
-	p->jump->p0 = p->map->player;
-	p->jump->t = 0;
-	p->jump->phi = p->angle_h + 90;
-	if (p->jump->phi >= 360)
-		p->jump->phi -= 360;
-	p->jump->theta = 65;
-	p->jump->v0 = 4;
-}
-
-void	jump_d(t_param *p)
-{
-	p->jump->jump = 1;
-	p->jump->p0 = p->map->player;
-	p->jump->t = 0;
-	p->jump->phi = p->angle_h;
-	p->jump->theta = 65;
-	p->jump->v0 = 4;
-}
-
 void	events(t_param *p)
 {
+	t_move_buttons card;
+
 	if (p->mlx->hook_buttons & H_ESC)
 		win_exit(p);
 	if (p->mlx->hook_buttons & H_LEFT)
@@ -101,27 +48,43 @@ void	events(t_param *p)
 		p->map->player.z -= 0.3;//A LIMITER
 	if (!(p->mlx->hook_buttons & H_SPACE))
 	{
-		if (p->mlx->hook_alpha & H_W)
-			p->map->player = vec_add(p->map->player, vec_rot_z((t_vec){0, -0.3, 0}, p->angle_h * M_PI / 180));//PRECALCULER
-		if (p->mlx->hook_alpha & H_S)
-			p->map->player = vec_add(p->map->player, vec_rot_z((t_vec){0, 0.3, 0}, p->angle_h * M_PI / 180));//PRECALCULER
-		if (p->mlx->hook_alpha & H_A)
-			p->map->player = vec_add(p->map->player, vec_rot_z((t_vec){-0.3, 0, 0}, p->angle_h * M_PI / 180));//PRECALCULER
-		if (p->mlx->hook_alpha & H_D)
-			p->map->player = vec_add(p->map->player, vec_rot_z((t_vec){0.3, 0, 0}, p->angle_h * M_PI / 180));//PRECALCULER
+		if (p->mlx->hook_buttons & H_SHIFT)
+		{
+			if (p->mlx->hook_alpha & H_W)
+				p->map->player = vec_add(p->map->player, vec_rot_z((t_vec){0, -0.3, 0}, p->angle_h * M_PI / 180));//PRECALCULER
+			if (p->mlx->hook_alpha & H_S)
+				p->map->player = vec_add(p->map->player, vec_rot_z((t_vec){0, 0.3, 0}, p->angle_h * M_PI / 180));//PRECALCULER
+			if (p->mlx->hook_alpha & H_A)
+				p->map->player = vec_add(p->map->player, vec_rot_z((t_vec){-0.3, 0, 0}, p->angle_h * M_PI / 180));//PRECALCULER
+			if (p->mlx->hook_alpha & H_D)
+				p->map->player = vec_add(p->map->player, vec_rot_z((t_vec){0.3, 0, 0}, p->angle_h * M_PI / 180));//PRECALCULER
+		}
+		else if (!p->jump->jump)
+		{
+			card = 0;
+			if (p->mlx->hook_alpha & H_W)
+				card += M_W;
+			if (p->mlx->hook_alpha & H_A)
+				card += M_A;
+			if (p->mlx->hook_alpha & H_S)
+				card += M_S;
+			if (p->mlx->hook_alpha & H_D)
+				card += M_D;
+			move(p, card);
+		}
 	}
-	else if (!p->jump->jump)
+	else if (!(p->mlx->hook_buttons & H_SHIFT || p->jump->jump))
 	{
+		card = 0;
 		if (p->mlx->hook_alpha & H_W)
-			jump_w(p);
-		else if (p->mlx->hook_alpha & H_A)
-			jump_a(p);
-		else if (p->mlx->hook_alpha & H_S)
-			jump_s(p);
-		else if (p->mlx->hook_alpha & H_D)
-			jump_d(p);
-		else
-			jump(p);
+			card += M_W;
+		if (p->mlx->hook_alpha & H_A)
+			card += M_A;
+		if (p->mlx->hook_alpha & H_S)
+			card += M_S;
+		if (p->mlx->hook_alpha & H_D)
+			card += M_D;
+		jump(p, card);
 	}
 	if (p->mlx->hook_alpha & H_C)
 	{

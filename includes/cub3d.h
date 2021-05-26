@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:52:32 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/14 18:56:00 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/26 12:15:05 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,33 @@ typedef enum e_hook_buttons//unsigned int
 	H_CMD	= 1 << 8,
 	H_ALT	= 1 << 9
 }t_hook_buttons;
+
+typedef enum e_move//unsigned short
+{
+	M_W	= 1 << 0,//A VERIFIER
+	M_A	= 1 << 1,
+	M_S	= 1 << 2,
+	M_D	= 1 << 3
+}t_move;
+
+typedef enum e_move_buttons//unsigned short
+{
+	MB_W = 1,//A VERIFIER
+	MB_A,
+	MB_WA,
+	MB_S,
+	MB_WS,
+	MB_AS,
+	MB_WAS,
+	MB_D,
+	MB_WD,
+	MB_AD,
+	MB_WAD,
+	MB_SD,
+	MB_WSD,
+	MB_ASD,
+	MB_WASD,
+}t_move_buttons;
 
 # include "structs.h"
 # include "functions.h"
