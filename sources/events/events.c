@@ -6,15 +6,43 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 18:40:51 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/26 11:56:53 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/26 17:44:23 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+void	collisions(t_param *p, t_vec vec)
+{
+	int	out_x;
+	int	out_y;
+	int	move_x;
+	int	move_y;
+	int	move_xy;
+
+	out_x = vec.x < 0 || vec.x >= p->map->w;
+	out_y = vec.y < 0 || vec.y >= p->map->h;
+	move_x = out_x || p->map->player.y < 0 || p->map->player.y >= p->map->h \
+			|| !p->map->map[(int)p->map->player.y][(int)vec.x];
+	move_y = out_y || p->map->player.x < 0 || p->map->player.x >= p->map->w \
+			|| !p->map->map[(int)vec.y][(int)p->map->player.x];
+	move_xy = (move_x || move_y) && (out_x || out_y \
+			|| !p->map->map[(int)vec.y][(int)vec.x]);
+	if (move_xy)
+		p->map->player = vec;
+	else if (!move_x || !move_y)
+	{
+		if (move_x)
+			p->map->player.x = vec.x;
+		else if (move_y)
+			p->map->player.y = vec.y;
+	}
+}
+
 void	events(t_param *p)
 {
-	t_move_buttons card;
+	t_move_buttons	card;
+	t_vec			vec;
 
 	if (p->mlx->hook_buttons & H_ESC)
 		win_exit(p);
@@ -48,16 +76,18 @@ void	events(t_param *p)
 		p->map->player.z -= 0.3;//A LIMITER
 	if (!(p->mlx->hook_buttons & H_SPACE))
 	{
-		if (p->mlx->hook_buttons & H_SHIFT)
+		if (!(p->mlx->hook_buttons & H_SHIFT))
 		{
+			vec = (t_vec){0, 0, 0};
 			if (p->mlx->hook_alpha & H_W)
-				p->map->player = vec_add(p->map->player, vec_rot_z((t_vec){0, -0.3, 0}, p->angle_h * M_PI / 180));//PRECALCULER
+				vec = vec_add(vec, vec_rot_z((t_vec){0, -0.3, 0}, p->angle_h * M_PI / 180));//PRECALCULER
 			if (p->mlx->hook_alpha & H_S)
-				p->map->player = vec_add(p->map->player, vec_rot_z((t_vec){0, 0.3, 0}, p->angle_h * M_PI / 180));//PRECALCULER
+				vec = vec_add(vec, vec_rot_z((t_vec){0, 0.3, 0}, p->angle_h * M_PI / 180));//PRECALCULER
 			if (p->mlx->hook_alpha & H_A)
-				p->map->player = vec_add(p->map->player, vec_rot_z((t_vec){-0.3, 0, 0}, p->angle_h * M_PI / 180));//PRECALCULER
+				vec = vec_add(vec, vec_rot_z((t_vec){-0.3, 0, 0}, p->angle_h * M_PI / 180));//PRECALCULER
 			if (p->mlx->hook_alpha & H_D)
-				p->map->player = vec_add(p->map->player, vec_rot_z((t_vec){0.3, 0, 0}, p->angle_h * M_PI / 180));//PRECALCULER
+				vec = vec_add(vec, vec_rot_z((t_vec){0.3, 0, 0}, p->angle_h * M_PI / 180));//PRECALCULER
+			collisions(p, vec_add(p->map->player, vec));
 		}
 		else if (!p->jump->jump)
 		{
