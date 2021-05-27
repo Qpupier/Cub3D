@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 18:06:30 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/26 14:41:23 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/27 20:04:35 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 static inline short int	in_map(t_map *map, int x, int y)
 {
-	return (x >= 0 && x < map->w && y >= 0 && y < map->h && map->map[y][x]);
+	return (x >= 0 && x < map->w && y >= 0 && y < map->h \
+			&& map->map[y][x] == 1);
 }
 
 float	intersec_planes_e(t_param *p, t_line line, float *r_w, float *r_h)

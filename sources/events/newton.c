@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 14:22:26 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/27 17:05:59 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/27 20:01:02 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ void	ft_newton(t_param *p)
 			* 0.5 + p->trigo_cos[p->jump->theta] * p->jump->v0 * p->jump->t};
 	tmp = vec_add(p->jump->p0, vec);
 	verif_tmp = tmp.x < 0 || tmp.x >= p->map->w || tmp.y < 0 \
-			|| tmp.y >= p->map->h || !p->map->map[(int)tmp.y][(int)tmp.x];
+			|| tmp.y >= p->map->h || p->map->map[(int)tmp.y][(int)tmp.x] != 1;
 	if (old && tmp.z >= Z && tmp.z < Z + 1 && !verif_tmp)
 		set_gravity(p);
 	else if (tmp.z >= Z + 1 || (tmp.z >= Z && verif_tmp))

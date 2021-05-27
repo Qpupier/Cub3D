@@ -6,20 +6,29 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 15:36:27 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/04 17:45:45 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/27 20:41:49 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	free_lst(t_parsing *map)
+void	free_lst_map(t_parsing *map)
 {
 	if (!map)
 		return ;
-	free_lst(map->next);
+	free_lst_map(map->next);
 	free(map->line);
 	free(map);
 	map = NULL;
+}
+
+void	free_lst_sprites(t_lst_sprites *sprites)
+{
+	if (!sprites)
+		return ;
+	free_lst_sprites(sprites->next);
+	free(sprites);
+	sprites = NULL;
 }
 
 void	lst_append(t_parsing **map, t_param *p, char *line)

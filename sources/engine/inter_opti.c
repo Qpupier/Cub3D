@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 09:42:18 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/26 19:12:31 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/27 20:01:38 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ float	intersec_plane_c(t_param *p, t_line line, float *r_w, float *r_h)
 	result = vec_add(line.o, vec_mult_float(line.u, t));
 	if (result.x >= 0 && result.x < p->map->w && result.y >= 0 \
 			&& result.y < p->map->h \
-			&& (!p->ceil || p->map->map[(int)result.y][(int)result.x]))
+			&& (!p->ceil || p->map->map[(int)result.y][(int)result.x] == 1))
 	{
 		*r_w = result.x - (int)result.x;
 		*r_h = result.y - (int)result.y;

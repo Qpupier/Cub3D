@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:07:08 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/26 20:15:05 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/27 20:02:12 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	init(t_param *p)
 	p->ceil = 0;
 	p->rad = M_PI / 180;
 	init_trigo(p);
-	// p->nb_sprites = 0;
+	p->nb_sprites = 0;
 }
 
 void	verif_defines(void)// A modidfier et compléter

@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 17:40:27 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/14 17:44:34 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/27 20:27:21 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ void	free_all(t_param *p)
 		free_one(p, p->rays, F_RAYS);
 	if (p->free & F_RAYS_THETA)
 		free_rays_theta(p);
-	// if (p->free & F_SPRITES)
-		// free_one(p, p->sprites, F_SPRITES);
+	if (p->free & F_SPRITES)
+		free_one(p, p->sprites, F_SPRITES);
 	if (p->free & F_NEWTON)
 		free_one(p, p->jump, F_NEWTON);
 	if (p->free & F_CLOSE)

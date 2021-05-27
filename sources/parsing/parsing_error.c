@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:20:01 by qpupier           #+#    #+#             */
-/*   Updated: 2021/02/06 17:48:19 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/27 20:42:44 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	parsing_line_error_tmp(t_param *p, char *l, char *t, const char *error)
 
 void	parsing_lst_error(t_param *p, t_parsing *map, const char *error)
 {
-	free_lst(map);
+	free_lst_map(map);
 	parsing_error(p, error);
 }
 
@@ -41,7 +41,7 @@ void	parsing_array_error(t_param *p, t_parsing *map, int nb, 	\
 {
 	int	i;
 
-	free_lst(map);
+	free_lst_map(map);
 	i = -1;
 	while (++i < nb)
 		free(p->map->map[i]);

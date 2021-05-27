@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 10:55:35 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/21 15:37:41 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/27 20:41:07 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	convert_array_line(t_map *map, char *line, int j)
 		map->map[j][i] = 0;
 }
 
-void	convert_array(t_param *p, t_parsing *lst)
+static void	convert_array_map(t_param *p, t_parsing *lst)
 {
 	int			j;
 	t_parsing	*tmp;
@@ -59,7 +59,31 @@ void	convert_array(t_param *p, t_parsing *lst)
 		tmp = tmp->next;
 	}
 	p->free |= F_MAP_MAP;
-	free_lst(lst);
+	free_lst_map(lst);
+}
+
+static void	convert_array_sprites(t_param *p, t_lst_sprites *sprites)
+{
+	// int				j;
+	// t_lst_sprites	*tmp;
+
+	// tmp = sprites;
+	// while (tmp && !tmp->line)
+	// 	tmp = tmp->next;
+	// p->map->map = malloc(sizeof(int *) * p->map->h);
+	// if (!p->map->map)
+	// 	parsing_lst_error(p, sprites, "Malloc error - Map array");
+	// j = -1;
+	// while (++j < p->map->h)
+	// {
+	// 	p->map->map[j] = malloc(sizeof(int) * p->map->w);
+	// 	if (!p->map->map[j])
+	// 		parsing_array_error(p, sprites, j, "Malloc error - Line map array");
+	// 	convert_array_line(p->map, tmp->line, j);
+	// 	tmp = tmp->next;
+	// }
+	p->free |= F_MAP_MAP;
+	free_lst_sprites(sprites);
 }
 
 int	map_perim_recur(t_map *map, int x, int y, int *w)
@@ -110,9 +134,10 @@ void	check_map(t_param *p)
 
 void	parsing(t_param *p)
 {
-	char		*line;
-	int			parameters;
-	t_parsing	*map;
+	t_lst_sprites	*sprites;
+	t_parsing		*map;
+	char			*line;
+	int				parameters;
 
 	parameters = 0;
 	while (!parameters && get_next_line(p->fd, &line) > 0)
@@ -127,7 +152,9 @@ void	parsing(t_param *p)
 	if (!parameters)
 		parsing_line_error(p, line, "No map");
 	map = parsing_line_map(p, line);
+	sprites = NULL;
 	verif_map(p, map);
-	convert_array(p, map);
+	convert_array_map(p, map);
+	convert_array_sprites(p, sprites);
 	check_map(p);
 }

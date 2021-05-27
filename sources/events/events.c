@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 18:40:51 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/26 20:48:02 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/27 20:00:50 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ void	collisions(t_param *p, t_vec vec)
 	out_x = vec.x < 0 || vec.x >= p->map->w;
 	out_y = vec.y < 0 || vec.y >= p->map->h;
 	move_x = out_x || p->map->player.y < 0 || p->map->player.y >= p->map->h \
-			|| !p->map->map[(int)p->map->player.y][(int)vec.x];
+			|| p->map->map[(int)p->map->player.y][(int)vec.x] != 1;
 	move_y = out_y || p->map->player.x < 0 || p->map->player.x >= p->map->w \
-			|| !p->map->map[(int)vec.y][(int)p->map->player.x];
+			|| p->map->map[(int)vec.y][(int)p->map->player.x] != 1;
 	move_xy = (move_x || move_y) && (out_x || out_y \
-			|| !p->map->map[(int)vec.y][(int)vec.x]);
+			|| p->map->map[(int)vec.y][(int)vec.x] != 1);
 	if (p->map->player.z > 1 || move_xy)
 		p->map->player = vec;
 	else if (!move_x || !move_y)
