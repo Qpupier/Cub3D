@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 15:43:13 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/26 12:13:55 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/26 20:48:19 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ unsigned int	parsing_rgb(t_param *p, char *line);
 void	ft_newton(t_param *p);
 void	jump(t_param *p, t_move_buttons card);
 void	move(t_param *p, t_move_buttons card);
+void	set_gravity(t_param *p);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 18:40:51 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/26 20:18:17 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/26 20:48:02 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,16 @@ void	collisions(t_param *p, t_vec vec)
 	}
 }
 
+void	set_gravity(t_param *p)
+{
+	p->jump->jump = 1;
+	p->jump->p0 = p->map->player;
+	p->jump->t = 0;
+	p->jump->phi = 0;
+	p->jump->theta = 0;
+	p->jump->v0 = 0;
+}
+
 void	events(t_param *p)
 {
 	t_move_buttons	card;
@@ -58,13 +68,13 @@ void	events(t_param *p)
 		if (p->angle_h >= 360)
 			p->angle_h -= 360;
 	}
-	if (p->mlx->hook_buttons & H_UP)
+	if (p->mlx->hook_buttons & H_UP)// A LIMITER
 	{
 		p->angle_v -= 3;
 		if (p->angle_v < 0)
 			p->angle_v += 360;
 	}
-	if (p->mlx->hook_buttons & H_DOWN)
+	if (p->mlx->hook_buttons & H_DOWN)// A LIMITER
 	{
 		p->angle_v += 3;
 		if (p->angle_v >= 360)
@@ -90,15 +100,6 @@ void	events(t_param *p)
 				if (p->mlx->hook_alpha & H_D)
 					vec = vec_add(vec, p->pre_move[3][p->angle_h]);
 				collisions(p, vec_add(p->map->player, vec));
-				if (p->gravity && p->map->player.z > Z)
-				{
-					p->jump->jump = 1;
-					p->jump->p0 = p->map->player;
-					p->jump->t = 0;
-					p->jump->phi = 0;
-					p->jump->theta = 0;
-					p->jump->v0 = 0;
-				}
 			}
 			else
 			{
@@ -146,4 +147,6 @@ void	events(t_param *p)
 		p->key_gravity = 0;
 	if (p->jump->jump)
 		ft_newton(p);
+	else if (p->gravity && p->map->player.z > Z)
+		set_gravity(p);
 }

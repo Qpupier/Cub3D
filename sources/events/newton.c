@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 14:22:26 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/26 19:50:13 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/27 17:05:59 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,25 +115,27 @@ void	ft_newton(t_param *p)
 {
 	t_vec	tmp;
 	t_vec	vec;
-	float	prec1;
-	float	prec2;
 	int		verif_tmp;
+	int		old;
+	float	prec;
 
+	old = p->jump->t;
 	if (p->fps)
 		p->jump->t += 1. / p->fps;
-	prec1 = p->jump->v0 * p->jump->t;
-	prec2 = p->trigo_sin[p->jump->theta] * prec1;
-	vec.x = p->trigo_cos[p->jump->phi] * prec2;
-	vec.y = p->trigo_sin[p->jump->phi] * prec2;
-	vec.z = -G * p->jump->t * p->jump->t * 0.5 + \
-			p->trigo_cos[p->jump->theta] * prec1;
+	prec = p->trigo_sin[p->jump->theta] * p->jump->v0 * p->jump->t;
+	vec = (t_vec){p->trigo_cos[p->jump->phi] * prec, \
+			p->trigo_sin[p->jump->phi] * prec, -G * p->jump->t * p->jump->t \
+			* 0.5 + p->trigo_cos[p->jump->theta] * p->jump->v0 * p->jump->t};
 	tmp = vec_add(p->jump->p0, vec);
-	verif_tmp = tmp.x < 0 || tmp.x >= p->map->w || tmp.y < 0 || tmp.y >= p->map->h || !p->map->map[(int)tmp.y][(int)tmp.x];
-	if (tmp.z >= Z + 1 || (tmp.z >= Z && verif_tmp))
+	verif_tmp = tmp.x < 0 || tmp.x >= p->map->w || tmp.y < 0 \
+			|| tmp.y >= p->map->h || !p->map->map[(int)tmp.y][(int)tmp.x];
+	if (old && tmp.z >= Z && tmp.z < Z + 1 && !verif_tmp)
+		set_gravity(p);
+	else if (tmp.z >= Z + 1 || (tmp.z >= Z && verif_tmp))
 		p->map->player = tmp;
 	else
 	{
 		p->jump->jump = 0;
-		p->map->player = equation(p, Z + (tmp.z >= Z));
+		p->map->player = equation(p, Z + (tmp.z > Z));
 	}
 }
