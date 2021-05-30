@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 17:24:54 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/27 20:29:54 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/30 16:35:30 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,17 @@ typedef struct s_inter
 	float	r_h;
 }t_inter;
 
-typedef struct s_lst_sprites
+typedef struct s_sprite
 {
-	t_vec					pos;
-	struct s_lst_sprites	*next;
-}t_lst_sprites;
+	t_plane				p;
+	t_vec				pos;
+	unsigned short int	sprite;
+}t_sprite;
 
 typedef struct s_map
 {
 	t_cardinal		dir;
+	t_sprite		*sprites;
 	t_vec			player;
 	unsigned int	**map;
 	unsigned int	*p_e;
@@ -39,6 +41,7 @@ typedef struct s_map
 	unsigned int	*p_w;
 	int				b;
 	int				h;
+	int				nb_sprites;
 	int				w;
 }t_map;
 
@@ -54,7 +57,7 @@ typedef struct s_mlx
 	void				*mlx_ptr;
 	void				*win_ptr;
 	t_mlx_img			img;
-	t_mlx_img			s;
+	t_wall				sprite;
 	t_wall				walls[6];
 	char				*strings_fps[120];
 	unsigned short int	fps;
@@ -73,12 +76,6 @@ typedef struct s_newton
 	float				v0;
 }t_newton;
 
-typedef struct s_sprite
-{
-	t_plane	p;
-	t_vec	pos;
-}t_sprite;
-
 typedef struct s_win
 {
 	unsigned short int	h;
@@ -96,7 +93,6 @@ typedef struct s_param
 	t_map				*map;
 	t_mlx				*mlx;
 	t_newton			*jump;
-	t_sprite			*sprites;
 	t_vec				**rays_theta;
 	t_vec				*rays;
 	t_vec				pre_move[5][360];
@@ -109,7 +105,6 @@ typedef struct s_param
 	unsigned short int	key_gravity;
 	unsigned short int	parameters;
 	unsigned int		free;
-	unsigned int		nb_sprites;
 	short int			angle_h;
 	short int			angle_v;
 	float				trigo_cos[360];

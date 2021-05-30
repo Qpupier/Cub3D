@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 15:36:27 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/27 20:41:49 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/30 15:46:14 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,6 @@ void	free_lst_map(t_parsing *map)
 	map = NULL;
 }
 
-void	free_lst_sprites(t_lst_sprites *sprites)
-{
-	if (!sprites)
-		return ;
-	free_lst_sprites(sprites->next);
-	free(sprites);
-	sprites = NULL;
-}
-
 void	lst_append(t_parsing **map, t_param *p, char *line)
 {
 	t_parsing	*tmp;
@@ -38,7 +29,7 @@ void	lst_append(t_parsing **map, t_param *p, char *line)
 
 	new = malloc(sizeof(t_parsing));
 	if (!new)
-		parsing_line_error(p, line, "Malloc error - Parsing map list");
+		parsing_line_error_map(p, line, *map, "Malloc error - Parsing map list");
 	new->line = line;
 	new->next = NULL;
 	if (!*map)
@@ -95,6 +86,6 @@ t_parsing	*parsing_line_map(t_param *p, char *line)
 	parsing_line_read(p, map);
 	p->map->w -= p->map->b;
 	if (p->map->w <= 0)
-		parsing_lst_error(p, map, "Invalid map");
+		parsing_lst_error_map(p, map, "Invalid map");
 	return (map);
 }

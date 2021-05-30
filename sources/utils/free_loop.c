@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 11:58:16 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/03 11:59:55 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/30 16:43:51 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	free_map(t_param *p)
 {
 	int	i;
 
+	if (p->free & F_MAP_SPRITES)
+		free_one(p, p->map->sprites, F_MAP_SPRITES);
 	if (p->free & F_MAP_MAP)
 	{
 		i = -1;

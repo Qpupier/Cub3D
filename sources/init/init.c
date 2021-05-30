@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:07:08 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/27 20:02:12 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/30 16:44:39 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static void	init_mlx(t_param *p)
 		ft_error_free(p, "Impossible to start Minilibx");
 	p->free |= F_MLX_PTR;
 	p->mlx->win_ptr = NULL;
+	p->mlx->sprite.wall = 0;
+	p->mlx->sprite.color = 0;
 	i = -1;
 	while (++i < 6)
 	{
@@ -60,15 +62,17 @@ static void	init_map(t_param *p)
 	if (!p->map)
 		ft_error_free(p, "Malloc error - Map struct");
 	p->free |= F_MAP;
-	p->map->w = 0;
-	p->map->h = 0;
-	p->map->b = 0;
 	p->map->dir = C_N;
+	p->map->sprites = NULL;
 	p->map->map = NULL;
+	p->map->p_e = NULL;
 	p->map->p_n = NULL;
 	p->map->p_s = NULL;
-	p->map->p_e = NULL;
 	p->map->p_w = NULL;
+	p->map->b = 0;
+	p->map->h = 0;
+	p->map->nb_sprites = 0;
+	p->map->w = 0;
 }
 
 static void	init_newton(t_param *p)
@@ -101,7 +105,6 @@ void	init(t_param *p)
 	p->ceil = 0;
 	p->rad = M_PI / 180;
 	init_trigo(p);
-	p->nb_sprites = 0;
 }
 
 void	verif_defines(void)// A modidfier et compléter
@@ -113,13 +116,14 @@ void	verif_defines(void)// A modidfier et compléter
 			|| P_S != 1 << 7)
 		ft_error("Enum t_parameters modified");
 	if (F_MLX_PTR != 1 << 0 || F_MLX_WIN != 1 << 1 || F_MLX_IMG != 1 << 2 \
-			|| F_MLX_NO != 1 << 3 || F_MLX_SO != 1 << 4 || F_MLX_WE != 1 << 5 \
-			|| F_MLX_EA != 1 << 6 || F_MLX_F != 1 << 7 || F_MLX_C != 1 << 8 \
-			|| F_MLX_S != 1 << 9 || F_MLX != 1 << 10 || F_WIN != 1 << 11 \
-			|| F_MAP_MAP != 1 << 12 || F_MAP_PN != 1 << 13 \
-			|| F_MAP_PS != 1 << 14 || F_MAP_PE != 1 << 15 \
-			|| F_MAP_PW != 1 << 16 || F_MAP != 1 << 17 || F_RAYS != 1 << 18 \
-			|| F_RAYS_THETA != 1 << 19 || F_SPRITES != 1 << 20 \
-			|| F_NEWTON != 1 << 21 || F_CLOSE != 1 << 22)
+			|| F_MLX_SPRITE != 1 << 3 || F_MLX_NO != 1 << 4 \
+			|| F_MLX_SO != 1 << 5 || F_MLX_WE != 1 << 6 || F_MLX_EA != 1 << 7 \
+			|| F_MLX_F != 1 << 8 || F_MLX_C != 1 << 9 || F_MLX != 1 << 10 \
+			|| F_WIN != 1 << 11 || F_MAP_SPRITES != 1 << 12 \
+			|| F_MAP_MAP != 1 << 13 || F_MAP_PN != 1 << 14 \
+			|| F_MAP_PS != 1 << 15 || F_MAP_PE != 1 << 16 \
+			|| F_MAP_PW != 1 << 17 || F_MAP != 1 << 18 || F_RAYS != 1 << 19 \
+			|| F_RAYS_THETA != 1 << 20 || F_NEWTON != 1 << 21 \
+			|| F_CLOSE != 1 << 22)
 		ft_error("Enum t_free modified");
 }

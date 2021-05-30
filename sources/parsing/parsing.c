@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 10:55:35 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/27 20:41:07 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/30 16:48:40 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	convert_array_map(t_param *p, t_parsing *lst)
 		tmp = tmp->next;
 	p->map->map = malloc(sizeof(int *) * p->map->h);
 	if (!p->map->map)
-		parsing_lst_error(p, lst, "Malloc error - Map array");
+		parsing_lst_error_map(p, lst, "Malloc error - Map array");
 	j = -1;
 	while (++j < p->map->h)
 	{
@@ -62,32 +62,10 @@ static void	convert_array_map(t_param *p, t_parsing *lst)
 	free_lst_map(lst);
 }
 
-static void	convert_array_sprites(t_param *p, t_lst_sprites *sprites)
-{
-	// int				j;
-	// t_lst_sprites	*tmp;
-
-	// tmp = sprites;
-	// while (tmp && !tmp->line)
-	// 	tmp = tmp->next;
-	// p->map->map = malloc(sizeof(int *) * p->map->h);
-	// if (!p->map->map)
-	// 	parsing_lst_error(p, sprites, "Malloc error - Map array");
-	// j = -1;
-	// while (++j < p->map->h)
-	// {
-	// 	p->map->map[j] = malloc(sizeof(int) * p->map->w);
-	// 	if (!p->map->map[j])
-	// 		parsing_array_error(p, sprites, j, "Malloc error - Line map array");
-	// 	convert_array_line(p->map, tmp->line, j);
-	// 	tmp = tmp->next;
-	// }
-	p->free |= F_MAP_MAP;
-	free_lst_sprites(sprites);
-}
-
 int	map_perim_recur(t_map *map, int x, int y, int *w)
 {
+	if (x < 0 || x >= map->w || y < 0 || y >= map->h)
+		return (0);
 	w[y * map->w + x] = 1;
 	if (map->map[y][x] == 1)
 		return (1);
@@ -132,9 +110,37 @@ void	check_map(t_param *p)
 	free(witness);
 }
 
+void	find_sprites(t_param *p)
+{
+	unsigned short int	nb;
+	int					j;
+	int					i;
+
+	p->map->sprites = malloc(sizeof(t_sprite) * p->map->nb_sprites);
+	if (!p->map->sprites)
+		ft_error_free(p, "Malloc error - Sprite array");
+	p->free |= F_MAP_SPRITES;
+	nb = 0;
+	j = -1;
+	while (++j < p->map->h && nb < p->map->nb_sprites)
+	{
+		i = -1;
+		while (++i < p->map->w && nb < p->map->nb_sprites)
+		{
+			if (p->map->map[j][i] == 2)
+			{
+				p->map->sprites[nb++] = (t_sprite){
+					.p = (t_plane){0, 0, 0, 0},
+					.pos = (t_vec){i + 0.5, j + 0.5, 0.5},
+					.sprite = 1
+				};
+			}
+		}
+	}
+}
+
 void	parsing(t_param *p)
 {
-	t_lst_sprites	*sprites;
 	t_parsing		*map;
 	char			*line;
 	int				parameters;
@@ -152,9 +158,8 @@ void	parsing(t_param *p)
 	if (!parameters)
 		parsing_line_error(p, line, "No map");
 	map = parsing_line_map(p, line);
-	sprites = NULL;
 	verif_map(p, map);
 	convert_array_map(p, map);
-	convert_array_sprites(p, sprites);
 	check_map(p);
+	find_sprites(p);
 }

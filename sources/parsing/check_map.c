@@ -6,16 +6,11 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:49:46 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/27 20:54:00 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/30 15:44:46 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-static void	add_sprite(t_param *p)
-{
-	p->nb_sprites++;
-}
 
 static void	check_char(t_param *p, t_parsing *map, char c)
 {
@@ -24,7 +19,7 @@ static void	check_char(t_param *p, t_parsing *map, char c)
 	else if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 	{
 		if (p->map->dir > -1)
-			parsing_lst_error(p, map, "Multiple player positions");
+			parsing_lst_error_map(p, map, "Multiple player positions");
 		if (c == 'N')
 			p->map->dir = C_N;
 		else if (c == 'S')
@@ -35,12 +30,13 @@ static void	check_char(t_param *p, t_parsing *map, char c)
 			p->map->dir = C_W;
 	}
 	else if (c == '2')
-		add_sprite(p);
+		p->map->nb_sprites++;
 	else if (c != '1' && c != ' ')
-		parsing_lst_error(p, map, "Invalid map character");
+		parsing_lst_error_map(p, map, "Invalid map character");
 }
 
-static int	check_line(t_param *p, t_parsing *map, t_parsing *tmp, int *begin)
+static short int	check_line(t_param *p, t_parsing *map, t_parsing *tmp, \
+		int *begin)
 {
 	int	empty;
 	int	i;
@@ -85,10 +81,10 @@ void	verif_map(t_param *p, t_parsing *map)
 		if (code == 1)
 			end = 1;
 		else if (code && end)
-			parsing_lst_error(p, map,
-				"Invalid map (No perimeter - Empty line)");
+			parsing_lst_error_map(p, map, \
+					"Invalid map (No perimeter - Empty line)");
 		tmp = tmp->next;
 	}
 	if (p->map->dir < 0)
-		parsing_lst_error(p, map, "No player position");
+		parsing_lst_error_map(p, map, "No player position");
 }

@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 16:50:50 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/14 17:35:10 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/30 16:41:51 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,26 +23,31 @@ unsigned short int	select_texture(char *tmp, int size)
 	return (0);
 }
 
-static void	parsing_textures_s(t_param *p, char *line, char *tmp, int size)
+static void	parsing_textures_s(t_param *p, char *line, char *tmp)
 {
-	if (tmp[size - 4] == '.' && tmp[size - 3] == 'x'
-		&& tmp[size - 2] == 'p' && tmp[size - 1] == 'm')
+	if (p->mlx->sprite.wall == 1)
 	{
-		if (!xpm_to_img(p->mlx->mlx_ptr, &p->mlx->s, tmp))
-			parsing_line_error_tmp(p, line, tmp, \
-					"Invalid texture file (SPRITE)");
-		p->free |= F_MLX_S;
+		if (!xpm_to_img(p->mlx->mlx_ptr, &p->mlx->sprite.texture, tmp))
+		{
+			free(tmp);
+			parsing_line_error(p, line, "Invalid texture file (SPRITE)");
+		}
+		p->free |= F_MLX_SPRITE;
 	}
-	else if (tmp[size - 4] == '.' && tmp[size - 3] == 'p'
-		&& tmp[size - 2] == 'n' && tmp[size - 1] == 'g')
+	else if (p->mlx->sprite.wall == 2)
 	{
-		if (!png_to_img(p->mlx->mlx_ptr, &p->mlx->s, tmp))
-			parsing_line_error_tmp(p, line, tmp, \
-					"Invalid texture file (SPRITE)");
-		p->free |= F_MLX_S;
+		if (!png_to_img(p->mlx->mlx_ptr, &p->mlx->sprite.texture, tmp))
+		{
+			free(tmp);
+			parsing_line_error(p, line, "Invalid texture file (SPRITE)");
+		}
+		p->free |= F_MLX_SPRITE;
 	}
 	else
-		parsing_line_error_tmp(p, line, tmp, "Invalid texture file (SPRITE)");
+	{
+		free(tmp);
+		parsing_line_error(p, line, "Invalid texture file (SPRITE)");
+	}
 }
 
 void	parsing_s(t_param *p, char *line, int i)
@@ -63,7 +68,11 @@ void	parsing_s(t_param *p, char *line, int i)
 	size = ft_strlen(tmp);
 	if (size < 4)
 		parsing_line_error_tmp(p, line, tmp, "Invalid map parameter (SPRITE)");
-	parsing_textures_s(p, line, tmp, size);
+	p->mlx->sprite.wall = select_texture(tmp, size);
+	if (!p->mlx->sprite.wall)
+		p->mlx->sprite.color = parsing_rgb(p, tmp);
+	else
+		parsing_textures_s(p, line, tmp);
 	free(tmp);
 	p->parameters |= P_S;
 }

@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 15:23:12 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/14 17:34:47 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/30 15:21:39 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ static t_rgb	verif_color(t_param *p, char *line, t_rgb color)
 	if (color.b < 0 || color.b > 255)
 		parsing_line_error(p, line, "Invalid color b parameter (blue)");
 	if (color.a < 0 || color.a > 255)
-		parsing_line_error(p, line, "Invalid color a parameter (transparency)");
+		parsing_line_error(p, line, \
+				"Invalid color a parameter (transparency)");
 	return (color);
 }
 
@@ -69,7 +70,8 @@ unsigned int	parsing_rgb(t_param *p, char *line)
 	{
 		i = parsing_color(line, i + 1);
 		if (i == -1)
-			parsing_line_error(p, line, "Invalid map parameter (RGB color)");
+			parsing_line_error(p, line, \
+					"Invalid map parameter (RGB color)");
 		color.a = ft_atoi(line + i);
 	}
 	else

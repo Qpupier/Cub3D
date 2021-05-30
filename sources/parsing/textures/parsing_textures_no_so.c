@@ -6,26 +6,27 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 16:50:50 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/14 17:21:44 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/30 16:38:20 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	parsing_textures_no(t_param *p, char *line, char *tmp)
+static void	parsing_textures_no(t_param *p, char *line, \
+		char *tmp)
 {
 	if (p->mlx->walls[C_N].wall == 1)
 	{
 		if (!xpm_to_img(p->mlx->mlx_ptr, &p->mlx->walls[C_N].texture, tmp))
-			parsing_line_error_tmp(p, line, tmp,
-				"Invalid texture file (NORTH)");
+			parsing_line_error_tmp(p, line, tmp, \
+					"Invalid texture file (NORTH)");
 		p->free |= F_MLX_NO;
 	}
-	else if (p->mlx->walls[C_N].wall == 2)
+	if (p->mlx->walls[C_N].wall == 2)
 	{
 		if (!png_to_img(p->mlx->mlx_ptr, &p->mlx->walls[C_N].texture, tmp))
-			parsing_line_error_tmp(p, line, tmp,
-				"Invalid texture file (NORTH)");
+			parsing_line_error_tmp(p, line, tmp, \
+					"Invalid texture file (NORTH)");
 		p->free |= F_MLX_NO;
 	}
 	else
@@ -60,7 +61,8 @@ void	parsing_no(t_param *p, char *line, int i)
 	p->parameters |= P_NO;
 }
 
-static void	parsing_textures_so(t_param *p, char *line, char *tmp)
+static void	parsing_textures_so(t_param *p, char *line, \
+		char *tmp)
 {
 	if (p->mlx->walls[C_S].wall == 1)
 	{

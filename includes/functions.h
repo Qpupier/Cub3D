@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 15:43:13 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/27 20:52:32 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/30 15:44:24 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void				free_fd(t_param *p, const char *error);
 void				free_image(t_param *p, const char *error, int one, \
 		void *img_ptr);
 void				free_lst_map(t_parsing *map);
-void				free_lst_sprites(t_lst_sprites *sprites);
 void				free_map(t_param *p);
 void				free_one(t_param *p, void *ptr, int one);
 void				free_rays_theta(t_param *p);
@@ -45,7 +44,9 @@ void				parsing_line_error(t_param *p, char *line, \
 		const char *error);
 void				parsing_line_error_tmp(t_param *p, char *line, char *tmp, \
 		const char *error);
-void				parsing_lst_error(t_param *p, t_parsing *map, \
+void				parsing_line_error_map(t_param *p, char *line, \
+		t_parsing *map, const char *error);
+void				parsing_lst_error_map(t_param *p, t_parsing *map, \
 		const char *error);
 void				parsing_c(t_param *p, char *line, int i);
 void				parsing_ea(t_param *p, char *line, int i);

@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 16:50:50 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/14 17:23:09 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/30 16:33:36 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,10 @@ void	parsing_we(t_param *p, char *line, int i)
 	tmp = ft_strtrim(line + i);
 	size = ft_strlen(tmp);
 	if (size < 4)
-		parsing_line_error_tmp(p, line, tmp, "Invalid map parameter (WEST)");
+	{
+		free(tmp);
+		parsing_line_error(p, line, "Invalid map parameter (WEST)");
+	}
 	p->mlx->walls[C_W].wall = select_texture(tmp, size);
 	if (!p->mlx->walls[C_W].wall)
 		p->mlx->walls[C_W].color = parsing_rgb(p, tmp);
@@ -94,7 +97,10 @@ void	parsing_ea(t_param *p, char *line, int i)
 	tmp = ft_strtrim(line + i);
 	size = ft_strlen(tmp);
 	if (size < 4)
-		parsing_line_error_tmp(p, line, tmp, "Invalid map parameter (EAST)");
+	{
+		free(tmp);
+		parsing_line_error(p, line, "Invalid map parameter (EAST)");
+	}
 	p->mlx->walls[C_E].wall = select_texture(tmp, size);
 	if (!p->mlx->walls[C_E].wall)
 		p->mlx->walls[C_E].color = parsing_rgb(p, tmp);
