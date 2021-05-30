@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 15:43:13 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/30 16:54:40 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/30 21:00:48 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 # define FUNCTIONS_H
 
 void				calc(t_param *p);
+void				calc_sprites(t_map *map);
 void				events(t_param *p);
+void				find_sprites(t_param *p);
 void				free_all(t_param *p);
 void				free_fd(t_param *p, const char *error);
 void				free_image(t_param *p, const char *error, int one, \
@@ -57,12 +59,15 @@ void				parsing_s(t_param *p, char *line, int i);
 void				parsing_so(t_param *p, char *line, int i);
 void				parsing_we(t_param *p, char *line, int i);
 void				set_gravity(t_param *p);
+void				sort_sprites(t_map *map);
 void				verif_defines(void);
 void				verif_map(t_param *p, t_parsing *map);
 void				verif_parameters(t_param *p);
 t_parsing			*parsing_line_map(t_param *p, char *line);
 t_vec				vec_rot_x_pre(t_param *p, t_vec v, int angle);
 t_vec				vec_rot_z_pre(t_param *p, t_vec v, int angle);
+unsigned short int	check_sprites(t_param *p, float ref, t_vec ray, \
+		unsigned int *pixel);
 unsigned short int	inter_line_plane_x(t_line l, float d, t_vec *result, \
 		float *t);
 unsigned short int	inter_line_plane_y(t_line l, float d, t_vec *result, \

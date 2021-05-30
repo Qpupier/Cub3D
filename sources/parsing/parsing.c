@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 10:55:35 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/30 16:48:40 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/30 19:14:40 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,35 +108,6 @@ void	check_map(t_param *p)
 		parsing_error(p, "No perimeter map delimiter");
 	}
 	free(witness);
-}
-
-void	find_sprites(t_param *p)
-{
-	unsigned short int	nb;
-	int					j;
-	int					i;
-
-	p->map->sprites = malloc(sizeof(t_sprite) * p->map->nb_sprites);
-	if (!p->map->sprites)
-		ft_error_free(p, "Malloc error - Sprite array");
-	p->free |= F_MAP_SPRITES;
-	nb = 0;
-	j = -1;
-	while (++j < p->map->h && nb < p->map->nb_sprites)
-	{
-		i = -1;
-		while (++i < p->map->w && nb < p->map->nb_sprites)
-		{
-			if (p->map->map[j][i] == 2)
-			{
-				p->map->sprites[nb++] = (t_sprite){
-					.p = (t_plane){0, 0, 0, 0},
-					.pos = (t_vec){i + 0.5, j + 0.5, 0.5},
-					.sprite = 1
-				};
-			}
-		}
-	}
 }
 
 void	parsing(t_param *p)

@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:49:46 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/30 16:57:53 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/30 21:01:21 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,4 +100,32 @@ void	parsing_array_error(t_param *p, t_parsing *map, int nb, \
 		free(p->map->map[i]);
 	free(p->map->map);
 	parsing_error(p, error);
+}
+
+void	find_sprites(t_param *p)
+{
+	unsigned short int	nb;
+	int					j;
+	int					i;
+
+	p->map->sprites = malloc(sizeof(t_sprite) * p->map->nb_sprites);
+	if (!p->map->sprites)
+		ft_error_free(p, "Malloc error - Sprite array");
+	p->free |= F_MAP_SPRITES;
+	nb = 0;
+	j = -1;
+	while (++j < p->map->h && nb < p->map->nb_sprites)
+	{
+		i = -1;
+		while (++i < p->map->w && nb < p->map->nb_sprites)
+			if (p->map->map[j][i] == 2)
+				p->map->sprites[nb++] = (t_sprite){
+					.p = (t_plane){0, 0, 0, 0},
+					.pos = (t_vec){i + 0.5, j + 0.5, 0.5},
+					.v2 = (t_vec){0, 0, 0},
+					.sprite = 1,
+					.dis = -1,
+					.pixel = 0x000000
+				};
+	}
 }

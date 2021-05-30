@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 20:24:44 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/30 16:45:04 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/30 20:57:58 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,11 @@ static void	init_rays(t_param *p)
 	p->free |= F_RAYS;
 	i = -1;
 	while (++i < size)
-		p->rays[i] = (t_vec){\
-				p->win->r_fov_h * (i % p->win->w - p->win->w05), \
-				-1, \
-				-p->win->r_fov_v * (i / p->win->w - p->win->h05) \
-				};
-}
-
-static void	init_sprites(t_param *p)
-{
-	p->map->sprites = malloc(sizeof(t_sprite) * p->map->nb_sprites);
-	if (!p->map->sprites)
-		ft_error_free(p, "Malloc error - Sprites array");
-	p->free |= F_MAP_SPRITES;
+		p->rays[i] = vec_normalize((t_vec){
+				.x = p->win->r_fov_h * (i % p->win->w - p->win->w05),
+				.y = -1,
+				.z = -p->win->r_fov_v * (i / p->win->w - p->win->h05)
+			});
 }
 
 static void	init_win(t_param *p)
@@ -70,7 +62,6 @@ static void	init_map(t_param *p)
 	if (!p->map->p_w)
 		ft_error_free(p, "Malloc error - West map array");
 	p->free |= F_MAP_PW;
-	init_sprites(p);
 }
 
 void	init_parameters(t_param *p)

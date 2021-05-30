@@ -4,7 +4,7 @@ WE assets/block/andesite.png
 NO assets/block/acacia_log_top.png
 EA assets/block/blackstone.png
 
-S ./assets/action.xpm
+S ./assets/doom.xpm
 F assets/block/acacia_log_top.png
 C 200,200,255,42
 

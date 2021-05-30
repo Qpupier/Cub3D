@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 17:24:54 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/30 16:35:30 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/30 20:16:49 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ typedef struct s_sprite
 {
 	t_plane				p;
 	t_vec				pos;
+	t_vec				v2;
 	unsigned short int	sprite;
+	unsigned int		pixel;
+	float				dis;
 }t_sprite;
 
 typedef struct s_map

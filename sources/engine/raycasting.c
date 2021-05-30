@@ -6,13 +6,14 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 18:03:09 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/30 16:28:12 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/30 20:59:46 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	find_card(t_inter check[])
+static int	find_card(t_param *p, t_inter check[], t_vec ray, \
+		unsigned int *pixel)
 {
 	float	dis;
 	int		card;
@@ -29,15 +30,22 @@ static int	find_card(t_inter check[])
 			card = i;
 		}
 	}
+	if (check_sprites(p, dis, ray, pixel))
+		return (6);
 	return (card);
 }
 
-static unsigned int	choose_color(t_param *p, int wall, t_inter check[])
+static unsigned int	choose_color(t_param *p, t_inter check[], t_vec ray)
 {
-	float	w;
-	float	h;
+	unsigned int	pixel;
+	int				wall;
+	float			w;
+	float			h;
 
-	if (wall < 0 || wall > 5)
+	wall = find_card(p, check, ray, &pixel);
+	if (wall == 6)
+		return (pixel);
+	if (wall < 0 || wall > 6)
 		return (0x000000);
 	w = check[wall].r_w;
 	h = check[wall].r_h;
@@ -45,9 +53,7 @@ static unsigned int	choose_color(t_param *p, int wall, t_inter check[])
 		return (ft_get_pixel(p->mlx->walls[wall].texture, \
 				w * p->mlx->walls[wall].texture.w, \
 				h * p->mlx->walls[wall].texture.h));
-	else
-		return (p->mlx->walls[wall].color);
-	return (0x000000);
+	return (p->mlx->walls[wall].color);
 }
 
 unsigned int	ray_casting(t_param *p, t_vec ray)
@@ -72,5 +78,5 @@ unsigned int	ray_casting(t_param *p, t_vec ray)
 		check[3].t = intersec_planes_e(p, line, &check[3].r_w, &check[3].r_h);
 	check[4].t = intersec_plane_c(p, line, &check[4].r_w, &check[4].r_h);
 	check[5].t = intersec_plane_f(p, line, &check[5].r_w, &check[5].r_h);
-	return (choose_color(p, find_card(check), check));
+	return (choose_color(p, check, ray));
 }

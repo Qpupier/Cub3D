@@ -6,7 +6,7 @@
 #    By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/12 15:48:25 by qpupier           #+#    #+#              #
-#    Updated: 2021/05/30 17:04:05 by qpupier          ###   ########lyon.fr    #
+#    Updated: 2021/05/30 21:02:27 by qpupier          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRC_NAME	=	engine/algo.c 								\
 				engine/inter_cards.c 						\
 				engine/inter_opti.c 						\
 				engine/raycasting.c 						\
+				engine/sprites.c 							\
 				events/events.c 							\
 				events/hook.c 								\
 				events/key_release.c 						\

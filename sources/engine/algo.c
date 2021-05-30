@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:06:25 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/17 18:39:20 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/30 21:02:00 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ int	algo(t_param *p)
 
 	events(p);
 	fps(p);
+	calc_sprites(p->map);
+	sort_sprites(p->map);
 	j = -1;
 	while (++j < p->win->h)
 	{
