@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 15:23:12 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/30 15:21:39 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/30 16:54:35 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,7 @@ unsigned int	parsing_rgb(t_param *p, char *line)
 	{
 		i = parsing_color(line, i + 1);
 		if (i == -1)
-			parsing_line_error(p, line, \
-					"Invalid map parameter (RGB color)");
+			parsing_line_error(p, line, "Invalid map parameter (RGB color)");
 		color.a = ft_atoi(line + i);
 	}
 	else

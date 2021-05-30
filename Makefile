@@ -6,7 +6,7 @@
 #    By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/12 15:48:25 by qpupier           #+#    #+#              #
-#    Updated: 2021/05/26 12:13:42 by qpupier          ###   ########lyon.fr    #
+#    Updated: 2021/05/30 17:04:05 by qpupier          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRC_NAME	=	engine/algo.c 								\
 				events/move.c 								\
 				events/newton.c 							\
 				init/init.c 								\
+				init/macros.c 								\
 				init/init_loop.c 							\
 				init/init_strings_fps.c 					\
 				init/init_structs.c 						\
@@ -50,9 +51,10 @@ SRC_NAME	=	engine/algo.c 								\
 				utils/free_loop.c 							\
 				main.c
 OBJ_NAME	=	$(SRC_NAME:.c=.o)
-INC_NAME	=	cub3d.h 	\
-				structs.h 	\
-				functions.h
+INC_NAME	=	cub3d.h 		\
+				functions.h 	\
+				macros.h 		\
+				structs.h
 SRC			=	$(addprefix $(SRC_PATH)/,$(SRC_NAME))
 OBJ			=	$(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 INC			=	$(addprefix $(INC_PATH)/,$(INC_NAME))

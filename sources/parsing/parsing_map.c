@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 15:36:27 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/30 15:46:14 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/30 16:55:17 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	lst_append(t_parsing **map, t_param *p, char *line)
 
 	new = malloc(sizeof(t_parsing));
 	if (!new)
-		parsing_line_error_map(p, line, *map, "Malloc error - Parsing map list");
+		parsing_line_error_map(p, line, *map, \
+				"Malloc error - Parsing map list");
 	new->line = line;
 	new->next = NULL;
 	if (!*map)
