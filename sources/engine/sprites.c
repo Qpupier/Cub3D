@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/30 20:58:21 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/31 10:47:52 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/31 11:21:20 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,26 @@ unsigned short int	check_sprites(t_param *p, float ref, t_vec ray, \
 	t_vec	result;
 	int		i;
 	float	t;
+	float	tmp;
 
 	i = -1;
 	while (++i < p->map->nb_sprites && p->map->sprites[i].sprite \
 			&& p->map->sprites[i].dis > 0 \
 			&& (ref == -1 || p->map->sprites[i].dis <= ref))
-		if (inter_line_plane((t_line){p->map->player, ray}, \
-				p->map->sprites[i].p, &result, &t) && t > 0 \
-				&& result.z >= 0 && result.z < 1 \
+	{
+		tmp = p->map->sprites[i].p.a * ray.x + p->map->sprites[i].p.b * ray.y;
+		if (!tmp)
+			continue ;
+		t = -(p->map->sprites[i].p.a * p->map->player.x \
+				+ p->map->sprites[i].p.b * p->map->player.y \
+				+ p->map->sprites[i].p.d) / tmp;
+		if (t <= 0)
+			continue ;
+		result = vec_add(p->map->player, vec_mult_float(ray, t));
+		if (result.z >= 0 && result.z < 1 \
 				&& check_sprite_color(p, result, i, pixel))
 			return (1);
+	}
 	return (0);
 }
 
