@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 18:40:51 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/27 20:00:50 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/31 14:52:59 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,10 @@ void	events(t_param *p)
 		if (p->angle_v >= 360)
 			p->angle_v -= 360;
 	}
-	if (p->mlx->hook_alpha & H_R && p->map->player.z + 0.3 < MAXFLOAT)
-		p->map->player.z += 0.3;
-	if (p->mlx->hook_alpha & H_F && p->map->player.z - 0.3 < 1 - MAXFLOAT)
-		p->map->player.z -= 0.3;
+	if (p->mlx->hook_alpha & H_R && p->map->player.z + SPEED < MAXFLOAT)
+		p->map->player.z += SPEED;
+	if (p->mlx->hook_alpha & H_F && p->map->player.z - SPEED < 1 - MAXFLOAT)
+		p->map->player.z -= SPEED;
 	if (!p->jump->jump)
 	{
 		if (!(p->mlx->hook_buttons & H_SPACE))

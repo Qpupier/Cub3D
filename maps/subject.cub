@@ -1,10 +1,10 @@
 R 1920 1080
 SO assets/block/acacia_log.png
 WE assets/block/andesite.png
-NO assets/block/acacia_log_top.png
+NO assets/block/glowstone.png
 EA assets/block/blackstone.png
 
-S ./assets/doom.xpm
+S ./assets/block/sweet_berry_bush_stage3.png
 F assets/block/acacia_log_top.png
 C 200,200,255,42
 

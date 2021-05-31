@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 15:43:13 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/31 10:48:07 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/31 12:35:54 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,6 @@ void				verif_parameters(t_param *p);
 t_parsing			*parsing_line_map(t_param *p, char *line);
 t_vec				vec_rot_x_pre(t_param *p, t_vec v, int angle);
 t_vec				vec_rot_z_pre(t_param *p, t_vec v, int angle);
-unsigned short int	check_sprites(t_param *p, float ref, t_vec ray, \
-		unsigned int *pixel);
 unsigned short int	inter_line_plane_x(t_line l, float d, t_vec *result, \
 		float *t);
 unsigned short int	inter_line_plane_y(t_line l, float d, t_vec *result, \
@@ -79,6 +77,8 @@ int					key_press(int key, t_param *p);
 int					key_release(int key, t_param *p);
 int					parsing_parameters(t_param *p, char *line);
 int					win_exit(t_param *p);
+float				check_sprites(t_param *p, float ref, t_vec ray, \
+		unsigned int *pixel);
 float				intersec_plane_c(t_param *p, t_line line, float *r_w, \
 		float *r_h);
 float				intersec_planes_e(t_param *p, t_line line, float *r_w, \

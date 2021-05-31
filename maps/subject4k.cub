@@ -1,0 +1,17 @@
+R 1920 1080
+SO assets/4k1.png
+WE assets/4k2.png
+NO assets/4k3.png
+EA assets/4k4.png
+
+S ./assets/doom.xpm
+F assets/block/acacia_log_top.png
+C 200,200,255,42
+
+1111111111
+1000000001
+1000001001
+10N0200001
+1000001021
+1222000101
+1111111111

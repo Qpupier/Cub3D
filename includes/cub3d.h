@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:52:32 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/31 10:34:34 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/31 16:06:37 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,9 @@
 # define G 9.80665//A verifier
 # define Z 0.7// A VERIFIER
 # define NB_THREADS 8// A VERIFIER
+# define LIGHT 0.5
+# define DISTANCE_LIGHT 5
+# define LIGHT_MIN 0.15
+# define SPEED 0.2
 
 #endif

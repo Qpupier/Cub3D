@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 20:24:44 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/30 20:57:58 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/31 15:29:21 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,5 @@ void	init_parameters(t_param *p)
 	init_map(p);
 	init_rays(p);
 	init_rays_theta(p);
+	ft_putendl("Start game");
 }

@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/30 20:58:21 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/31 11:21:20 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/31 12:35:20 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,7 @@ static unsigned short int	check_sprite_color(t_param *p, t_vec result, \
 	return (0);
 }
 
-unsigned short int	check_sprites(t_param *p, float ref, t_vec ray, \
-		unsigned int *pixel)
+float	check_sprites(t_param *p, float ref, t_vec ray, unsigned int *pixel)
 {
 	t_vec	result;
 	int		i;
@@ -57,9 +56,9 @@ unsigned short int	check_sprites(t_param *p, float ref, t_vec ray, \
 		result = vec_add(p->map->player, vec_mult_float(ray, t));
 		if (result.z >= 0 && result.z < 1 \
 				&& check_sprite_color(p, result, i, pixel))
-			return (1);
+			return (t);
 	}
-	return (0);
+	return (-1);
 }
 
 static t_sprite	create_sprite(t_vec s, t_vec v, t_vec pos, \
