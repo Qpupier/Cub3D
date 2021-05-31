@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/30 20:58:21 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/30 21:01:36 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/31 10:47:52 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,18 +65,7 @@ static t_sprite	create_sprite(t_vec s, t_vec v, t_vec pos, \
 		});
 }
 
-void	calc_sprites(t_map *map)
-{
-	int	i;
-
-	i = -1;
-	while (++i < map->nb_sprites)
-		map->sprites[i] = create_sprite(map->sprites[i].pos, \
-				vec_sub(map->sprites[i].pos, map->player), \
-				map->sprites[i].pos, map->sprites[i].sprite);
-}
-
-void	sort_sprites(t_map *map)
+static void	sort_sprites(t_map *map)
 {
 	int			i;
 	t_sprite	tmp;
@@ -92,4 +81,16 @@ void	sort_sprites(t_map *map)
 			sort_sprites(map);
 		}
 	}
+}
+
+void	sprites(t_map *map)
+{
+	int	i;
+
+	i = -1;
+	while (++i < map->nb_sprites)
+		map->sprites[i] = create_sprite(map->sprites[i].pos, \
+				vec_sub(map->sprites[i].pos, map->player), \
+				map->sprites[i].pos, map->sprites[i].sprite);
+	sort_sprites(map);
 }

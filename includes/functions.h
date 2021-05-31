@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 15:43:13 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/30 21:00:48 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/31 10:48:07 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define FUNCTIONS_H
 
 void				calc(t_param *p);
-void				calc_sprites(t_map *map);
 void				events(t_param *p);
 void				find_sprites(t_param *p);
 void				free_all(t_param *p);
@@ -59,7 +58,7 @@ void				parsing_s(t_param *p, char *line, int i);
 void				parsing_so(t_param *p, char *line, int i);
 void				parsing_we(t_param *p, char *line, int i);
 void				set_gravity(t_param *p);
-void				sort_sprites(t_map *map);
+void				sprites(t_map *map);
 void				verif_defines(void);
 void				verif_map(t_param *p, t_parsing *map);
 void				verif_parameters(t_param *p);

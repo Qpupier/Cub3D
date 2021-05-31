@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:06:25 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/30 21:02:00 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/31 11:07:52 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,11 @@ static void	display(t_param *p)
 			p->mlx->img.ptr, 0, 0))
 		ft_error_free(p, "Mlx error - Impossible to put image to window");
 	if (p->fps > 0)
+	{
+		if (p->fps > 59)
+			p->fps = 60;
 		string = p->mlx->strings_fps[p->fps - 1];
+	}
 	else
 		string = "FPS : 0";
 	if (mlx_string_put(p->mlx->mlx_ptr, p->mlx->win_ptr, 10, 20, 0xFFFFFF, \
@@ -47,27 +51,53 @@ static void	display(t_param *p)
 		ft_error_free(p, "Mlx error - Impossible to synchronize the window");
 }
 
+static void	*algo_loop(void *ptr)
+{
+	t_multithread	*t;
+	t_vec			ray;
+	int				i;
+	int				j;
+
+	t = ptr;
+	j = -1;
+	while (++j < t->p->win->h)
+	{
+		i = t->i_start - 1;
+		while (++i < t->i_end)
+		{
+			ray = vec_rot_z_pre(t->p, \
+					t->p->rays_theta[t->p->angle_v][j * t->p->win->w + i], \
+					t->p->angle_h);
+			ft_pixel_put(t->p->mlx->img, i, j, ray_casting(t->p, ray));
+		}
+	}
+	return (ptr);
+}
+
 int	algo(t_param *p)
 {
-	t_vec	ray;
-	int		i;
-	int		j;
+	pthread_t		thread[NB_THREADS];
+	t_multithread	data[NB_THREADS];
+	int				i;
 
 	events(p);
 	fps(p);
-	calc_sprites(p->map);
-	sort_sprites(p->map);
-	j = -1;
-	while (++j < p->win->h)
+	sprites(p->map);
+	i = -1;
+	while (++i < NB_THREADS)
 	{
-		i = -1;
-		while (++i < p->win->w)
-		{
-			ray = vec_rot_z_pre(p, \
-					p->rays_theta[p->angle_v][j * p->win->w + i], p->angle_h);
-			ft_pixel_put(p->mlx->img, i, j, ray_casting(p, ray));
-		}
+		data[i] = (t_multithread){p, p->win->w * (i + 1) / NB_THREADS, \
+				p->win->w * i / NB_THREADS};
+		if (i == NB_THREADS - 1)
+			data[i].i_end = p->win->w;
+		if (pthread_create(&thread[i], NULL, &algo_loop, &data[i]))
+			ft_error_free(p, \
+					"Multithreading error - Impossible to create threads");
 	}
+	while (i--)
+		if (pthread_join(thread[i], NULL))
+			ft_error_free(p, \
+					"Multithreading error - Impossible to join threads");
 	display(p);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 17:24:54 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/30 20:16:49 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/05/31 11:07:58 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef struct s_mlx
 	t_mlx_img			img;
 	t_wall				sprite;
 	t_wall				walls[6];
-	char				*strings_fps[120];
+	char				*strings_fps[60];
 	unsigned short int	fps;
 	unsigned int		hook_alpha;
 	unsigned int		hook_buttons;
@@ -114,6 +114,13 @@ typedef struct s_param
 	float				trigo_sin[360];
 	float				rad;
 }t_param;
+
+typedef struct s_multithread
+{
+	t_param	*p;
+	int		i_end;
+	int		i_start;
+}t_multithread;
 
 typedef struct s_parsing
 {
