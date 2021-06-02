@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/30 17:01:54 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/30 19:32:32 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/06/02 15:30:32 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "libft.h"
 
-typedef enum e_free//unsigned int
+typedef enum e_free
 {
 	F_MLX_PTR		= 1 << 0,
 	F_MLX_WIN		= 1 << 1,
@@ -42,7 +42,7 @@ typedef enum e_free//unsigned int
 	F_CLOSE			= 1 << 22
 }t_free;
 
-typedef enum e_parameters//unsigned short
+typedef enum e_parameters
 {
 	P_R		= 1 << 0,
 	P_NO	= 1 << 1,
@@ -54,9 +54,9 @@ typedef enum e_parameters//unsigned short
 	P_S		= 1 << 7
 }t_parameters;
 
-typedef enum e_cardinal//unsigned short
+typedef enum e_cardinal
 {
-	C_N,//A verifier
+	C_N,
 	C_S,
 	C_W,
 	C_E,
@@ -66,7 +66,7 @@ typedef enum e_cardinal//unsigned short
 
 typedef enum e_key
 {
-	K_A		= 0,//A verifier
+	K_A		= 0,
 	K_B		= 11,
 	K_C		= 8,
 	K_D		= 2,
@@ -104,9 +104,9 @@ typedef enum e_key
 	K_ALT	= 261
 }t_key;
 
-typedef enum e_hook_alpha//unsigned int
+typedef enum e_hook_alpha
 {
-	H_A		= 1 << 0,//A verifier
+	H_A		= 1 << 0,
 	H_B		= 1 << 1,
 	H_C		= 1 << 2,
 	H_D		= 1 << 3,
@@ -134,9 +134,9 @@ typedef enum e_hook_alpha//unsigned int
 	H_Z		= 1 << 25
 }t_hook_alpha;
 
-typedef enum e_hook_buttons//unsigned int
+typedef enum e_hook_buttons
 {
-	H_SPACE	= 1 << 0,//A verifier
+	H_SPACE	= 1 << 0,
 	H_ESC	= 1 << 1,
 	H_LEFT	= 1 << 2,
 	H_RIGHT	= 1 << 3,
@@ -148,17 +148,17 @@ typedef enum e_hook_buttons//unsigned int
 	H_ALT	= 1 << 9
 }t_hook_buttons;
 
-typedef enum e_move//unsigned short
+typedef enum e_move
 {
-	M_W	= 1 << 0,//A VERIFIER
+	M_W	= 1 << 0,
 	M_A	= 1 << 1,
 	M_S	= 1 << 2,
 	M_D	= 1 << 3
 }t_move;
 
-typedef enum e_move_buttons//unsigned short
+typedef enum e_move_buttons
 {
-	MB_W = 1,//A VERIFIER
+	MB_W = 1,
 	MB_A,
 	MB_WA,
 	MB_S,

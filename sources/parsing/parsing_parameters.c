@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 15:32:53 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/30 15:29:18 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/06/02 15:50:52 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@ void	verif_parameters(t_param *p)
 {
 	if (p->win->w <= 0 || p->win->h <= 0)
 		ft_error_free(p, "Invalid range parameter");
+	if (((float)p->win->w / SCALE) != (int)(p->win->w / SCALE) \
+			|| ((float)p->win->h / SCALE) != (int)(p->win->h / SCALE))
+		ft_error_free(p, "Screen range (R) incmompatible with scale (SCALE)");
 }
 
 static void	parsing_parameters_swipe(t_param *p, char *line, int i)

@@ -6,11 +6,11 @@
 #    By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/12 15:48:25 by qpupier           #+#    #+#              #
-#    Updated: 2021/05/30 21:02:27 by qpupier          ###   ########lyon.fr    #
+#    Updated: 2021/06/02 15:35:22 by qpupier          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	cub3d
+NAME		=	cub3D
 INC_PATH	=	includes
 SRC_PATH	=	sources
 OBJ_PATH	=	.objects
@@ -27,6 +27,7 @@ SRC_NAME	=	engine/algo.c 								\
 				engine/raycasting.c 						\
 				engine/sprites.c 							\
 				events/events.c 							\
+				events/events_move.c 						\
 				events/hook.c 								\
 				events/key_release.c 						\
 				events/move.c 								\

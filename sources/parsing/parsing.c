@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 10:55:35 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/30 19:14:40 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/06/02 15:28:47 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,15 +104,6 @@ void	check_map(t_param *p)
 	if (!map_perim_recur(p->map, p->map->player.x - 0.5,
 			p->map->player.y - 0.5, witness))
 	{
-		// printf("%d\n", p->map->h);
-		// i = -1;
-		// while (++i < p->map->w * p->map->h)
-		// {
-		// 	if (!(i % p->map->w))
-		// 		printf("\n");
-		// 	printf("%d", witness[i]);
-		// }
-		// printf("\n\n\n");
 		free(witness);
 		parsing_error(p, "No perimeter map delimiter");
 	}

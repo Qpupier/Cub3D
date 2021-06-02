@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:53:10 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/30 19:15:53 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/06/02 15:34:38 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 
 static void	ft_usage(void)
 {
-	ft_putendl("Usage : ./cub3d map.cub [--save]");
+	ft_putendl("Usage : ./cub3d map.cub");
 	exit(0);
 }
 
 static t_param	*pre_init(int ac, char **av)
 {
 	t_param	*p;
+	int		size;
 
 	if (ac == 1)
 		ft_usage();
@@ -32,7 +33,9 @@ static t_param	*pre_init(int ac, char **av)
 		ft_error("Malloc error - Struct");
 	p->free = 0;
 	p->fd = -1;
-	if (!ft_strstr(av[1], ".cub")) //PRECISER
+	size = ft_strlen(av[1]);
+	if (size <= 4 || av[1][size - 4] != '.' || av[1][size - 3] != 'c' \
+			|| av[1][size - 2] != 'u' || av[1][size - 1] != 'b')
 		ft_error_free(p, "Invalid map file (must be a .cub)");
 	p->fd = open(av[1], O_RDONLY);
 	if (!p->fd)

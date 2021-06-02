@@ -64,6 +64,18 @@ static void	init_map(t_param *p)
 	p->free |= F_MAP_PW;
 }
 
+static void	init_range(t_win *win, int w, int h)
+{
+	if (w < win->w)
+		win->w = w;
+	if (h < win->h)
+		win->h = h;
+	win->w_scale = win->w;
+	win->h_scale = win->h;
+	win->w /= SCALE;
+	win->h /= SCALE;
+}
+
 void	init_parameters(t_param *p)
 {
 	int	w;
@@ -71,20 +83,14 @@ void	init_parameters(t_param *p)
 
 	if (mlx_get_screen_size(p->mlx->mlx_ptr, &w, &h))
 		ft_error_free(p, "Minilibx error - Impossible to get screen size");
-	if (w < p->win->w)
-		p->win->w = w;
-	if (h < p->win->h)
-		p->win->h = h;
-	p->win->w_scale = p->win->w;
-	p->win->h_scale = p->win->h;
-	p->win->w /= SCALE;
-	p->win->h /= SCALE;
-	p->mlx->win_ptr = mlx_new_window(p->mlx->mlx_ptr, p->win->w_scale, p->win->h_scale, \
-			"Cub3D");
+	init_range(p->win, w, h);
+	p->mlx->win_ptr = mlx_new_window(p->mlx->mlx_ptr, p->win->w_scale, \
+			p->win->h_scale, "Cub3D");
 	if (!p->mlx->win_ptr)
 		ft_error_free(p, "Minilibx error - Impossible to open a window");
 	p->free |= F_MLX_WIN;
-	if (!ft_create_img(p->mlx->mlx_ptr, &p->mlx->img, p->win->w_scale, p->win->h_scale))
+	if (!ft_create_img(p->mlx->mlx_ptr, &p->mlx->img, p->win->w_scale, \
+			p->win->h_scale))
 		ft_error_free(p, "Minilibx error - Impossible to create an image");
 	p->free |= F_MLX_IMG;
 	init_win(p);

@@ -6,38 +6,11 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 18:40:51 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/31 14:52:59 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/06/02 15:15:28 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	collisions(t_param *p, t_vec vec)
-{
-	int	out_x;
-	int	out_y;
-	int	move_x;
-	int	move_y;
-	int	move_xy;
-
-	out_x = vec.x < 0 || vec.x >= p->map->w;
-	out_y = vec.y < 0 || vec.y >= p->map->h;
-	move_x = out_x || p->map->player.y < 0 || p->map->player.y >= p->map->h \
-			|| p->map->map[(int)p->map->player.y][(int)vec.x] != 1;
-	move_y = out_y || p->map->player.x < 0 || p->map->player.x >= p->map->w \
-			|| p->map->map[(int)vec.y][(int)p->map->player.x] != 1;
-	move_xy = (move_x || move_y) && (out_x || out_y \
-			|| p->map->map[(int)vec.y][(int)vec.x] != 1);
-	if (p->map->player.z > 1 || move_xy)
-		p->map->player = vec;
-	else if (!move_x || !move_y)
-	{
-		if (move_x)
-			p->map->player.x = vec.x;
-		else if (move_y)
-			p->map->player.y = vec.y;
-	}
-}
 
 void	set_gravity(t_param *p)
 {
@@ -49,94 +22,37 @@ void	set_gravity(t_param *p)
 	p->jump->v0 = 0;
 }
 
-void	events(t_param *p)
+static void	events_rotations(t_param *p)
 {
-	t_move_buttons	card;
-	t_vec			vec;
+	short	tp;
 
-	if (p->mlx->hook_buttons & H_ESC)
-		win_exit(p);
 	if (p->mlx->hook_buttons & H_LEFT)
 	{
-		p->angle_h -= 5;
+		p->angle_h -= SPEED * 20;
 		if (p->angle_h < 0)
 			p->angle_h += 360;
 	}
 	if (p->mlx->hook_buttons & H_RIGHT)
 	{
-		p->angle_h += 5;
+		p->angle_h += SPEED * 20;
 		if (p->angle_h >= 360)
 			p->angle_h -= 360;
 	}
-	if (p->mlx->hook_buttons & H_UP)// A LIMITER
-	{
-		p->angle_v -= 3;
-		if (p->angle_v < 0)
-			p->angle_v += 360;
-	}
-	if (p->mlx->hook_buttons & H_DOWN)// A LIMITER
-	{
-		p->angle_v += 3;
-		if (p->angle_v >= 360)
-			p->angle_v -= 360;
-	}
-	if (p->mlx->hook_alpha & H_R && p->map->player.z + SPEED < MAXFLOAT)
-		p->map->player.z += SPEED;
-	if (p->mlx->hook_alpha & H_F && p->map->player.z - SPEED < 1 - MAXFLOAT)
-		p->map->player.z -= SPEED;
-	if (!p->jump->jump)
-	{
-		if (!(p->mlx->hook_buttons & H_SPACE))
-		{
-			if (!(p->mlx->hook_buttons & H_SHIFT))
-			{
-				vec = (t_vec){0, 0, 0};
-				if (p->mlx->hook_alpha & H_W)
-					vec = vec_add(vec, p->pre_move[0][p->angle_h]);
-				if (p->mlx->hook_alpha & H_A)
-					vec = vec_add(vec, p->pre_move[1][p->angle_h]);
-				if (p->mlx->hook_alpha & H_S)
-					vec = vec_add(vec, p->pre_move[2][p->angle_h]);
-				if (p->mlx->hook_alpha & H_D)
-					vec = vec_add(vec, p->pre_move[3][p->angle_h]);
-				collisions(p, vec_add(p->map->player, vec));
-			}
-			else
-			{
-				card = 0;
-				if (p->mlx->hook_alpha & H_W)
-					card += M_W;
-				if (p->mlx->hook_alpha & H_A)
-					card += M_A;
-				if (p->mlx->hook_alpha & H_S)
-					card += M_S;
-				if (p->mlx->hook_alpha & H_D)
-					card += M_D;
-				move(p, card);
-			}
-		}
-		else if (!(p->mlx->hook_buttons & H_SHIFT))
-		{
-			card = 0;
-			if (p->mlx->hook_alpha & H_W)
-				card += M_W;
-			if (p->mlx->hook_alpha & H_A)
-				card += M_A;
-			if (p->mlx->hook_alpha & H_S)
-				card += M_S;
-			if (p->mlx->hook_alpha & H_D)
-				card += M_D;
-			jump(p, card);
-		}
-	}
-	if (p->mlx->hook_alpha & H_C)
-	{
-		if (!p->key_ceil)
-			p->ceil = !p->ceil;
-		p->key_ceil = 1;
-	}
-	else
-		p->key_ceil = 0;
+	tp = p->angle_v;
+	if (p->mlx->hook_buttons & H_UP)
+		tp -= SPEED * 15;
+	if (p->mlx->hook_buttons & H_DOWN)
+		tp += SPEED * 15;
+	if (tp < 0)
+		tp += 360;
+	if (tp >= 360)
+		tp -= 360;
+	if (p->map->player.z < 0 || p->map->player.z >= 1 || tp <= 60 || tp >= 300)
+		p->angle_v = tp;
+}
+
+static void	events_gravity(t_param *p)
+{
 	if (p->mlx->hook_alpha & H_G)
 	{
 		if (!p->key_gravity)
@@ -149,4 +65,26 @@ void	events(t_param *p)
 		ft_newton(p);
 	else if (p->gravity && p->map->player.z > Z)
 		set_gravity(p);
+}
+
+void	events(t_param *p)
+{
+	if (p->mlx->hook_buttons & H_ESC)
+		win_exit(p);
+	events_rotations(p);
+	if (p->mlx->hook_alpha & H_R && p->map->player.z + SPEED < MAXFLOAT)
+		p->map->player.z += SPEED;
+	if (p->mlx->hook_alpha & H_F && p->map->player.z - SPEED < 1 - MAXFLOAT)
+		p->map->player.z -= SPEED;
+	if (!p->jump->jump)
+		events_move(p);
+	if (p->mlx->hook_alpha & H_C)
+	{
+		if (!p->key_ceil)
+			p->ceil = !p->ceil;
+		p->key_ceil = 1;
+	}
+	else
+		p->key_ceil = 0;
+	events_gravity(p);
 }

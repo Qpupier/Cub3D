@@ -6,7 +6,7 @@
 /*   By: qpupier <qpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 15:43:13 by qpupier           #+#    #+#             */
-/*   Updated: 2021/05/31 12:35:54 by qpupier          ###   ########lyon.fr   */
+/*   Updated: 2021/06/02 15:08:25 by qpupier          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 void				calc(t_param *p);
 void				events(t_param *p);
+void				events_move(t_param *p);
 void				find_sprites(t_param *p);
 void				free_all(t_param *p);
 void				free_fd(t_param *p, const char *error);
