@@ -51,6 +51,20 @@ static void	display(t_param *p)
 		ft_error_free(p, "Mlx error - Impossible to synchronize the window");
 }
 
+static void	ft_pixel_put_scale(t_mlx_img img, int i, int j, unsigned int color)
+{
+	int	k;
+	int	l;
+
+	l = -1;
+	while (++l < SCALE)
+	{
+		k = -1;
+		while (++k < SCALE)
+			ft_pixel_put(img, i + k, j + l, color);
+	}
+}
+
 static void	*algo_loop(void *ptr)
 {
 	t_multithread	*t;
@@ -68,7 +82,8 @@ static void	*algo_loop(void *ptr)
 			ray = vec_rot_z_pre(t->p, \
 					t->p->rays_theta[t->p->angle_v][j * t->p->win->w + i], \
 					t->p->angle_h);
-			ft_pixel_put(t->p->mlx->img, i, j, ray_casting(t->p, ray));
+			ft_pixel_put_scale(t->p->mlx->img, i * SCALE, j * SCALE, \
+					ray_casting(t->p, ray));
 		}
 	}
 	return (ptr);

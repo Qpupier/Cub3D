@@ -46,10 +46,12 @@ static void	init_win(t_param *p)
 	if (!p->win)
 		ft_error_free(p, "Malloc error - Win struct");
 	p->free |= F_WIN;
-	p->win->w = 0;
 	p->win->h = 0;
-	p->win->w05 = 0;
+	p->win->h_scale = 0;
+	p->win->w = 0;
+	p->win->w_scale = 0;
 	p->win->h05 = 0;
+	p->win->w05 = 0;
 	p->win->fov_h = 2 * tan(FOV * M_PI / 360);
 	p->win->fov_v = 0;
 	p->win->r_fov_h = 0;

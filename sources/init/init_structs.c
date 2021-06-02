@@ -75,12 +75,16 @@ void	init_parameters(t_param *p)
 		p->win->w = w;
 	if (h < p->win->h)
 		p->win->h = h;
-	p->mlx->win_ptr = mlx_new_window(p->mlx->mlx_ptr, p->win->w, p->win->h, \
+	p->win->w_scale = p->win->w;
+	p->win->h_scale = p->win->h;
+	p->win->w /= SCALE;
+	p->win->h /= SCALE;
+	p->mlx->win_ptr = mlx_new_window(p->mlx->mlx_ptr, p->win->w_scale, p->win->h_scale, \
 			"Cub3D");
 	if (!p->mlx->win_ptr)
 		ft_error_free(p, "Minilibx error - Impossible to open a window");
 	p->free |= F_MLX_WIN;
-	if (!ft_create_img(p->mlx->mlx_ptr, &p->mlx->img, p->win->w, p->win->h))
+	if (!ft_create_img(p->mlx->mlx_ptr, &p->mlx->img, p->win->w_scale, p->win->h_scale))
 		ft_error_free(p, "Minilibx error - Impossible to create an image");
 	p->free |= F_MLX_IMG;
 	init_win(p);

@@ -104,6 +104,15 @@ void	check_map(t_param *p)
 	if (!map_perim_recur(p->map, p->map->player.x - 0.5,
 			p->map->player.y - 0.5, witness))
 	{
+		// printf("%d\n", p->map->h);
+		// i = -1;
+		// while (++i < p->map->w * p->map->h)
+		// {
+		// 	if (!(i % p->map->w))
+		// 		printf("\n");
+		// 	printf("%d", witness[i]);
+		// }
+		// printf("\n\n\n");
 		free(witness);
 		parsing_error(p, "No perimeter map delimiter");
 	}
@@ -112,9 +121,9 @@ void	check_map(t_param *p)
 
 void	parsing(t_param *p)
 {
-	t_parsing		*map;
-	char			*line;
-	int				parameters;
+	t_parsing	*map;
+	char		*line;
+	int			parameters;
 
 	parameters = 0;
 	while (!parameters && get_next_line(p->fd, &line) > 0)

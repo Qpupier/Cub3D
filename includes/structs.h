@@ -82,7 +82,9 @@ typedef struct s_newton
 typedef struct s_win
 {
 	unsigned short int	h;
+	unsigned short int	h_scale;
 	unsigned short int	w;
+	unsigned short int	w_scale;
 	float				h05;
 	float				w05;
 	float				fov_h;

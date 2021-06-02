@@ -70,7 +70,12 @@ void	parsing_line_read(t_param *p, t_parsing *map)
 		parsing_map(p, line);
 		lst_append(&map, p, line);
 	}
-	free(line);
+	if (line)
+	{
+		p->map->h++;
+		parsing_map(p, line);
+		lst_append(&map, p, line);
+	}
 }
 
 t_parsing	*parsing_line_map(t_param *p, char *line)

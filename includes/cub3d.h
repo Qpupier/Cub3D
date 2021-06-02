@@ -29,5 +29,6 @@
 # define DISTANCE_LIGHT 5
 # define LIGHT_MIN 0.15
 # define SPEED 0.2
+# define SCALE 2
 
 #endif
